@@ -1,0 +1,19 @@
+{
+  "engine": "stockfish",
+  "time_per_move_ms": 1000,
+  "search_depth": 20,
+  "search_mode": "depth",
+  "max_moves": 500,
+  "enable_chess960": true,
+  "enable_nnue": false,
+  "randomness_mode": "multipv",
+  "multi_pv": 3,
+  "random_seed": 0,
+  "hash_size_mb": 256,
+  "threads": 1,
+  "syzygy_path": "",
+  "pgn_event": "Chess960 Engine Match",
+  "pgn_variant": "Chess960",
+  "pgn_site": "Computer", 
+  "enforce_draws": true
+}
