@@ -1,0 +1,105 @@
+{
+  "about": {
+    "badge": "About",
+    "title": "About the Chess960v2 Project",
+    "description": "Chess960v2 lets you choose the starting setup and shape the game from move one.",
+    "mission": {
+      "title": "Our Mission",
+      "text": "Bring strategy and creativity back to chess by reducing opening memorization and giving players control over the starting position."
+    },
+    "features": {
+      "title": "Key Features",
+      "list": {
+        "1": "Pick your starting setup",
+        "2": "Less memorization, more ideas",
+        "3": "Open data and code",
+        "4": "Multilingual UI"
+      }
+    },
+    "format": {
+      "title": "What is Chess960v2?",
+      "p1": "Both players independently choose their initial piece placement. This blends freedom from theory with deliberate preparation.",
+      "p2": "The rules don’t change: same board, same pieces, same goal — checkmate.",
+      "points": "Why it matters",
+      "bullets": {
+        "control": "Control: you set the conditions — not randomness.",
+        "creativity": "Creativity: focus on understanding over memory.",
+        "variety": "Variety: hundreds of unconventional starts and plans.",
+        "rules": "Pure chess: no rule changes."
+      }
+    },
+    "tournament": {
+      "badge": "Tournament",
+      "title": "Year‑long Stockfish 15.1 tournament",
+      "p1": "We run a long tournament: Stockfish 15.1 plays itself from many starts — NNUE off by default to emphasize strategy.",
+      "p2": "Time control: 3 seconds per move. Roughly three rounds per day; finish within a year.",
+      "hardware": {
+        "title": "Hardware",
+        "cpu": "CPU: AMD Ryzen 9 7950X (16 cores)",
+        "ram": "RAM: 128 GB DDR5",
+        "ssd": "SSD: 2×1.92 TB U.2 NVMe",
+        "note": "Handles 16 concurrent matches without performance loss."
+      }
+    },
+    "tech": {
+      "title": "Tech Stack",
+      "items": {
+        "next": "Next.js (App Router) + TypeScript",
+        "supabase": "Supabase for auth, Realtime and storage",
+        "tailwind": "Tailwind CSS v4 and DaisyUI",
+        "i18n": "Localization: EN / RU / ES / FR / DE"
+      }
+    },
+    "future": {
+      "title": "The future: from this tournament to a global server",
+      "p1": "This tournament is just the beginning. We plan to run it regularly and, based on what we learn, shape future competitions. It may be another global tournament, or we may split it into leagues such as Elite, Division 1, Division 2, and beyond.",
+      "p2": "Our main goal is to build a full chess server where players worldwide can compete in Chess960v2. This site will be your companion: study games, analyze starting setups, and choose those that fit your style."
+    },
+    "benefits": {
+      "title": "Benefits of Chess960v2",
+      "items": {
+        "mem": {
+          "title": "No memorization",
+          "text": "Forget endless opening drills. Here, thinking starts from move one."
+        },
+        "control": {
+          "title": "Full control",
+          "text": "You — not randomness — decide how your pieces are placed."
+        },
+        "variety": {
+          "title": "Incredible variety",
+          "text": "Thousands of unusual positions rarely seen in classical chess or Chess960."
+        },
+        "pure": {
+          "title": "Pure chess",
+          "text": "We don’t change the rules: same board, same pieces, same goal — checkmate. No fairy pieces or bigger boards."
+        }
+      }
+    },
+    "forYou": {
+      "title": "Built for you — and with you",
+      "text": "Join in, share ideas, and help shape the format. Any feedback and contribution accelerate the launch of the global Chess960v2 server."
+    },
+    "creator": {
+      "title": "Creator",
+      "p1": "Nikolai Lavrenov. Open source project built with the community."
+    },
+    "links": {
+      "title": "Stay connected",
+      "github": "GitHub",
+      "youtube": "YouTube",
+      "telegram": "Telegram",
+      "discord": "Discord",
+      "support": "Support the project"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "text": "Have questions? Feel free to reach out to us"
+    },
+    "cta": {
+      "title": "Join the new era of chess",
+      "watch": "View results",
+      "join": "Create account"
+    }
+  }
+}

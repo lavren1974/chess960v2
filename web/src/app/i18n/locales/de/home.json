@@ -1,0 +1,115 @@
+{
+  "testMode": {
+    "title": "⚠️ Testmodus",
+    "message": "Das Projekt läuft im Testmodus mit 0,5 Sekunden pro Zug statt der geplanten 3 Sekunden. Bei kritischen Fehlern ist ein Neustart möglich."
+  },
+  "hero": {
+    "badge": "Championship 960",
+    "title": "Willkommen bei „Championship 960“ – dem größten Schachexperiment unserer Zeit!",
+    "p1": "Wir fragten uns: Was wäre, wenn wir auswendig gelernte Eröffnungen aus dem Schach entfernten und den Spielern dennoch die volle Kontrolle über ihre Ausgangsstellungen gäben?",
+    "p2": "Was wäre, wenn – noch vor der Partie – jeder Spieler wie ein Feldherr vor der Schlacht seine eigene Figurenaufstellung wählte?",
+    "p3": "Unser Projekt ist der Versuch, die Antwort zu finden. Wir lassen die Engine Stockfish nahezu eine Million Partien in einem neuen Format spielen, um die tiefsten Geheimnisse der Eröffnungsphase aufzudecken."
+  },
+  "buttons": { "join": "Am Experiment teilnehmen", "create": "Konto erstellen" },
+  "concept": {
+    "badge": "Konzept",
+    "title": "Wie funktioniert es?",
+    "step1": { "title": "960 einzigartige Aufstellungen", "text": "Es gibt 960 Anfangsaufstellungen, die den Regeln von Chess960 entsprechen." },
+    "step2": { "title": "Weiß wählt", "text": "Vor der Partie wählt Weiß eine der 960 Aufstellungen für seine Figuren." },
+    "step3": { "title": "Schwarz wählt", "text": "Schwarz wählt unabhängig eine der 960 Aufstellungen für seine Figuren." },
+    "step4": { "title": "Die Partie beginnt!", "text": "Das ist mehr als Zufall. Es ist eine bewusste strategische Entscheidung, die den weiteren Partieverlauf prägt." }
+  },
+  "advantages": {
+    "badge": "Vorteile",
+    "title": "Schlüsselvorteile: Eine neue Ära des Schachs",
+    "a1": {
+      "title": "Freiheit von Eröffnungs-Auswendiglernen",
+      "subtitle": "Vorteil gegenüber klassischem Schach",
+      "text": "Im modernen Schach hängt das Ergebnis oft von tiefgehender, computergestützter Theorie ab. Unser Format durchbricht diesen Kreislauf: Jede Partie ist vom ersten Zug an einzigartig.",
+      "resultLabel": "Ergebnis:",
+      "result": "Es gewinnt, wer tiefer versteht und kreativer ist – nicht, wer am besten auswendig lernt."
+    },
+    "a2": {
+      "title": "Strategische Wahl, kein Zufall",
+      "subtitle": "Vorteil gegenüber Chess960",
+      "text": "Chess960 bekämpft Theorie, erzwingt aber Zufallsstellungen. Wir gehen weiter: Spieler kontrollieren ihre Startaufstellung vollständig – passend zu Stil und Plan.",
+      "result": "Man passt sich nicht nur an – man gestaltet."
+    },
+    "a3": {
+      "title": "Unerschöpfliche Analysetiefe",
+      "text": "960 Weiß-Positionen × 960 Schwarz-Positionen = 921.600 einzigartige Startkombinationen – ein neues Universum des Schachs."
+    }
+  },
+  "goals": {
+    "badge": "Ziele",
+    "title": "Projektziele",
+    "academic": { "title": "Akademische Forschung", "text": "Aufbau einer grundlegenden Datenbank zur Analyse von Schachprinzipien – Figurenwert, Zentrumsbeherrschung, Bauernstrukturen – in nie dagewesener Größenordnung." },
+    "strongest": { "title": "Die stärksten Stellungen ermitteln", "text": "Statistisch bestimmen, welche Aufstellungen objektiv am besten für Weiß und Schwarz sind – und ob es universelle Wahlmöglichkeiten gibt oder alles vom Gegner abhängt." },
+    "openingTheory": { "title": "Eine neue Eröffnungstheorie schaffen", "text": "Entwicklung einer neuen, datenbasierten Eröffnungstheorie für dieses Format – frei von historischen Überlagerungen." },
+    "principles": { "title": "Grundlegende Prinzipien bewerten", "text": "Alte Lehrsätze prüfen – Bedeutung des Zentrums, Stärke des Läuferpaars u. a. – in verschiedensten Stellungstypen." },
+    "gems": { "title": "„Verborgene Perlen“ finden", "text": "Asymmetrische oder scheinbar schwache Aufstellungen entdecken, die in kundiger Hand zu starken Waffen werden." }
+  },
+  "scale": {
+    "badge": "Umfang",
+    "title": "Forschungsumfang",
+    "b1": "960 Anfangsstellungen für Weiß.",
+    "b2": "960 Anfangsstellungen für Schwarz.",
+    "b3": "Jede Weiß-Stellung spielt gegen jede Schwarz-Stellung.",
+    "b4": "Insgesamt werden 921.600 einzigartige Partien gespielt!",
+    "statWhite": "Weiß-Aufstellungen",
+    "statBlack": "Schwarz-Aufstellungen",
+    "statTotal": "Einzigartige Partien gesamt",
+    "note": "Eines der ehrgeizigsten rechnergestützten Experimente der Schachgeschichte."
+  },
+  "concluding": {
+    "p": "Begleiten Sie uns auf dieser faszinierenden Reise zu den Grundlagen der Schachstrategie. Folgen Sie unseren Updates, um die Geheimnisse jenseits des vertrauten ersten Zuges zu entdecken.",
+    "title": "Die Zukunft des Schachs beginnt hier."
+  }
+  ,
+  "landing": {
+    "tagline": "Ihre Regeln. Ihre Strategie. Ihr Schach.",
+    "watchLive": "Turnier live ansehen!"
+  },
+  "problem": {
+    "badge": "Problem",
+    "title": "Warum braucht Schach einen Neustart?",
+    "text1": "Auf Topniveau wird klassisches Schach immer mehr zum Gedächtniswettbewerb. Tausende Stunden werden in Eröffnungstheorie investiert; der eigentliche Kampf beginnt oft erst im 15.–20. Zug.",
+    "text2": "Chess960 hilft, doch die Startstellung ist zufällig — man passt sich an statt bewusst zu wählen."
+  },
+  "solution": {
+    "badge": "Lösung",
+    "title": "Zeit, General zu werden!",
+    "text": "In Chess960v2 sind Sie der General. Sie wählen die Startaufstellung passend zu Stil und Plan — Freiheit von Auswendiglernen plus volle Kontrolle.",
+    "bullets": {
+      "attack": "Schneller Angriff? Wählen Sie eine aggressive Aufstellung.",
+      "draw": "Sicheres Spiel? Eine solide Defensivstruktur.",
+      "surprise": "Überraschung? Hunderte unkonventionelle Möglichkeiten."
+    },
+    "note": "Warum ‚v2‘? Nicht nur ‚Version 2‘, sondern ein Symbol neuer Freiheit — nahezu grenzenlose Kreativität."
+  },
+  "tournament": {
+    "badge": "Turnier",
+    "title": "Erprobungsfeld: einjähriges Stockfish‑15.1‑Event",
+    "text1": "Zur Demonstration der Tiefe läuft ein Jahresturnier: Stockfish 15.1 spielt gegen sich selbst aus vielen Startaufstellungen — NNUE standardmäßig aus, um reine Strategie zu betonen.",
+    "text2": "Bedenkzeit: 3 Sekunden pro Zug. Dynamische Partien, ~3 Runden täglich, Abschluss in einem Jahr.",
+    "hardware": {
+      "title": "Unsere Hardware",
+      "cpu": "CPU: AMD Ryzen 9 7950X (16 Kerne)",
+      "ram": "RAM: 128 GB DDR5",
+      "ssd": "SSD: 2×1,92 TB U.2 NVMe",
+      "note": "Trägt 16 parallele Matches ohne Performanceverlust."
+    }
+  },
+  "future": {
+    "badge": "Zukunft",
+    "title": "Vom Turnier zur breiteren Revolution",
+    "text1": "Dies ist erst der Anfang. Regelmäßigkeit und Ligen geplant: Elite, 1. Liga, 2. Liga, …",
+    "text2": "Ziel: Ein Server für Chess960v2 gegen Menschen und eine Seite zur Analyse und Auswahl der Startaufstellung."
+  },
+  "creator": {
+    "badge": "Community",
+    "title": "Ein Projekt aus Liebe zum Spiel",
+    "text1": "Ich bin Nikolai Lavrenov. Ich liebe Schach, lehne aber ab, wenn Vorbereitung Kreativität verdrängt. Dieses Projekt bringt Strategie zurück — ab Zug eins.",
+    "text2": "Open Source, gemeinschaftlich getragen. Mit Unterstützung starten wir neue Ligen mit tieferen Bedenkzeiten."
+  }
+}

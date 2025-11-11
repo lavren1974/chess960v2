@@ -1,0 +1,105 @@
+{
+  "about": {
+    "badge": "Über",
+    "title": "Über das Projekt Chess960v2",
+    "description": "Chess960v2 lässt Sie die Anfangsaufstellung wählen und die Partie vom ersten Zug an prägen.",
+    "mission": {
+      "title": "Unsere Mission",
+      "text": "Strategie und Kreativität zurück ins Schach bringen: weniger Eröffnungspaukerei, mehr Kontrolle über die Startstellung."
+    },
+    "features": {
+      "title": "Hauptfunktionen",
+      "list": {
+        "1": "Startaufstellung frei wählen",
+        "2": "Weniger Auswendiglernen, mehr Ideen",
+        "3": "Offene Daten und Code",
+        "4": "Mehrsprachige Oberfläche"
+      }
+    },
+    "format": {
+      "title": "Was ist Chess960v2?",
+      "p1": "Beide Spieler wählen unabhängig ihre Anfangsaufstellung. Freiheit von Theorie trifft auf bewusste Vorbereitung.",
+      "p2": "Die Regeln bleiben: Gleiches Brett, gleiche Figuren, gleiches Ziel — Matt.",
+      "points": "Warum das zählt",
+      "bullets": {
+        "control": "Kontrolle: Sie setzen die Bedingungen — nicht der Zufall.",
+        "creativity": "Kreativität: Verständnis statt Gedächtnis.",
+        "variety": "Vielfalt: Hunderte unkonventionelle Starts und Pläne.",
+        "rules": "Reines Schach: keine Regeländerungen."
+      }
+    },
+    "tournament": {
+      "badge": "Turnier",
+      "title": "Jahresturnier mit Stockfish 15.1",
+      "p1": "Ein Langzeit‑Event: Stockfish 15.1 spielt gegen sich selbst aus vielen Starts — NNUE standardmäßig aus, Fokus auf Strategie.",
+      "p2": "Bedenkzeit: 3 Sekunden pro Zug. Rund drei Runden täglich; Abschluss in einem Jahr.",
+      "hardware": {
+        "title": "Hardware",
+        "cpu": "CPU: AMD Ryzen 9 7950X (16 Kerne)",
+        "ram": "RAM: 128 GB DDR5",
+        "ssd": "SSD: 2×1,92 TB U.2 NVMe",
+        "note": "Trägt 16 parallele Matches ohne Performanceverlust."
+      }
+    },
+    "tech": {
+      "title": "Technologie‑Stack",
+      "items": {
+        "next": "Next.js (App Router) + TypeScript",
+        "supabase": "Supabase für Auth, Realtime und Storage",
+        "tailwind": "Tailwind CSS v4 und DaisyUI",
+        "i18n": "Lokalisierung: EN / RU / ES / FR / DE"
+      }
+    },
+    "future": {
+      "title": "Zukunft des Projekts: vom Turnier zum globalen Server",
+      "p1": "Dieses Turnier ist nur der Anfang. Wir planen Regelmäßigkeit und, basierend auf den Erfahrungen, künftige Wettbewerbe zu formen — als weiteres globales Event oder in Ligen wie Elite, 1. Liga, 2. Liga, usw.",
+      "p2": "Unser Hauptziel ist ein vollwertiger Server, auf dem Spieler weltweit Chess960v2 gegeneinander spielen. Diese Seite ist euer Begleiter: Partien studieren, Startaufstellungen analysieren und passende wählen."
+    },
+    "benefits": {
+      "title": "Vorteile von Chess960v2",
+      "items": {
+        "mem": {
+          "title": "Keine Paukerei",
+          "text": "Vergiss endloses Eröffnungsbüffeln. Hier beginnt das Denken mit Zug eins."
+        },
+        "control": {
+          "title": "Volle Kontrolle",
+          "text": "Nicht der Zufall, sondern du bestimmst die Aufstellung deiner Figuren."
+        },
+        "variety": {
+          "title": "Enorme Vielfalt",
+          "text": "Tausende ungewohnte Stellungen, selten im klassischen Schach oder Chess960."
+        },
+        "pure": {
+          "title": "Reines Schach",
+          "text": "Wir ändern keine Regeln: gleiches Brett, gleiche Figuren, gleiches Ziel — Matt. Keine Märchenfiguren oder größere Bretter."
+        }
+      }
+    },
+    "forYou": {
+      "title": "Unser Projekt — für euch und mit euch",
+      "text": "Macht mit, teilt Ideen und gestaltet das Format mit. Feedback und Beiträge beschleunigen den Start des globalen Chess960v2‑Servers."
+    },
+    "creator": {
+      "title": "Initiator",
+      "p1": "Nikolai Lavrenov. Open‑Source‑Projekt gemeinsam mit der Community."
+    },
+    "links": {
+      "title": "Vernetze dich",
+      "github": "GitHub",
+      "youtube": "YouTube",
+      "telegram": "Telegram",
+      "discord": "Discord",
+      "support": "Projekt unterstützen"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "text": "Fragen? Schreib uns gern."
+    },
+    "cta": {
+      "title": "Werde Teil der neuen Schach‑Ära",
+      "watch": "Ergebnisse ansehen",
+      "join": "Konto erstellen"
+    }
+  }
+}

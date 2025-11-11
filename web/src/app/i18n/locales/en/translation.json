@@ -1,0 +1,20 @@
+{
+  "dashboard": {
+    "accountInfo": {
+      "title": "Account Information",
+      "name": "Name",
+      "email": "Email",
+      "id": "ID"
+    },
+    "dangerZone": {
+      "title": "Danger Zone",
+      "deleteButton": "Delete Account",
+      "confirmMessage": "Are you sure you want to delete your account? This action cannot be undone.",
+      "confirmDelete": "Yes, Delete My Account",
+      "cancel": "Cancel"
+    },
+    "errors": {
+      "deleteUnexpected": "An unexpected error occurred while deleting your account"
+    }
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Log out",
+    "about": "About",
+    "standings": "Standings",
+    "ratings": "Ratings",
+    "results": "Results",
+    "latestResults": "Latest Results",
+    "allResults": "All Results"
+  },
+  "auth": {
+    "register": "Register",
+    "login": "Login",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "loginError": "Incorrect email or password",
+    "name": {
+      "label": "Name",
+      "placeholder": "Enter your name",
+      "tooShort": "Minimum name length is 6 characters",
+      "taken": "This name is already taken",
+      "available": "This name is available",
+      "checkError": "Error checking name availability"
+    },
+    "registrationFailed": "Registration failed",
+    "errors": {
+      "This name is already taken": "This name is already taken",
+      "This email is already registered": "This email is already registered",
+      "Minimum name length is 6 characters": "Minimum name length is 6 characters",
+      "Invalid email or password": "Invalid email or password",
+      "Passwords do not match": "Passwords do not match",
+      "Password must be at least 8 characters long": "Password must be at least 8 characters long",
+      "Values don't match": "Values don't match",
+      "email_confirmation_required": "Please confirm your email before logging in."
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "settings": "Settings",
+    "serverInfo": "Server Information",
+    "clientInfo": "Client Information",
+    "recentActivity": "Recent Activity",
+    "profile": "Profile",
+    "sessions": "Sessions",
+    "activity": "Activity",
+    "accountInfo": {
+      "title": "Account Information",
+      "name": "Name",
+      "email": "Email",
+      "id": "ID"
+    },
+    "dangerZone": {
+      "title": "Danger Zone",
+      "deleteButton": "Delete Account",
+      "confirmMessage": "Are you sure you want to delete your account? This will permanently delete all your trips and account data. This action cannot be undone.",
+      "confirmDelete": "Yes, Delete My Account",
+      "cancel": "Cancel"
+    },
+    "errors": {
+      "deleteUnexpected": "An unexpected error occurred while deleting your account"
+    }
+  },
+  "footer": {
+    "about": "About Us",
+    "description": "Chess960v2 is an innovative approach to Fischer Random Chess with double randomization of starting positions. We conduct tournaments among chess engines, exploring new strategies and tactics in conditions of complete opening unpredictability.",
+    "quickLinks": "Quick Links",
+    "resources": "Resources",
+    "connect": "Connect With Us",
+    "emailUs": "Email Us",
+    "copyright": "© {{year}} SB-Next. All rights reserved.",
+    "links": {
+      "supabaseDocs": "Supabase Docs",
+      "githubRepo": "GitHub Repository",
+      "nextDocs": "Next.js Docs"
+    },
+    "social": {
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook"
+    }
+  },
+  "results": {
+    "latestTitle": "Latest Results",
+    "allTitle": "All Results",
+    "playerTitle": "Player {{name}} Results",
+    "roundTitle": "Round {{id}} Results",
+    "currentElo": "Current ELO",
+    "countShown": "{{count}} shown",
+    "perPage": "Per page:",
+    "previous": "Previous",
+    "next": "Next",
+    "pageStatus": "Page {{page}} / {{totalPages}} • {{total}} total",
+    "scopeLabel": "View:",
+    "scopeLatest": "Latest (50)",
+    "scopeAll": "All (960)",
+    "headers": {
+      "id": "ID",
+      "white": "White",
+      "black": "Black",
+      "round": "Round",
+      "result": "Result",
+      "pgn": "PGN",
+      "game": "Game"
+    }
+  },
+  "viewer": {
+    "play": "Play",
+    "pause": "Pause",
+    "moves": "Moves",
+    "pgn": "PGN",
+    "speed": "Speed",
+    "flip": "Flip",
+    "showPGN": "Show PGN",
+    "hidePGN": "Hide PGN"
+  },
+  "standings": {
+    "title": "Tournament Table",
+    "tabs": {
+      "all": "All",
+      "white": "White",
+      "black": "Black"
+    },
+    "viewRound": "View Round:",
+    "open": "Open",
+    "headers": {
+      "rank": "#",
+      "agentId": "Agent ID",
+      "played": "Played",
+      "wins": "W",
+      "draws": "D",
+      "losses": "L",
+      "points": "Points",
+      "bergvizer": "Bergvizer"
+    }
+  }
+  ,
+  "ratings": {
+    "title": "Ratings",
+    "tabs": {
+      "all": "All",
+      "white": "White",
+      "black": "Black"
+    },
+    "headers": {
+      "rank": "#",
+      "agentId": "Agent ID",
+      "elo": "ELO",
+      "delta": "Δ"
+    }
+  }
+}

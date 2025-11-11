@@ -1,0 +1,160 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "dashboard": "Tableau de bord",
+    "login": "Connexion",
+    "register": "S'inscrire",
+    "logout": "Déconnexion",
+    "about": "À propos",
+    "standings": "Classement",
+    "ratings": "Classement ELO",
+    "results": "Résultats",
+    "latestResults": "Derniers résultats",
+    "allResults": "Tous les résultats"
+  },
+  "auth": {
+    "login": "Connexion",
+    "register": "Créer un compte",
+    "email": "E-mail",
+    "emailPlaceholder": "Entrez votre e-mail",
+    "password": "Mot de passe",
+    "passwordPlaceholder": "Entrez votre mot de passe",
+    "confirmPassword": "Confirmez le mot de passe",
+    "confirmPasswordPlaceholder": "Confirmez votre mot de passe",
+    "loginError": "E-mail ou mot de passe incorrect",
+    "registrationFailed": "L'inscription a échoué",
+    "name": {
+      "label": "Nom",
+      "placeholder": "Entrez votre nom",
+      "tooShort": "La longueur minimale du nom est de 6 caracteres",
+      "taken": "Ce nom est déjà pris",
+      "available": "Ce nom est disponible",
+      "checkError": "Erreur lors de la vérification du nom"
+    },
+    "errors": {
+      "This name is already taken": "Ce nom est déjà pris",
+      "This email is already registered": "Cette adresse e-mail est déjà enregistrée",
+      "Minimum name length is 6 characters": "La longueur minimale du nom est de 6 caracteres",
+      "Invalid email or password": "E-mail ou mot de passe incorrect",
+      "Passwords do not match": "Les mots de passe ne correspondent pas",
+      "Password must be at least 8 characters long": "Le mot de passe doit contenir au moins 8 caractères",
+      "Values don't match": "Les valeurs ne correspondent pas",
+      "email_confirmation_required": "Veuillez confirmer votre adresse e-mail avant de vous connecter."
+    }
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "settings": "Paramètres",
+    "serverInfo": "Informations du serveur",
+    "clientInfo": "Informations client",
+    "recentActivity": "Activité récente",
+    "profile": "Profil",
+    "sessions": "Sessions",
+    "activity": "Activité",
+    "accountInfo": {
+      "title": "Informations du compte",
+      "name": "Nom",
+      "email": "E-mail",
+      "id": "ID"
+    },
+    "dangerZone": {
+      "title": "Zone de danger",
+      "deleteButton": "Supprimer le compte",
+      "confirmMessage": "Êtes-vous sûr de vouloir supprimer votre compte ? Cela supprimera définitivement tous vos voyages, tâches et données de compte. Cette action ne peut pas être annulée.",
+      "confirmDelete": "Oui, supprimer mon compte",
+      "cancel": "Annuler"
+    },
+    "errors": {
+      "deleteUnexpected": "Une erreur inattendue s'est produite lors de la suppression de votre compte"
+    }
+  },
+  "footer": {
+    "about": "À propos",
+    "description": "Chess960v2 est une approche innovante des échecs Fischer Random avec double randomisation des positions de départ. Nous organisons des tournois entre moteurs d'échecs, explorant de nouvelles stratégies et tactiques dans des conditions d'imprévisibilité totale de l'ouverture.",
+    "quickLinks": "Liens rapides",
+    "resources": "Ressources",
+    "connect": "Nous contacter",
+    "emailUs": "Envoyez-nous un e-mail",
+    "copyright": "© {{year}} SB-Next. Tous droits réservés.",
+    "links": {
+      "supabaseDocs": "Docs Supabase",
+      "githubRepo": "Dépôt GitHub",
+      "nextDocs": "Docs Next.js"
+    },
+    "social": {
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook"
+    }
+  },
+  "viewer": {
+    "play": "Lecture",
+    "pause": "Pause",
+    "moves": "Coups",
+    "pgn": "PGN",
+    "speed": "Vitesse",
+    "flip": "Inverser",
+    "showPGN": "Afficher le PGN",
+    "hidePGN": "Masquer le PGN"
+  },
+  "results": {
+    "latestTitle": "Derniers résultats",
+    "allTitle": "Tous les résultats",
+    "playerTitle": "Résultats du joueur {{name}}",
+    "roundTitle": "Résultats du round {{id}}",
+    "currentElo": "ELO actuel",
+    "countShown": "{{count}} affichés",
+    "perPage": "Par page :",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "pageStatus": "Page {{page}} / {{totalPages}} • {{total}} au total",
+    "scopeLabel": "Vue :",
+    "scopeLatest": "Derniers (50)",
+    "scopeAll": "Tous (960)",
+    "headers": {
+      "id": "ID",
+      "white": "Blancs",
+      "black": "Noirs",
+      "round": "Round",
+      "result": "Résultat",
+      "pgn": "PGN",
+      "game": "Partie"
+    }
+  },
+  "standings": {
+    "title": "Tableau du tournoi",
+    "tabs": {
+      "all": "Tous",
+      "white": "Blancs",
+      "black": "Noirs"
+    },
+    "viewRound": "Voir le round :",
+    "open": "Ouvrir",
+    "headers": {
+      "rank": "#",
+      "agentId": "ID de l'agent",
+      "played": "Jouées",
+      "wins": "V",
+      "draws": "N",
+      "losses": "D",
+      "points": "Points",
+      "bergvizer": "Bergvizer"
+    }
+  }
+  ,
+  "ratings": {
+    "title": "Classement ELO",
+    "tabs": {
+      "all": "Tous",
+      "white": "Blancs",
+      "black": "Noirs"
+    },
+    "headers": {
+      "rank": "#",
+      "agentId": "ID de l'agent",
+      "elo": "ELO",
+      "delta": "Δ"
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "testMode": {
+    "title": "⚠️ Mode test",
+    "message": "Le projet fonctionne en mode test avec 0,5 seconde par coup au lieu des 3 secondes prévues. En cas d'erreurs critiques, un redémarrage est possible."
+  },
+  "hero": {
+    "badge": "Championnat 960",
+    "title": "Bienvenue dans « Championship 960 », la plus grande expérience d’échecs de notre époque !",
+    "p1": "Et si nous supprimions les ouvertures apprises par cœur tout en laissant aux joueurs le contrôle total de leurs positions de départ ?",
+    "p2": "Et si, avant la partie, chaque joueur — tel un général avant la bataille — choisissait lui‑même le placement de ses pièces ?",
+    "p3": "Notre projet tente d’apporter une réponse. Nous défierons le puissant moteur Stockfish sur près d’un million de parties dans un nouveau format afin de percer les secrets des premières phases du jeu."
+  },
+  "buttons": { "join": "Rejoindre l’expérience", "create": "Créer un compte" },
+  "concept": {
+    "badge": "Concept",
+    "title": "Comment ça marche ?",
+    "step1": { "title": "960 configurations uniques", "text": "Il existe 960 configurations initiales conformes aux règles du Chess960." },
+    "step2": { "title": "Les Blancs choisissent", "text": "Avant la partie, les Blancs choisissent l’une des 960 configurations pour leurs pièces." },
+    "step3": { "title": "Les Noirs choisissent", "text": "Les Noirs choisissent indépendamment l’une des 960 configurations pour leurs pièces." },
+    "step4": { "title": "La partie commence !", "text": "Ce n’est pas qu’une question de hasard. C’est un choix stratégique conscient qui détermine la suite de la partie." }
+  },
+  "advantages": {
+    "badge": "Atouts",
+    "title": "Atouts clés : une nouvelle ère des échecs",
+    "a1": {
+      "title": "Libération de la mémorisation des ouvertures",
+      "subtitle": "Avantage sur les échecs classiques",
+      "text": "Aux échecs modernes, l’issue dépend souvent d’une théorie profonde analysée par ordinateur. Notre format rompt ce cycle : chaque partie est unique dès le premier coup.",
+      "resultLabel": "Résultat :",
+      "result": "Gagne celui qui comprend et crée le mieux, pas celui qui mémorise le plus."
+    },
+    "a2": {
+      "title": "Choix stratégique, pas hasard",
+      "subtitle": "Avantage sur le Chess960",
+      "text": "Le Chess960 combat la théorie mais impose des positions aléatoires. Nous allons plus loin : les joueurs contrôlent totalement leur disposition initiale selon leur style et leur intention.",
+      "result": "Vous ne vous adaptez pas aux circonstances — vous les créez."
+    },
+    "a3": {
+      "title": "Profondeur d’analyse inépuisable",
+      "text": "960 positions pour les Blancs × 960 pour les Noirs = 921 600 combinaisons initiales uniques — un nouvel univers à explorer."
+    }
+  },
+  "goals": {
+    "badge": "Objectifs",
+    "title": "Objectifs du projet",
+    "academic": { "title": "Recherche académique", "text": "Créer une base de données fondamentale pour analyser les principes des échecs — valeur des pièces, contrôle du centre, structure de pions — à une échelle sans précédent." },
+    "strongest": { "title": "Identifier les positions les plus fortes", "text": "Déterminer statistiquement quelles configurations sont objectivement les meilleures pour les Blancs et les Noirs — et si elles sont universelles ou dépendent de l’adversaire." },
+    "openingTheory": { "title": "Créer une nouvelle théorie des ouvertures", "text": "Élaborer une théorie des ouvertures nouvelle et fondée sur les données, libre de tout héritage historique." },
+    "principles": { "title": "Évaluer les principes fondamentaux", "text": "Tester les dogmes séculaires — importance du centre, puissance de la paire de fous, etc. — dans divers types de positions." },
+    "gems": { "title": "Trouver des « pépites » cachées", "text": "Découvrir des configurations asymétriques ou apparemment faibles qui s’avèrent redoutables entre des mains averties." }
+  },
+  "scale": {
+    "badge": "Échelle",
+    "title": "Échelle de la recherche",
+    "b1": "960 positions initiales pour les Blancs.",
+    "b2": "960 positions initiales pour les Noirs.",
+    "b3": "Chaque position des Blancs affronte chaque position des Noirs.",
+    "b4": "Au total, 921 600 parties uniques seront jouées !",
+    "statWhite": "Configurations des Blancs",
+    "statBlack": "Configurations des Noirs",
+    "statTotal": "Parties uniques au total",
+    "note": "L’un des expériments computationnels les plus ambitieux de l’histoire des échecs."
+  },
+  "concluding": {
+    "p": "Rejoignez-nous dans ce voyage fascinant aux fondements de la stratégie échiquéenne. Suivez nos actualités pour découvrir les secrets au‑delà du premier coup familier.",
+    "title": "L’avenir des échecs commence ici."
+  }
+  ,
+  "landing": {
+    "tagline": "Vos règles. Votre stratégie. Vos échecs.",
+    "watchLive": "Regarder le tournoi en direct !"
+  },
+  "problem": {
+    "badge": "Problème",
+    "title": "Pourquoi les échecs ont besoin d’un renouveau ?",
+    "text1": "Au plus haut niveau, les échecs classiques deviennent de plus en plus un concours de mémoire. Les joueurs mémorisent des milliers de lignes ; la vraie lutte commence souvent au 15e–20e coup.",
+    "text2": "Le Chess960 aide, mais la position de départ est aléatoire — vous vous adaptez à ce qu’on vous donne au lieu de choisir délibérément."
+  },
+  "solution": {
+    "badge": "Solution",
+    "title": "Il est temps de devenir le Général !",
+    "text": "Dans Chess960v2, vous êtes le Général. Vous choisissez la disposition initiale selon votre style et votre intention, en alliant liberté de la mémorisation et contrôle total.",
+    "bullets": {
+      "attack": "Envie d’attaque rapide ? Choisissez une configuration agressive.",
+      "draw": "Besoin de solidité ? Optez pour un schéma défensif.",
+      "surprise": "Envie de surprendre ? Des centaines d’options non conventionnelles vous attendent."
+    },
+    "note": "Pourquoi ‘v2’ ? Pas seulement ‘version 2’, mais un symbole d’un nouveau degré de liberté — un terrain quasi illimité pour la créativité."
+  },
+  "tournament": {
+    "badge": "Tournoi",
+    "title": "Terrain d’essai : tournoi annuel Stockfish 15.1",
+    "text1": "Pour montrer la profondeur du format, nous organisons un tournoi d’un an : Stockfish 15.1 joue contre lui‑même depuis de nombreuses positions — NNUE désactivé par défaut pour mettre en avant la stratégie pure.",
+    "text2": "Cadence : 3 secondes par coup. Parties dynamiques, ~3 rondes par jour, fin en un an.",
+    "hardware": {
+      "title": "Notre matériel",
+      "cpu": "CPU : AMD Ryzen 9 7950X (16 cœurs)",
+      "ram": "RAM : 128 Go DDR5",
+      "ssd": "SSD : 2×1,92 To U.2 NVMe",
+      "note": "Permet 16 matchs simultanés sans perte de performance."
+    }
+  },
+  "future": {
+    "badge": "Avenir",
+    "title": "Du tournoi à une révolution plus large",
+    "text1": "Ce n’est que le début. Nous visons la régularité et des ligues : Élite, Division 1, Division 2, etc.",
+    "text2": "Objectif : un serveur où l’on joue à Chess960v2, et un site qui aide à analyser et choisir les positions de départ selon votre style."
+  },
+  "creator": {
+    "badge": "Communauté",
+    "title": "Un projet né de l’amour du jeu",
+    "text1": "Je suis Nikolaï Lavrenov. J’aime les échecs, mais pas quand la préparation d’ouverture étouffe la créativité. J’ai créé ce projet pour ramener la stratégie dès le premier coup.",
+    "text2": "Open source et soutenu par la communauté. Avec votre aide, nous lancerons de nouvelles ligues avec des cadences plus profondes."
+  }
+}

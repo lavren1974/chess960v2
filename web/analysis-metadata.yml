@@ -1,0 +1,66 @@
+# Project Analysis Metadata
+# This file provides context for AI-assisted code analysis
+# Place this file in your project root as `.analysis-metadata.yml`
+
+project:
+  name: "Your Project Name"
+  version: "1.0.0"
+  description: |
+    The project is written using `typescript`, `nextjs` and `tailwind css` and implements a user authentication system. `supabase` is used on the backend.
+
+languages:
+  primary: "typescript"           # Main language
+  secondary:             # Other languages used
+    - "tailwind css"
+    - "html"
+    - "css"
+    - "sql"
+
+architecture:
+  type: "web-application"  # Options: web-application, cli-tool, library, microservice, etc.
+  framework: "nextjs"         # Main framework if applicable
+  database: "supabase"   # Database if applicable
+  deployment: "docker"     # Deployment method
+
+focus_areas:
+  # What should the analysis focus on? Remove/add as needed
+  - "performance optimization"
+  - "security vulnerabilities"  
+  - "code organization"
+  - "testing coverage"
+  - "documentation"
+  - "error handling"
+  - "database queries"
+  - "api design"
+
+specific_concerns:
+  # Specific issues or questions you have
+  - "Memory usage seems high in the user service"
+  - "Need to improve error handling in API endpoints"
+  - "Want to refactor the authentication module"
+
+ignore_for_analysis:
+  # Files/directories to skip during analysis (beyond .gitignore)
+  directories:
+    - "vendor/"
+    - "node_modules/"
+    - "build/"
+    - "dist/"
+    - ".next/"
+  files:
+    - "*.log"
+    - "*.tmp"
+    - "package-lock.json"
+
+context:
+  team_size: 3
+  development_stage: "mvp"     # Options: prototype, mvp, production, maintenance
+  deployment_env: "cloud"      # Options: local, cloud, on-premise
+  performance_requirements: "medium"  # Options: low, medium, high, critical
+  
+additional_notes: |
+  Any other context that would be helpful for analysis:
+  - Recent changes or refactoring
+  - Known issues or technical debt
+  - Specific goals for the analysis
+  - Timeline constraints

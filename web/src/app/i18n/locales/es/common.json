@@ -1,0 +1,158 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "dashboard": "Panel",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "logout": "Cerrar sesión",
+    "about": "Acerca de",
+    "standings": "Clasificación",
+    "ratings": "Ratings",
+    "results": "Resultados",
+    "latestResults": "Resultados recientes",
+    "allResults": "Todos los resultados"
+  },
+  "auth": {
+    "register": "Registrarse",
+    "login": "Iniciar sesión",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "Ingrese su correo electrónico",
+    "password": "Contraseña",
+    "passwordPlaceholder": "Ingrese su contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "confirmPasswordPlaceholder": "Confirme su contraseña",
+    "name": {
+      "label": "Nombre",
+      "placeholder": "Ingrese su nombre",
+      "tooShort": "La longitud mínima del nombre es de 6 caracteres",
+      "taken": "Este nombre ya está en uso",
+      "available": "Este nombre está disponible",
+      "checkError": "Error al verificar la disponibilidad del nombre"
+    },
+    "registrationFailed": "Error en el registro",
+    "errors": {
+      "This name is already taken": "Este nombre ya está en uso",
+      "This email is already registered": "Este correo ya está registrado",
+      "Minimum name length is 6 characters": "La longitud minima del nombre es de 6 caracteres",
+      "Invalid email or password": "Correo o contraseña inválidos",
+      "Passwords do not match": "Las contraseñas no coinciden",
+      "Password must be at least 8 characters long": "La contraseña debe tener al menos 8 caracteres",
+      "Values don't match": "Los valores no coinciden",
+      "email_confirmation_required": "Confirma tu correo electrónico antes de iniciar sesión."
+    }
+  },
+  "dashboard": {
+    "title": "Panel",
+    "settings": "Ajustes",
+    "serverInfo": "Información del servidor",
+    "clientInfo": "Información del cliente",
+    "recentActivity": "Actividad reciente",
+    "profile": "Perfil",
+    "sessions": "Sesiones",
+    "activity": "Actividad",
+    "accountInfo": {
+      "title": "Información de la cuenta",
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "id": "ID"
+    },
+    "dangerZone": {
+      "title": "Zona de peligro",
+      "deleteButton": "Eliminar cuenta",
+      "confirmMessage": "¿Está seguro de que desea eliminar su cuenta? Esto eliminará permanentemente todos sus viajes y datos de cuenta. Esta acción no se puede deshacer.",
+      "confirmDelete": "Sí, eliminar mi cuenta",
+      "cancel": "Cancelar"
+    },
+    "errors": {
+      "deleteUnexpected": "Ocurrió un error inesperado al eliminar su cuenta"
+    }
+  },
+  "footer": {
+    "about": "Sobre Nosotros",
+    "description": "Chess960v2 es un enfoque innovador del ajedrez Fischer Random con doble aleatorización de las posiciones iniciales. Realizamos torneos entre motores de ajedrez, explorando nuevas estrategias y tácticas en condiciones de total imprevisibilidad de la apertura.",
+    "quickLinks": "Enlaces Rápidos",
+    "resources": "Recursos",
+    "connect": "Conéctate con Nosotros",
+    "emailUs": "Envíanos un Email",
+    "copyright": "© {{year}} SB-Next. Todos los derechos reservados.",
+    "links": {
+      "supabaseDocs": "Documentación de Supabase",
+      "githubRepo": "Repositorio de GitHub",
+      "nextDocs": "Documentación de Next.js"
+    },
+    "social": {
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook"
+    }
+  },
+  "results": {
+    "latestTitle": "Resultados recientes",
+    "allTitle": "Todos los resultados",
+    "playerTitle": "Resultados del jugador {{name}}",
+    "roundTitle": "Resultados de la ronda {{id}}",
+    "currentElo": "ELO actual",
+    "countShown": "{{count}} mostrados",
+    "perPage": "Por página:",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "pageStatus": "Página {{page}} / {{totalPages}} • {{total}} en total",
+    "scopeLabel": "Ver:",
+    "scopeLatest": "Recientes (50)",
+    "scopeAll": "Todos (960)",
+    "headers": {
+      "id": "ID",
+      "white": "Blancas",
+      "black": "Negras",
+      "round": "Ronda",
+      "result": "Resultado",
+      "pgn": "PGN",
+      "game": "Partida"
+    }
+  },
+  "standings": {
+    "title": "Tabla del torneo",
+    "tabs": {
+      "all": "Todos",
+      "white": "Blancas",
+      "black": "Negras"
+    },
+    "viewRound": "Ver ronda:",
+    "open": "Abrir",
+    "headers": {
+      "rank": "#",
+      "agentId": "ID del agente",
+      "played": "Jugadas",
+      "wins": "G",
+      "draws": "E",
+      "losses": "P",
+      "points": "Puntos",
+      "bergvizer": "Bergvizer"
+    }
+  },
+  "ratings": {
+    "title": "Ratings",
+    "tabs": {
+      "all": "Todos",
+      "white": "Blancas",
+      "black": "Negras"
+    },
+    "headers": {
+      "rank": "#",
+      "agentId": "ID del agente",
+      "elo": "ELO",
+      "delta": "Δ"
+    }
+  },
+  "viewer": {
+    "play": "Reproducir",
+    "pause": "Pausa",
+    "moves": "Movimientos",
+    "pgn": "PGN",
+    "speed": "Velocidad",
+    "flip": "Invertir",
+    "showPGN": "Mostrar PGN",
+    "hidePGN": "Ocultar PGN"
+  }
+}

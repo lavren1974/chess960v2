@@ -1,0 +1,133 @@
+{
+  "testMode": {
+    "title": "⚠️ Test Mode",
+    "message": "The project is running in test mode with 0.5 seconds per move instead of the planned 3 seconds. Critical errors may result in a restart."
+  },
+  "hero": {
+    "badge": "Championship 960",
+    "title": "Welcome to “Championship 960” — the largest chess experiment of our time!",
+    "p1": "We asked ourselves: what if we removed the memorized openings from chess, but still gave players complete control over their starting positions?",
+    "p2": "What if, before the game began, each player — like a general before a battle — chose their own piece placement?",
+    "p3": "Our project is an attempt to find the answer. We will challenge the powerful chess engine Stockfish to play nearly a million games in a new format to uncover the deepest secrets of the opening stages of the game."
+  },
+  "buttons": {
+    "join": "Join the Experiment",
+    "create": "Create Account"
+  },
+  "concept": {
+    "badge": "Concept",
+    "title": "How Does It Work?",
+    "step1": { "title": "960 unique setups", "text": "There are 960 opening setups that comply with the rules of Chess960." },
+    "step2": { "title": "White chooses", "text": "Before the game, White chooses any of the 960 setups for their pieces." },
+    "step3": { "title": "Black chooses", "text": "Black independently chooses any of the 960 setups for their pieces." },
+    "step4": { "title": "The game begins!", "text": "This is more than just chance. It is a conscious strategic choice that determines the entire subsequent nature of the game." }
+  },
+  "advantages": {
+    "badge": "Advantages",
+    "title": "Key Advantages: A New Era of Chess",
+    "a1": {
+      "title": "Freedom from opening memorization",
+      "subtitle": "Advantage over classical chess",
+      "text": "In modern chess, the outcome often depends on deep theory analyzed by computers. Our format breaks this cycle: every game is unique from move one.",
+      "resultLabel": "Result:",
+      "result": "The winner is the player with deeper understanding and creativity, not the one with the best memory."
+    },
+    "a2": {
+      "title": "Strategic choice, not random chance",
+      "subtitle": "Advantage over Chess960",
+      "text": "Fischer Random removes theory but forces random positions. We go further: players fully control their starting setup to match their style and intent.",
+      "result": "You don’t adapt to circumstances — you create them."
+    },
+    "a3": {
+      "title": "Inexhaustible depth of analysis",
+      "text": "960 positions for White × 960 for Black = 921,600 unique starting combinations — a new universe of chess to explore."
+    }
+  },
+  "goals": {
+    "badge": "Goals",
+    "title": "Project Goals",
+    "academic": {
+      "title": "Academic Research",
+      "text": "Create a fundamental database to analyze chess principles — piece values, central control, and pawn structures — on an unprecedented scale."
+    },
+    "strongest": {
+      "title": "Identifying the strongest positions",
+      "text": "Statistically determine which setups are objectively best for White and Black — and whether universal choices exist or depend on the opponent."
+    },
+    "openingTheory": {
+      "title": "Creating a new opening theory",
+      "text": "Build a fresh, data-driven opening theory for this format, free from historical overlays."
+    },
+    "principles": {
+      "title": "Evaluating fundamental principles",
+      "text": "Test long-held dogmas — importance of the center, the power of the bishop pair, and more — across diverse positions."
+    },
+    "gems": {
+      "title": "Finding “hidden gems”",
+      "text": "Discover asymmetrical or seemingly weak setups that prove formidable in the hands of a prepared player."
+    }
+  },
+  "scale": {
+    "badge": "Scale",
+    "title": "Scale of Research",
+    "b1": "960 opening positions for White.",
+    "b2": "960 opening positions for Black.",
+    "b3": "Every White position plays against every Black position.",
+    "b4": "A total of 921,600 unique games will be played!",
+    "statWhite": "White setups",
+    "statBlack": "Black setups",
+    "statTotal": "Total unique games",
+    "note": "This is one of the most ambitious computational experiments in the history of chess."
+  },
+  "concluding": {
+    "p": "Join us on this fascinating journey to the very foundations of chess strategy. Follow our updates to discover the secrets hidden beyond the familiar first move.",
+    "title": "The Future of Chess Starts Here."
+  }
+  ,
+  "landing": {
+    "tagline": "Your rules. Your strategy. Your chess.",
+    "watchLive": "Watch the live tournament!"
+  },
+  "problem": {
+    "badge": "Problem",
+    "title": "Why do chess need a reboot?",
+    "text1": "At the top level, classical chess increasingly becomes a memory contest. Players spend thousands of hours memorizing openings; the real fight often starts only around move 15–20.",
+    "text2": "Fischer Random (Chess960) helps, but the starting position is random — you must adapt to what you’re given instead of choosing on purpose."
+  },
+  "solution": {
+    "badge": "Solution",
+    "title": "Time to become the General!",
+    "text": "In Chess960v2 you are the General. You choose the starting setup to match your style and idea, combining freedom from memorization with full control.",
+    "bullets": {
+      "attack": "Want a fast attack? Pick an aggressive setup.",
+      "draw": "Need safety? Choose a solid defensive scheme.",
+      "surprise": "Want to surprise? Hundreds of unconventional choices await."
+    },
+    "note": "Why ‘v2’? Not just ‘version 2’, but a symbol of a new degree of freedom — a virtually boundless canvas for creativity."
+  },
+  "tournament": {
+    "badge": "Tournament",
+    "title": "Proving ground: year‑long Stockfish 15.1 event",
+    "text1": "To showcase the format’s depth, we run a year‑long tournament: Stockfish 15.1 plays itself from many starting setups — NNUE disabled by default to highlight pure strategy.",
+    "text2": "Time control: 3 seconds per move. This yields dynamic games, about three rounds per day, finishing in a year.",
+    "hardware": {
+      "title": "Our hardware",
+      "cpu": "CPU: AMD Ryzen 9 7950X (16 cores)",
+      "ram": "RAM: 128 GB DDR5",
+      "ssd": "SSD: 2×1.92 TB U.2 NVMe",
+      "note": "This setup sustains 16 concurrent matches without performance loss."
+    }
+  },
+  "future": {
+    "badge": "Future",
+    "title": "From this tournament to a broader revolution",
+    "text1": "This is just the beginning. We aim to make it regular and form leagues: Elite, Division 1, Division 2, and beyond.",
+    "text2": "The ultimate goal: a server where people play Chess960v2 vs humans, and this site helps analyze and select starting setups for your style."
+  },
+  "creator": {
+    "badge": "Community",
+    "title": "A project born from love for the game",
+    "text1": "I’m Nikolai Lavrenov. I love chess, but dislike when opening prep suppresses creativity. I built this to bring strategy back from move one.",
+    "text2": "Open source and community‑backed. With your help we’ll run new leagues with deeper time controls."
+  }
+}

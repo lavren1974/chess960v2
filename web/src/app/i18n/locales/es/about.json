@@ -1,0 +1,105 @@
+{
+  "about": {
+    "badge": "Acerca de",
+    "title": "Sobre el proyecto Chess960v2",
+    "description": "Chess960v2 te permite elegir la disposición inicial y dar forma a la partida desde el primer movimiento.",
+    "mission": {
+      "title": "Nuestra misión",
+      "text": "Devolver la estrategia y creatividad al ajedrez reduciendo la memorización de aperturas y dando control sobre la posición inicial."
+    },
+    "features": {
+      "title": "Funciones clave",
+      "list": {
+        "1": "Elige tu disposición inicial",
+        "2": "Menos memoria, más ideas",
+        "3": "Datos y código abiertos",
+        "4": "Interfaz multilingüe"
+      }
+    },
+    "format": {
+      "title": "¿Qué es Chess960v2?",
+      "p1": "Ambos jugadores eligen de forma independiente su colocación inicial. Combina libertad de teoría con preparación deliberada.",
+      "p2": "Las reglas no cambian: mismo tablero, mismas piezas, mismo objetivo — jaque mate.",
+      "points": "Por qué importa",
+      "bullets": {
+        "control": "Control: tú defines las condiciones, no el azar.",
+        "creativity": "Creatividad: comprensión por encima de la memoria.",
+        "variety": "Variedad: cientos de salidas no convencionales.",
+        "rules": "Ajedrez puro: sin cambios de reglas."
+      }
+    },
+    "tournament": {
+      "badge": "Torneo",
+      "title": "Torneo anual con Stockfish 15.1",
+      "p1": "Ejecutamos un torneo largo: Stockfish 15.1 juega contra sí mismo desde muchas salidas — NNUE desactivado por defecto para enfatizar la estrategia.",
+      "p2": "Ritmo: 3 segundos por jugada. ~3 rondas al día; fin en un año.",
+      "hardware": {
+        "title": "Hardware",
+        "cpu": "CPU: AMD Ryzen 9 7950X (16 núcleos)",
+        "ram": "RAM: 128 GB DDR5",
+        "ssd": "SSD: 2×1.92 TB U.2 NVMe",
+        "note": "Soporta 16 partidas simultáneas sin pérdida de rendimiento."
+      }
+    },
+    "tech": {
+      "title": "Tecnologías",
+      "items": {
+        "next": "Next.js (App Router) + TypeScript",
+        "supabase": "Supabase para auth, Realtime y almacenamiento",
+        "tailwind": "Tailwind CSS v4 y DaisyUI",
+        "i18n": "Localización: EN / RU / ES / FR / DE"
+      }
+    },
+    "future": {
+      "title": "Futuro del proyecto: del torneo a un servidor global",
+      "p1": "Este torneo es solo el comienzo. Planeamos hacerlo regular y, con lo aprendido, diseñar futuras competiciones. Puede ser otro evento global o dividirse en ligas como Élite, 1ª, 2ª y así sucesivamente.",
+      "p2": "Nuestro objetivo principal es crear un servidor completo donde jugadores de todo el mundo compitan en Chess960v2. Este sitio será tu compañero: estudia partidas, analiza posiciones iniciales y elige las que mejor encajen con tu estilo."
+    },
+    "benefits": {
+      "title": "Ventajas de Chess960v2",
+      "items": {
+        "mem": {
+          "title": "Sin memorización",
+          "text": "Olvida los ejercicios interminables de aperturas. Aquí el pensamiento empieza desde la primera jugada."
+        },
+        "control": {
+          "title": "Control total",
+          "text": "Tú — no el azar — decides cómo se colocan tus piezas."
+        },
+        "variety": {
+          "title": "Variedad increíble",
+          "text": "Miles de posiciones inusuales, raras en el ajedrez clásico o Chess960."
+        },
+        "pure": {
+          "title": "Ajedrez puro",
+          "text": "No cambiamos las reglas: mismo tablero, mismas piezas, mismo objetivo — jaque mate. Sin piezas ‘de fantasía’ ni tableros más grandes."
+        }
+      }
+    },
+    "forYou": {
+      "title": "Nuestro proyecto — para ti y gracias a ti",
+      "text": "Únete, comparte ideas y ayuda a dar forma al formato. Cualquier comentario y contribución aceleran el lanzamiento del servidor global de Chess960v2."
+    },
+    "creator": {
+      "title": "Creador",
+      "p1": "Nikolai Lavrenov. Proyecto de código abierto construido con la comunidad."
+    },
+    "links": {
+      "title": "Mantente conectado",
+      "github": "GitHub",
+      "youtube": "YouTube",
+      "telegram": "Telegram",
+      "discord": "Discord",
+      "support": "Apoyar el proyecto"
+    },
+    "contact": {
+      "title": "Contáctanos",
+      "text": "¿Tienes preguntas? No dudes en escribirnos"
+    },
+    "cta": {
+      "title": "Únete a la nueva era del ajedrez",
+      "watch": "Ver resultados",
+      "join": "Crear cuenta"
+    }
+  }
+}

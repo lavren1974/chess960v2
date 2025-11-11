@@ -1,0 +1,105 @@
+{
+  "about": {
+    "badge": "À propos",
+    "title": "À propos du projet Chess960v2",
+    "description": "Chess960v2 vous permet de choisir la disposition initiale et d’orienter la partie dès le premier coup.",
+    "mission": {
+      "title": "Notre mission",
+      "text": "Ramener la stratégie et la créativité aux échecs en réduisant la mémorisation des ouvertures et en donnant le contrôle de la position initiale."
+    },
+    "features": {
+      "title": "Fonctionnalités clés",
+      "list": {
+        "1": "Choisir sa configuration de départ",
+        "2": "Moins de mémoire, plus d’idées",
+        "3": "Données et code ouverts",
+        "4": "Interface multilingue"
+      }
+    },
+    "format": {
+      "title": "Qu’est‑ce que Chess960v2 ?",
+      "p1": "Les deux joueurs choisissent indépendamment leur placement initial. Liberté vis‑à‑vis de la théorie et préparation délibérée.",
+      "p2": "Les règles ne changent pas : même échiquier, mêmes pièces, même objectif — mat.",
+      "points": "Pourquoi c’est important",
+      "bullets": {
+        "control": "Contrôle : vous fixez les conditions — pas le hasard.",
+        "creativity": "Créativité : compréhension plutôt que mémoire.",
+        "variety": "Variété : des centaines de départs non conventionnels.",
+        "rules": "Échecs purs : aucune règle modifiée."
+      }
+    },
+    "tournament": {
+      "badge": "Tournoi",
+      "title": "Tournoi annuel Stockfish 15.1",
+      "p1": "Nous menons un tournoi long : Stockfish 15.1 joue contre lui‑même depuis de nombreux départs — NNUE désactivé par défaut pour mettre l’accent sur la stratégie.",
+      "p2": "Cadence : 3 secondes par coup. Environ trois rondes par jour ; fin en un an.",
+      "hardware": {
+        "title": "Matériel",
+        "cpu": "CPU : AMD Ryzen 9 7950X (16 cœurs)",
+        "ram": "RAM : 128 Go DDR5",
+        "ssd": "SSD : 2×1,92 To U.2 NVMe",
+        "note": "Soutient 16 matchs simultanés sans perte de performance."
+      }
+    },
+    "tech": {
+      "title": "Technologies",
+      "items": {
+        "next": "Next.js (App Router) + TypeScript",
+        "supabase": "Supabase pour l’auth, Realtime et le stockage",
+        "tailwind": "Tailwind CSS v4 et DaisyUI",
+        "i18n": "Localisation : EN / RU / ES / FR / DE"
+      }
+    },
+    "future": {
+      "title": "Avenir du projet : du tournoi à un serveur mondial",
+      "p1": "Ce tournoi n’est qu’un début. Nous comptons le rendre régulier et, forts de l’expérience acquise, façonner les compétitions futures. Cela pourra être un autre événement mondial ou des ligues — Élite, Division 1, Division 2, etc.",
+      "p2": "Notre objectif principal est de bâtir un serveur complet où des joueurs du monde entier s’affrontent en Chess960v2. Ce site sera votre compagnon : étudiez les parties, analysez les positions de départ et choisissez celles qui correspondent à votre style."
+    },
+    "benefits": {
+      "title": "Atouts de Chess960v2",
+      "items": {
+        "mem": {
+          "title": "Sans bachotage",
+          "text": "Oubliez les répétitions interminables d’ouvertures. Ici, la réflexion commence dès le premier coup."
+        },
+        "control": {
+          "title": "Contrôle total",
+          "text": "Vous — pas le hasard — décidez du placement de vos pièces."
+        },
+        "variety": {
+          "title": "Variété incroyable",
+          "text": "Des milliers de positions inhabituelles, rares aux échecs classiques ou au Chess960."
+        },
+        "pure": {
+          "title": "Échecs purs",
+          "text": "Nous ne changeons pas les règles : même échiquier, mêmes pièces, même objectif — mat. Pas de pièces ‘fantaisistes’ ni d’échiquiers agrandis."
+        }
+      }
+    },
+    "forYou": {
+      "title": "Notre projet — pour vous et grâce à vous",
+      "text": "Rejoignez‑nous, partagez vos idées et contribuez à façonner le format. Vos retours accélèrent le lancement du serveur Chess960v2."
+    },
+    "creator": {
+      "title": "Créateur",
+      "p1": "Nikolaï Lavrenov. Projet open source construit avec la communauté."
+    },
+    "links": {
+      "title": "Restez connectés",
+      "github": "GitHub",
+      "youtube": "YouTube",
+      "telegram": "Telegram",
+      "discord": "Discord",
+      "support": "Soutenir le projet"
+    },
+    "contact": {
+      "title": "Contactez‑nous",
+      "text": "Des questions ? N’hésitez pas à nous écrire."
+    },
+    "cta": {
+      "title": "Rejoignez la nouvelle ère des échecs",
+      "watch": "Voir les résultats",
+      "join": "Créer un compte"
+    }
+  }
+}

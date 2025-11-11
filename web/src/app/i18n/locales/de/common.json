@@ -1,0 +1,160 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "dashboard": "Dashboard",
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "logout": "Abmelden",
+    "about": "Über",
+    "standings": "Tabelle",
+    "ratings": "Ratings",
+    "results": "Ergebnisse",
+    "latestResults": "Neueste Ergebnisse",
+    "allResults": "Alle Ergebnisse"
+  },
+  "auth": {
+    "login": "Anmelden",
+    "register": "Konto erstellen",
+    "email": "E-Mail",
+    "emailPlaceholder": "Ihre E-Mail-Adresse",
+    "password": "Passwort",
+    "passwordPlaceholder": "Ihr Passwort",
+    "confirmPassword": "Passwort bestätigen",
+    "confirmPasswordPlaceholder": "Passwort wiederholen",
+    "loginError": "Ungültige E-Mail oder Passwort",
+    "registrationFailed": "Registrierung fehlgeschlagen",
+    "name": {
+      "label": "Name",
+      "placeholder": "Ihren Namen eingeben",
+      "tooShort": "Die minimale Namenslange betragt 6 Zeichen",
+      "taken": "Dieser Name ist bereits vergeben",
+      "available": "Dieser Name ist verfügbar",
+      "checkError": "Fehler bei der Überprüfung des Namens"
+    },
+    "errors": {
+      "This name is already taken": "Dieser Name ist bereits vergeben",
+      "This email is already registered": "Diese E-Mail-Adresse ist bereits registriert",
+      "Minimum name length is 6 characters": "Die minimale Namenslange betragt 6 Zeichen",
+      "Invalid email or password": "Ungültige E-Mail oder Passwort",
+      "Passwords do not match": "Passwörter stimmen nicht überein",
+      "Password must be at least 8 characters long": "Passwort muss mindestens 8 Zeichen lang sein",
+      "Values don't match": "Werte stimmen nicht überein",
+      "email_confirmation_required": "Bitte bestätige deine E-Mail-Adresse, bevor du dich anmeldest."
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "settings": "Einstellungen",
+    "serverInfo": "Serverinformationen",
+    "clientInfo": "Clientinformationen",
+    "recentActivity": "Letzte Aktivität",
+    "profile": "Profil",
+    "sessions": "Sitzungen",
+    "activity": "Aktivität",
+    "accountInfo": {
+      "title": "Kontoinformationen",
+      "name": "Name",
+      "email": "E-Mail",
+      "id": "ID"
+    },
+    "dangerZone": {
+      "title": "Gefahrenzone",
+      "deleteButton": "Konto löschen",
+      "confirmMessage": "Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Dies wird alle Ihre Reisen, Aufgaben und Kontodaten dauerhaft löschen. Diese Aktion kann nicht rückgängig gemacht werden.",
+      "confirmDelete": "Ja, mein Konto löschen",
+      "cancel": "Abbrechen"
+    },
+    "errors": {
+      "deleteUnexpected": "Ein unerwarteter Fehler ist beim Löschen Ihres Kontos aufgetreten"
+    }
+  },
+  "footer": {
+    "about": "Über uns",
+    "description": "Chess960v2 ist ein innovativer Ansatz für Fischer-Random-Schach mit doppelter Randomisierung der Startpositionen. Wir führen Turniere zwischen Schach-Engines durch und erforschen neue Strategien und Taktiken unter Bedingungen völliger Eröffnungsunvorhersehbarkeit.",
+    "quickLinks": "Schnellzugriff",
+    "resources": "Ressourcen",
+    "connect": "Kontakt",
+    "emailUs": "E-Mail senden",
+    "copyright": "© {{year}} SB-Next. Alle Rechte vorbehalten.",
+    "links": {
+      "supabaseDocs": "Supabase-Dokumentation",
+      "githubRepo": "GitHub-Repository",
+      "nextDocs": "Next.js-Dokumentation"
+    },
+    "social": {
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook"
+    }
+  },
+  "viewer": {
+    "play": "Abspielen",
+    "pause": "Pause",
+    "moves": "Züge",
+    "pgn": "PGN",
+    "speed": "Geschwindigkeit",
+    "flip": "Drehen",
+    "showPGN": "PGN anzeigen",
+    "hidePGN": "PGN ausblenden"
+  },
+  "results": {
+    "latestTitle": "Neueste Ergebnisse",
+    "allTitle": "Alle Ergebnisse",
+    "playerTitle": "Ergebnisse Spieler {{name}}",
+    "roundTitle": "Ergebnisse Runde {{id}}",
+    "currentElo": "Aktuelle ELO",
+    "countShown": "{{count}} angezeigt",
+    "perPage": "Pro Seite:",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "pageStatus": "Seite {{page}} / {{totalPages}} • insgesamt {{total}}",
+    "scopeLabel": "Ansicht:",
+    "scopeLatest": "Neueste (50)",
+    "scopeAll": "Alle (960)",
+    "headers": {
+      "id": "ID",
+      "white": "Weiß",
+      "black": "Schwarz",
+      "round": "Runde",
+      "result": "Ergebnis",
+      "pgn": "PGN",
+      "game": "Partie"
+    }
+  },
+  "standings": {
+    "title": "Turniertabelle",
+    "tabs": {
+      "all": "Alle",
+      "white": "Weiß",
+      "black": "Schwarz"
+    },
+    "viewRound": "Runde ansehen:",
+    "open": "Öffnen",
+    "headers": {
+      "rank": "#",
+      "agentId": "Agent-ID",
+      "played": "Gespielt",
+      "wins": "S",
+      "draws": "U",
+      "losses": "N",
+      "points": "Punkte",
+      "bergvizer": "Bergvizer"
+    }
+  }
+  ,
+  "ratings": {
+    "title": "Ratings",
+    "tabs": {
+      "all": "Alle",
+      "white": "Weiß",
+      "black": "Schwarz"
+    },
+    "headers": {
+      "rank": "#",
+      "agentId": "Agent-ID",
+      "elo": "ELO",
+      "delta": "Δ"
+    }
+  }
+}

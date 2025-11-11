@@ -1,0 +1,159 @@
+{
+  "nav": {
+    "home": "Главная",
+    "dashboard": "Панель управления",
+    "login": "Войти",
+    "register": "Регистрация",
+    "logout": "Выйти",
+    "about": "О проекте",
+    "standings": "Таблица",
+    "ratings": "Рейтинги",
+    "results": "Результаты",
+    "latestResults": "Последние результаты",
+    "allResults": "Все результаты"
+  },
+  "auth": {
+    "login": "Вход",
+    "register": "Создать аккаунт",
+    "email": "Email",
+    "emailPlaceholder": "Введите ваш email",
+    "password": "Пароль",
+    "passwordPlaceholder": "Введите ваш пароль",
+    "confirmPassword": "Подтверждение пароля",
+    "confirmPasswordPlaceholder": "Подтвердите ваш пароль",
+    "loginError": "Неверный email или пароль",
+    "registrationFailed": "Ошибка регистрации",
+    "name": {
+      "label": "Имя",
+      "placeholder": "Введите ваше имя",
+      "tooShort": "Минимальная длина имени — 6 символов",
+      "taken": "Это имя уже занято",
+      "available": "Это имя доступно",
+      "checkError": "Ошибка при проверке имени"
+    },
+    "errors": {
+      "This name is already taken": "Это имя уже занято",
+      "This email is already registered": "Этот адрес уже зарегистрирован",
+      "Minimum name length is 6 characters": "Минимальная длина имени — 6 символов",
+      "Invalid email or password": "Неверный адрес электронной почты или пароль",
+      "Passwords do not match": "Пароли не совпадают",
+      "Password must be at least 8 characters long": "Пароль должен содержать минимум 8 символов",
+      "Values don't match": "Значения не совпадают",
+      "email_confirmation_required": "Подтвердите адрес электронной почты, прежде чем входить в систему."
+    }
+  },
+  "dashboard": {
+    "title": "Панель инструментов",
+    "settings": "Настройки",
+    "serverInfo": "Информация о сервере",
+    "clientInfo": "Информация для клиентов",
+    "recentActivity": "Недавняя активность",
+    "profile": "Профиль",
+    "sessions": "Сессии",
+    "activity": "Активность",
+    "accountInfo": {
+      "title": "Информация об учетной записи",
+      "name": "Имя",
+      "email": "Email",
+      "id": "ID"
+    },
+    "dangerZone": {
+      "title": "Опасная зона",
+      "deleteButton": "Удалить аккаунт",
+      "confirmMessage": "Вы уверены, что хотите удалить свой аккаунт? Это навсегда удалит все задачи и данные аккаунта. Это действие не может быть отменено.",
+      "confirmDelete": "Да, удалить мою учетную запись",
+      "cancel": "Отмена"
+    },
+    "errors": {
+      "deleteUnexpected": "Произошла непредвиденная ошибка при удалении вашего аккаунта"
+    }
+  },
+  "footer": {
+    "about": "О нас",
+    "description": "Chess960v2 — это инновационный подход к шахматам Фишера с двойной рандомизацией стартовых позиций. Мы проводим турниры среди шахматных движков, исследуя новые стратегии и тактики в условиях полной непредсказуемости дебюта.",
+    "quickLinks": "Быстрые ссылки",
+    "resources": "Ресурсы",
+    "connect": "Связаться с нами",
+    "emailUs": "Написать нам",
+    "copyright": "© {{year}} SB-Next. Все права защищены.",
+    "links": {
+      "supabaseDocs": "Документация Supabase",
+      "githubRepo": "Репозиторий GitHub",
+      "nextDocs": "Документация Next.js"
+    },
+    "social": {
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook"
+    }
+  },
+  "results": {
+    "latestTitle": "Последние результаты",
+    "allTitle": "Все результаты",
+    "playerTitle": "Результаты игрока {{name}}",
+    "roundTitle": "Результаты раунда {{id}}",
+    "currentElo": "Текущий ELO",
+    "countShown": "Показано: {{count}}",
+    "perPage": "На странице:",
+    "previous": "Предыдущая",
+    "next": "Следующая",
+    "pageStatus": "Стр. {{page}} / {{totalPages}} • всего {{total}}",
+    "scopeLabel": "Показать:",
+    "scopeLatest": "Последние (50)",
+    "scopeAll": "Все (960)",
+    "headers": {
+      "id": "ID",
+      "white": "Белые",
+      "black": "Чёрные",
+      "round": "Раунд",
+      "result": "Результат",
+      "pgn": "PGN",
+      "game": "Игра"
+    }
+  },
+  "standings": {
+    "title": "Турнирная таблица",
+    "tabs": {
+      "all": "Все",
+      "white": "Белые",
+      "black": "Чёрные"
+    },
+    "viewRound": "Открыть раунд:",
+    "open": "Открыть",
+    "headers": {
+      "rank": "#",
+      "agentId": "ID агента",
+      "played": "Игры",
+      "wins": "П",
+      "draws": "Н",
+      "losses": "Пораж.",
+      "points": "Очки",
+      "bergvizer": "Бергвизер"
+    }
+  },
+  "ratings": {
+    "title": "Рейтинги",
+    "tabs": {
+      "all": "Все",
+      "white": "Белые",
+      "black": "Чёрные"
+    },
+    "headers": {
+      "rank": "#",
+      "agentId": "ID агента",
+      "elo": "ELO",
+      "delta": "Δ"
+    }
+  },
+  "viewer": {
+    "play": "Старт",
+    "pause": "Пауза",
+    "moves": "Ходы",
+    "pgn": "PGN",
+    "speed": "Скорость",
+    "flip": "Повернуть",
+    "showPGN": "Показать PGN",
+    "hidePGN": "Скрыть PGN"
+  }
+}

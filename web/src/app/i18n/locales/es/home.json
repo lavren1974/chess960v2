@@ -1,0 +1,115 @@
+{
+  "testMode": {
+    "title": "⚠️ Modo de prueba",
+    "message": "El proyecto se ejecuta en modo de prueba con 0,5 segundos por jugada en lugar de los 3 segundos planificados. En caso de errores críticos, es posible un reinicio."
+  },
+  "hero": {
+    "badge": "Campeonato 960",
+    "title": "¡Bienvenido a “Championship 960”, el mayor experimento de ajedrez de nuestro tiempo!",
+    "p1": "Nos preguntamos: ¿y si eliminamos las aperturas memorizadas del ajedrez, pero seguimos dando a los jugadores control total sobre sus posiciones iniciales?",
+    "p2": "¿Y si, antes de empezar la partida, cada jugador —como un general antes de la batalla— eligiera su propia disposición de piezas?",
+    "p3": "Nuestro proyecto intenta encontrar la respuesta. Retaremos al potente motor Stockfish a jugar casi un millón de partidas en un nuevo formato para revelar los secretos más profundos de la fase inicial del juego."
+  },
+  "buttons": { "join": "Unirse al experimento", "create": "Crear cuenta" },
+  "concept": {
+    "badge": "Concepto",
+    "title": "¿Cómo funciona?",
+    "step1": { "title": "960 disposiciones únicas", "text": "Hay 960 disposiciones iniciales que cumplen las reglas de Chess960." },
+    "step2": { "title": "Blancas eligen", "text": "Antes de la partida, las Blancas eligen cualquiera de las 960 disposiciones para sus piezas." },
+    "step3": { "title": "Negras eligen", "text": "Las Negras eligen de forma independiente cualquiera de las 960 disposiciones para sus piezas." },
+    "step4": { "title": "¡La partida comienza!", "text": "Esto es más que azar. Es una elección estratégica consciente que determina la naturaleza posterior de la partida." }
+  },
+  "advantages": {
+    "badge": "Ventajas",
+    "title": "Ventajas clave: una nueva era del ajedrez",
+    "a1": {
+      "title": "Libertad de la memorización de aperturas",
+      "subtitle": "Ventaja sobre el ajedrez clásico",
+      "text": "En el ajedrez moderno, el resultado suele depender de una teoría profunda analizada por ordenadores. Nuestro formato rompe este ciclo: cada partida es única desde la primera jugada.",
+      "resultLabel": "Resultado:",
+      "result": "Gana quien tiene mayor comprensión y creatividad, no quien mejor memoriza."
+    },
+    "a2": {
+      "title": "Elección estratégica, no azar",
+      "subtitle": "Ventaja sobre Chess960",
+      "text": "Chess960 combate la teoría pero impone posiciones aleatorias. Damos un paso más: el jugador controla por completo su disposición inicial según su estilo e intención.",
+      "result": "No te adaptas a las circunstancias: las creas."
+    },
+    "a3": {
+      "title": "Inagotable profundidad de análisis",
+      "text": "960 posiciones para Blancas × 960 para Negras = 921.600 combinaciones iniciales únicas: un nuevo universo por explorar."
+    }
+  },
+  "goals": {
+    "badge": "Objetivos",
+    "title": "Objetivos del proyecto",
+    "academic": { "title": "Investigación académica", "text": "Crear una base de datos fundamental para analizar principios ajedrecísticos —valor de las piezas, control del centro y estructura de peones— a una escala sin precedentes." },
+    "strongest": { "title": "Identificar las posiciones más fuertes", "text": "Determinar estadísticamente qué disposiciones son objetivamente mejores para Blancas y Negras —y si existen elecciones universales o dependen del rival." },
+    "openingTheory": { "title": "Crear una nueva teoría de aperturas", "text": "Construir una teoría de aperturas nueva y basada en datos para este formato, libre de cargas históricas." },
+    "principles": { "title": "Evaluar principios fundamentales", "text": "Poner a prueba dogmas históricos —importancia del centro, fuerza de la pareja de alfiles, etc.— en diversos tipos de posiciones." },
+    "gems": { "title": "Encontrar “joyas ocultas”", "text": "Descubrir disposiciones asimétricas o aparentemente débiles que resulten formidables en manos de un jugador preparado." }
+  },
+  "scale": {
+    "badge": "Escala",
+    "title": "Escala de la investigación",
+    "b1": "960 posiciones iniciales para Blancas.",
+    "b2": "960 posiciones iniciales para Negras.",
+    "b3": "Cada posición de Blancas juega contra cada posición de Negras.",
+    "b4": "¡Se jugarán 921.600 partidas únicas en total!",
+    "statWhite": "Disposiciones de Blancas",
+    "statBlack": "Disposiciones de Negras",
+    "statTotal": "Partidas únicas totales",
+    "note": "Uno de los experimentos computacionales más ambiciosos de la historia del ajedrez."
+  },
+  "concluding": {
+    "p": "Únete a este fascinante viaje a los fundamentos de la estrategia ajedrecística. Sigue nuestras novedades para descubrir los secretos más allá del primer movimiento conocido.",
+    "title": "El futuro del ajedrez comienza aquí."
+  }
+  ,
+  "landing": {
+    "tagline": "Tus reglas. Tu estrategia. Tu ajedrez.",
+    "watchLive": "¡Ver el torneo en directo!"
+  },
+  "problem": {
+    "badge": "Problema",
+    "title": "¿Por qué el ajedrez necesita un reinicio?",
+    "text1": "En la élite, el ajedrez clásico se parece cada vez más a un concurso de memoria. Los jugadores memorizan miles de líneas; la verdadera lucha empieza a menudo en la jugada 15–20.",
+    "text2": "Chess960 ayuda, pero la posición inicial es aleatoria: debes adaptarte a lo que te toca en lugar de elegirlo deliberadamente."
+  },
+  "solution": {
+    "badge": "Solución",
+    "title": "¡Es hora de ser el General!",
+    "text": "En Chess960v2 tú eres el General. Eliges la disposición inicial según tu estilo e idea, combinando libertad de memorización con control total.",
+    "bullets": {
+      "attack": "¿Quieres ataque rápido? Elige una configuración agresiva.",
+      "draw": "¿Buscas solidez? Opta por un esquema defensivo.",
+      "surprise": "¿Quieres sorprender? Te esperan cientos de opciones no convencionales."
+    },
+    "note": "¿Por qué ‘v2’? No sólo ‘versión 2’, sino un símbolo de una nueva libertad — un lienzo casi ilimitado para la creatividad."
+  },
+  "tournament": {
+    "badge": "Torneo",
+    "title": "Campo de pruebas: torneo anual con Stockfish 15.1",
+    "text1": "Para mostrar la profundidad del formato, ejecutamos un torneo de un año: Stockfish 15.1 juega contra sí mismo desde muchas posiciones iniciales — NNUE desactivado por defecto para resaltar la estrategia pura.",
+    "text2": "Control de tiempo: 3 segundos por jugada. Partidas dinámicas, ~3 rondas al día, fin en un año.",
+    "hardware": {
+      "title": "Nuestro hardware",
+      "cpu": "CPU: AMD Ryzen 9 7950X (16 núcleos)",
+      "ram": "RAM: 128 GB DDR5",
+      "ssd": "SSD: 2×1.92 TB U.2 NVMe",
+      "note": "Esta configuración soporta 16 partidas simultáneas sin perder rendimiento."
+    }
+  },
+  "future": {
+    "badge": "Futuro",
+    "title": "Del torneo a una revolución más amplia",
+    "text1": "Esto es sólo el comienzo. Lo haremos regular y formaremos ligas: Élite, 1ª, 2ª, etc.",
+    "text2": "Meta: un servidor donde la gente juegue Chess960v2, y este sitio ayude a analizar y elegir posiciones iniciales según tu estilo."
+  },
+  "creator": {
+    "badge": "Comunidad",
+    "title": "Un proyecto nacido del amor por el juego",
+    "text1": "Soy Nikolai Lavrenov. Amo el ajedrez, pero no cuando la preparación desplaza la creatividad. Construí esto para devolver la estrategia desde la primera jugada.",
+    "text2": "Código abierto y apoyo de la comunidad. Con vuestra ayuda, habrá nuevas ligas con controles más profundos."
+  }
+}

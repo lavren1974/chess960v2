@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a5568;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d3748;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- King piece -->
+  <g transform="translate(10, 8)">
+    <path d="M12 2 L14 6 L18 6 L18 10 L16 12 L16 20 L20 22 L20 24 L4 24 L4 22 L8 20 L8 12 L6 10 L6 6 L10 6 Z" 
+          fill="url(#grad1)" stroke="#1a202c" stroke-width="1"/>
+    <circle cx="12" cy="2" r="1.5" fill="#cbd5e0"/>
+    <rect x="11" y="0" width="2" height="3" fill="#cbd5e0"/>
+    <rect x="10" y="1" width="4" height="2" fill="#cbd5e0"/>
+  </g>
+  
+  <!-- Rook piece -->
+  <g transform="translate(38, 12)">
+    <path d="M4 4 L4 8 L6 8 L6 6 L8 6 L8 8 L10 8 L10 6 L12 6 L12 8 L14 8 L14 4 L16 4 L16 20 L18 20 L18 22 L0 22 L0 20 L2 20 L2 4 Z" 
+          fill="url(#grad1)" stroke="#1a202c" stroke-width="1"/>
+  </g>
+  
+  <!-- Decorative elements -->
+  <circle cx="32" cy="54" r="8" fill="#4299e1" opacity="0.2"/>
+  <text x="32" y="58" font-family="Arial, sans-serif" font-size="10" font-weight="bold" 
+        text-anchor="middle" fill="#4299e1">960</text>
+</svg>
