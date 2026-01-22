@@ -1,6 +1,6 @@
 ---
 title: "Welcome to the Chess960v2 Era: An Experiment That Will Change Chess"
-date: "2026-01-20"
+date: "2026-01-22"
 announcement: "We are happy to welcome you to the launch of Chess960v2.com!"
 draft: false
 ---
