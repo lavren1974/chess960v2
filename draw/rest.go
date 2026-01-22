@@ -13,10 +13,9 @@ import (
 
 func supabaseRequest(method, table string, query map[string]string, body any) (*http.Response, error) {
     base := strings.TrimRight(getenv("SUPABASE_URL"), "/")
-    anonKey := getenv("SUPABASE_KEY")
     svcKey := getenv("SUPABASE_SERVICE_ROLE_KEY")
-    if base == "" || (anonKey == "" && svcKey == "") {
-        return nil, fmt.Errorf("missing SUPABASE_URL and key (SUPABASE_KEY or SUPABASE_SERVICE_ROLE_KEY)")
+    if base == "" || svcKey == "" {
+        return nil, fmt.Errorf("missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY")
     }
     url := base + "/rest/v1/" + table
     if len(query) > 0 {
@@ -40,13 +39,9 @@ func supabaseRequest(method, table string, query map[string]string, body any) (*
     if err != nil {
         return nil, err
     }
-    // Use service role key for mutating requests to bypass RLS, if available.
-    keyToUse := anonKey
-    if (method == http.MethodPost || method == http.MethodPatch || method == http.MethodDelete) && svcKey != "" {
-        keyToUse = svcKey
-    }
-    req.Header.Set("apikey", keyToUse)
-    req.Header.Set("Authorization", "Bearer "+keyToUse)
+    // All tables are RLS-enabled; always use the service role key.
+    req.Header.Set("apikey", svcKey)
+    req.Header.Set("Authorization", "Bearer "+svcKey)
     if method == http.MethodPost || method == http.MethodPatch {
         req.Header.Set("Content-Type", "application/json")
         req.Header.Set("Prefer", "return=representation")
@@ -69,7 +64,7 @@ func fetchAgentsByColor(color string, limit int) ([]Agent, error) {
     if limit > 0 {
         q["limit"] = strconv.Itoa(limit)
     }
-    resp, err := supabaseRequest(http.MethodGet, "agents", q, nil)
+    resp, err := supabaseRequest(http.MethodGet, "sf_agents", q, nil)
     if err != nil {
         return nil, err
     }
@@ -104,14 +99,14 @@ func fetchExistingTriples(whiteIDs, blackIDs, rounds []int64, championshipID int
         "round":           mkIn(rounds),
         "championship_id": "eq." + strconv.FormatInt(championshipID, 10),
     }
-    resp, err := supabaseRequest(http.MethodGet, "matches", q, nil)
+    resp, err := supabaseRequest(http.MethodGet, "sf_matches", q, nil)
     if err != nil {
         return nil, err
     }
     defer resp.Body.Close()
     if resp.StatusCode >= 300 {
         b, _ := io.ReadAll(io.LimitReader(resp.Body, 4096))
-        return nil, fmt.Errorf("fetch existing matches failed: %s: %s", resp.Status, string(b))
+        return nil, fmt.Errorf("fetch existing sf_matches failed: %s: %s", resp.Status, string(b))
     }
     var rows []struct {
         PlayerWhite int64 `json:"player_white"`
@@ -140,14 +135,14 @@ func insertMatches(matches []Match) error {
             j = len(matches)
         }
         chunk := matches[i:j]
-        resp, err := supabaseRequest(http.MethodPost, "matches", nil, chunk)
+        resp, err := supabaseRequest(http.MethodPost, "sf_matches", nil, chunk)
         if err != nil {
             return err
         }
         b, _ := io.ReadAll(io.LimitReader(resp.Body, 4096))
         resp.Body.Close()
         if resp.StatusCode >= 300 {
-            return fmt.Errorf("insert matches failed: %s: %s", resp.Status, string(b))
+            return fmt.Errorf("insert sf_matches failed: %s: %s", resp.Status, string(b))
         }
     }
     return nil

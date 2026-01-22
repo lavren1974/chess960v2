@@ -3,21 +3,51 @@
 import { logout } from "@/lib/actions/auth";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useUser } from "../supabase-provider";
+import { useSupabase, useUser } from "../supabase-provider";
 import { ThemeToggle } from "./theme-toggle";
 import { LanguageSwitcher } from "./language-switcher";
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import type { RefObject } from "react";
 import { useTranslation } from "react-i18next";
 import { ClientWrapper } from "./client-wrapper";
 import { siteConfig } from "@/config/site";
 
 export function Navbar({ lng }: { lng: string }) {
   const user = useUser();
+  const { ready: authReady } = useSupabase();
   const pathname = usePathname();
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<"stockfish" | null>(null);
   const { t } = useTranslation();
+  const stockfishRef = useRef<HTMLLIElement>(null);
+
+  const blurDropdown = (ref: RefObject<HTMLElement | null>) => {
+    const label = ref.current?.querySelector("label");
+    if (label instanceof HTMLElement) label.blur();
+  };
+
+  const blurActive = () => {
+    const active = typeof document !== "undefined" ? document.activeElement : null;
+    if (active instanceof HTMLElement) active.blur();
+  };
+
+  // Collapse any open menus when the route changes.
+  useEffect(() => {
+    setOpenDropdown(null);
+    setIsMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target as Node;
+      if (stockfishRef.current?.contains(target)) return;
+      setOpenDropdown(null);
+    };
+    window.addEventListener("pointerdown", handlePointerDown);
+    return () => window.removeEventListener("pointerdown", handlePointerDown);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -65,20 +95,75 @@ export function Navbar({ lng }: { lng: string }) {
           <div className="navbar-center hidden md:flex">
             <ul className="flex items-center space-x-2">
               <li>
-                <Link href={`/${lng}/standings`} className={linkStyle("/standings")}>
-                  {t("nav.standings")}
+                <Link href={`/${lng}/news`} className={linkStyle("/news")}>
+                  {t("nav.news", { defaultValue: "News" })}
                 </Link>
               </li>
-              <li>
-                <Link href={`/${lng}/ratings`} className={linkStyle("/ratings")}>
-                  {t("nav.ratings")}
-                </Link>
-              </li>
-              {/** Removed Latest Results from menu */}
-              <li>
-                <Link href={`/${lng}/results/all`} className={linkStyle("/results/all")}>
-                  {t("nav.allResults")}
-                </Link>
+              <li ref={stockfishRef} onMouseLeave={() => setOpenDropdown(null)}>
+                <div className={`dropdown ${openDropdown === "stockfish" ? "dropdown-open" : ""}`}>
+                  <label
+                    tabIndex={0}
+                    className={`${linkStyle("/standings")} gap-1`}
+                    onClick={() => setOpenDropdown(openDropdown === "stockfish" ? null : "stockfish")}
+                  >
+                    <span>{t("nav.stockfish", { defaultValue: "Stockfish" })}</span>
+                    <ChevronDown className="h-4 w-4 opacity-70" />
+                  </label>
+                  <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <li>
+                      <Link
+                        href={`/${lng}/standings`}
+                        className={linkStyle("/standings")}
+                        onClick={() => {
+                          setOpenDropdown(null);
+                          blurDropdown(stockfishRef);
+                          blurActive();
+                        }}
+                      >
+                        {t("nav.standings")}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href={`/${lng}/ratings`}
+                        className={linkStyle("/ratings")}
+                        onClick={() => {
+                          setOpenDropdown(null);
+                          blurDropdown(stockfishRef);
+                          blurActive();
+                        }}
+                      >
+                        {t("nav.ratings")}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href={`/${lng}/results/all`}
+                        className={linkStyle("/results/all")}
+                        onClick={() => {
+                          setOpenDropdown(null);
+                          blurDropdown(stockfishRef);
+                          blurActive();
+                        }}
+                      >
+                        {t("nav.allResults")}
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href={`/${lng}/standings960`}
+                        className={linkStyle("/standings960")}
+                        onClick={() => {
+                          setOpenDropdown(null);
+                          blurDropdown(stockfishRef);
+                          blurActive();
+                        }}
+                      >
+                        {t("nav.standings960", { defaultValue: "Standings (960)" })}
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
               </li>
               <li>
                 <Link href={`/${lng}/about`} className={linkStyle("/about")}>
@@ -107,7 +192,8 @@ export function Navbar({ lng }: { lng: string }) {
 
           <div className="navbar-end hidden md:flex items-center gap-2">
             <ul className="flex items-center space-x-2">
-              {user ? (
+              {authReady ? (
+                user ? (
                 <>
                   <li>
                     <Link
@@ -126,7 +212,7 @@ export function Navbar({ lng }: { lng: string }) {
                     </button>
                   </li>
                 </>
-              ) : (
+                ) : (
                 <>
                   <li>
                     <Link
@@ -145,6 +231,11 @@ export function Navbar({ lng }: { lng: string }) {
                     </Link>
                   </li>
                 </>
+                )
+              ) : (
+                <li className="px-4 py-2">
+                  <div className="h-8 w-24 rounded-md bg-base-200/70" />
+                </li>
               )}
             </ul>
             <LanguageSwitcher lng={lng} />
@@ -162,13 +253,23 @@ export function Navbar({ lng }: { lng: string }) {
       >
         <div className="px-4 py-2 space-y-2">
           <Link
+            href={`/${lng}/news`}
+            className={`block ${linkStyle("/news")}`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            {t("nav.news", { defaultValue: "News" })}
+          </Link>
+
+          <div className="pt-2 pb-1 text-xs uppercase text-base-content/60">
+            {t("nav.stockfish", { defaultValue: "Stockfish" })}
+          </div>
+          <Link
             href={`/${lng}/standings`}
             className={`block ${linkStyle("/standings")}`}
             onClick={() => setIsMenuOpen(false)}
           >
             {t("nav.standings")}
           </Link>
-
           <Link
             href={`/${lng}/ratings`}
             className={`block ${linkStyle("/ratings")}`}
@@ -176,15 +277,19 @@ export function Navbar({ lng }: { lng: string }) {
           >
             {t("nav.ratings")}
           </Link>
-
-          {/** Removed Latest Results from mobile menu */}
-
           <Link
             href={`/${lng}/results/all`}
             className={`block ${linkStyle("/results/all")}`}
             onClick={() => setIsMenuOpen(false)}
           >
             {t("nav.allResults")}
+          </Link>
+          <Link
+            href={`/${lng}/standings960`}
+            className={`block ${linkStyle("/standings960")}`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            {t("nav.standings960", { defaultValue: "Standings (960)" })}
           </Link>
 
           <Link
@@ -195,7 +300,8 @@ export function Navbar({ lng }: { lng: string }) {
             {t("nav.about")}
           </Link>
 
-          {user ? (
+          {authReady ? (
+            user ? (
             <>
               <Link
                 href={`/${lng}/dashboard`}
@@ -214,7 +320,7 @@ export function Navbar({ lng }: { lng: string }) {
                 {t("nav.logout")}
               </button>
             </>
-          ) : (
+            ) : (
             <>
               <Link
                 href={`/${lng}/login`}
@@ -231,6 +337,11 @@ export function Navbar({ lng }: { lng: string }) {
                 {t("nav.register")}
               </Link>
             </>
+            )
+          ) : (
+            <div className="px-4 py-2">
+              <div className="h-8 w-24 rounded-md bg-base-200/70" />
+            </div>
           )}
         </div>
       </div>

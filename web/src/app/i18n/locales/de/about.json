@@ -32,13 +32,23 @@
       "badge": "Turnier",
       "title": "Jahresturnier mit Stockfish 15.1",
       "p1": "Ein Langzeit‑Event: Stockfish 15.1 spielt gegen sich selbst aus vielen Starts — NNUE standardmäßig aus, Fokus auf Strategie.",
-      "p2": "Bedenkzeit: 3 Sekunden pro Zug. Rund drei Runden täglich; Abschluss in einem Jahr.",
+      "p2": "So entsteht ein Datensatz, um die stärksten Eröffnungsideen und Strategien im neuen Format zu analysieren.",
+      "time": {
+        "title": "Bedenkzeit und Dynamik",
+        "p1": "Die Engine bekommt exakt 2 Sekunden pro Zug — dieses Zeitmaß ist bewusst gewählt und spiegelt sich sogar im Projektnamen wider: **chess960v2**.",
+        "p2": "Zwei Sekunden bieten ein optimales Gleichgewicht zwischen Spielqualität und Rechenlast. Das reicht, damit Stockfish seine Stärke zeigen und gehaltvolle, abwechslungsreiche Partien erzeugen kann, ohne den Server zu überlasten, sodass der Betrieb 24/7 ohne Ausfälle oder Überhitzung läuft. Mit diesem Tempo können wir etwa drei vollständige Runden pro Tag spielen und die Untersuchung aller 960 Startstellungen innerhalb eines Jahres abschließen.",
+        "p3": "Wichtig: Das Projekt ist vollständig Open Source. Jeder kann eine eigene Instanz betreiben, die Bedenkzeit (oder andere Parameter) ändern und eigene Experimente durchführen — ob 1 Sekunde, 5 Sekunden oder sogar klassische Bedenkzeit. Wir glauben, dass Offenheit neue Ideen hervorbringt und die Community der beste Mitautor ist."
+      },
+      "server": {
+        "title": "Unser Server: Power für tausende Partien",
+        "text": "Alle Partien laufen auf einem Hochleistungsserver, der stabile und schnelle Engine‑Leistung sicherstellt. Das Setup erlaubt bis zu 12 parallele Matches ohne Performanceverlust und hält den Spielstrom kontinuierlich."
+      },
       "hardware": {
-        "title": "Hardware",
-        "cpu": "CPU: AMD Ryzen 9 7950X (16 Kerne)",
+        "title": "Unsere Hardware",
+        "cpu": "CPU: AMD Ryzen 9 7950X (16 Kerne, 4.5 GHz)",
         "ram": "RAM: 128 GB DDR5",
-        "ssd": "SSD: 2×1,92 TB U.2 NVMe",
-        "note": "Trägt 16 parallele Matches ohne Performanceverlust."
+        "ssd": "SSD: 21.92 TB U.2 NVMe",
+        "note": "Bis zu 12 gleichzeitige Matches ohne Performanceverlust."
       }
     },
     "tech": {
@@ -83,6 +93,17 @@
     "creator": {
       "title": "Initiator",
       "p1": "Nikolai Lavrenov. Open‑Source‑Projekt gemeinsam mit der Community."
+    },
+    "support": {
+      "title": "Projekt unterstützen",
+      "text": "Dieses Projekt ist kostenlos und Open Source. Wenn es dir hilft, kannst du es mit einer freiwilligen Spende unterstützen:",
+      "btcLabel": "Bitcoin (BTC):",
+      "xmrLabel": "Monero (XMR):"
+    },
+    "openSource": {
+      "title": "Open Source",
+      "text": "Dieses Projekt ist Open Source. Du kannst den Code auf GitHub ansehen oder beitragen.",
+      "button": "GitHub"
     },
     "links": {
       "title": "Vernetze dich",

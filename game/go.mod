@@ -1,7 +1,10 @@
 module chess960v2
 
-go 1.25.2
+go 1.25.6
 
-require github.com/notnil/chess v1.10.0
+require (
+	berger v0.0.0
+	github.com/lavren1974/chess960 v0.1.0
+)
 
-require github.com/corentings/chess v0.0.0-20241113092200-3f44c4e3e959
+replace berger => ./berger

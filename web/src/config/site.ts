@@ -3,7 +3,11 @@
 // individual components.
 export const siteConfig = {
   // Site identity
-  siteName: "Chess960v2",
+  siteName: "chess960v2",
+  siteUrl: "https://chess960v2.com",
+  defaultDescription:
+    "Chess960v2 is an open experiment in engine chess: thousands of games from player‑chosen Chess960 starts, with full open data and code.",
+  defaultOgImage: "/img/og.png",
 
   // Board highlight colors for last move squares
   // Accepts any valid CSS color (hex, rgb/rgba, hsl, named color)

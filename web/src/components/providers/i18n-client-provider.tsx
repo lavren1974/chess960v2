@@ -19,39 +19,73 @@ export function I18nProvider({
   lng,
   namespaces,
 }: I18nProviderProps) {
-  const [instance, setInstance] = useState(i18next)
-  const [mounted, setMounted] = useState(false)
+  const hasAllNamespaces = (language: string, ns: string[]) =>
+    ns.length === 0 || ns.every((name) => i18next.hasResourceBundle(language, name))
+
+  const [ready, setReady] = useState(
+    i18next.isInitialized && hasAllNamespaces(lng, namespaces)
+  )
 
   useEffect(() => {
-    const i18nInstance = i18next
-      .createInstance()
-      .use(initReactI18next)
-      .use(LanguageDetector)
-      .use(resourcesToBackend((language: string, namespace: string) => 
-        import(`@/app/i18n/locales/${language}/${namespace}.json`))
-      )
+    let isActive = true
 
     async function init() {
-      await i18nInstance.init({
-        ...getOptions(lng),
-        lng,
-        ns: namespaces,
-        detection: {
-          order: ['path', 'htmlTag', 'cookie', 'navigator'],
-        }
-      })
-      setInstance(i18nInstance)
-      setMounted(true)
+      if (!i18next.isInitialized) {
+        i18next
+          .use(initReactI18next)
+          .use(LanguageDetector)
+          .use(resourcesToBackend((language: string, namespace: string) =>
+            import(`@/app/i18n/locales/${language}/${namespace}.json`))
+          )
+
+        await i18next.init({
+          ...getOptions(lng),
+          lng,
+          ns: namespaces,
+          react: { useSuspense: false },
+          detection: {
+            order: ['path', 'htmlTag', 'cookie', 'navigator'],
+            lookupCookie: 'NEXT_LOCALE',
+            caches: ['cookie'],
+          }
+        })
+      }
+
+      if (!isActive) return
+      setReady(true)
     }
 
     init()
+
+    return () => {
+      isActive = false
+    }
+  }, [])
+
+  useEffect(() => {
+    let isActive = true
+
+    async function syncLanguage() {
+      if (!i18next.isInitialized) return
+      if (i18next.resolvedLanguage !== lng) {
+        await i18next.changeLanguage(lng)
+      }
+      if (namespaces.length) {
+        await i18next.loadNamespaces(namespaces)
+      }
+      if (isActive) {
+        setReady(hasAllNamespaces(lng, namespaces))
+      }
+    }
+
+    syncLanguage()
+
+    return () => {
+      isActive = false
+    }
   }, [lng, namespaces])
 
-  if (!mounted) return null
+  if (!ready) return null
 
-  return (
-    <I18nextProvider i18n={instance}>
-      {children}
-    </I18nextProvider>
-  )
+  return <I18nextProvider i18n={i18next}>{children}</I18nextProvider>
 }

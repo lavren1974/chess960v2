@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { getServerClient } from "../supabase/server";
 import { getServiceRoleClient } from "../supabase/service";
+import { evaluateDisplayNameAvailability } from "../services/name-availability";
 
 interface AccountResult {
   error?: string;
@@ -78,6 +79,12 @@ export async function updateProfile(formData: FormData): Promise<AccountResult> 
   }
 
   if (Object.keys(metadataUpdates).length > 0) {
+    if (metadataUpdates.name) {
+      const availability = await evaluateDisplayNameAvailability(metadataUpdates.name);
+      if (availability.available === false) {
+        return { error: "This name is already taken" };
+      }
+    }
     updates.data = metadataUpdates;
   }
 
@@ -92,16 +99,20 @@ export async function updateProfile(formData: FormData): Promise<AccountResult> 
     return { error: updateError.message || "Failed to update profile" };
   }
 
-  // Sync profile table if available
+  // Sync sf_profiles table if available
   if (user.id && (metadataUpdates.name || metadataUpdates.language)) {
     try {
-      await supabase.from("profiles").upsert({
+      await supabase.from("sf_profiles").upsert({
         id: user.id,
         name: metadataUpdates.name ?? (user.user_metadata?.name as string | undefined) ?? null,
         language:
           metadataUpdates.language ?? (user.user_metadata?.language as string | undefined) ?? null,
       });
     } catch (error) {
+      const code = (error as any)?.code || (error as any)?.details || "";
+      if (String(code).includes("23505")) {
+        return { error: "This name is already taken" };
+      }
       console.warn("Failed to sync profile data:", error);
     }
   }
@@ -138,8 +149,18 @@ export async function deleteAccount(): Promise<AccountResult> {
   try {
     const serviceClient = getServiceRoleClient();
 
+    // Remove user's favorites first
+    const { error: favsError } = await serviceClient
+      .from("sf_agent_favorites")
+      .delete()
+      .eq("user_id", user.id);
+
+    if (favsError) {
+      console.warn("Failed to remove user favorites:", favsError);
+    }
+
     const { error: profileError } = await serviceClient
-      .from("profiles")
+      .from("sf_profiles")
       .delete()
       .eq("id", user.id);
 
@@ -151,7 +172,9 @@ export async function deleteAccount(): Promise<AccountResult> {
 
     if (deleteError) {
       console.error("Delete account error:", deleteError);
-      return { error: deleteError.message || "Failed to delete account" };
+      // Proceed with sign-out and redirect, but surface a notice on login
+      await supabase.auth.signOut();
+      return { redirect: "/login?notice=account_deletion_partial" };
     }
 
     await supabase.auth.signOut();

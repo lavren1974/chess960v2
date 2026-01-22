@@ -32,13 +32,23 @@
       "badge": "Torneo",
       "title": "Torneo anual con Stockfish 15.1",
       "p1": "Ejecutamos un torneo largo: Stockfish 15.1 juega contra sí mismo desde muchas salidas — NNUE desactivado por defecto para enfatizar la estrategia.",
-      "p2": "Ritmo: 3 segundos por jugada. ~3 rondas al día; fin en un año.",
+      "p2": "Esto permitirá construir un conjunto de datos para analizar las ideas de apertura y estrategias más fuertes del nuevo formato.",
+      "time": {
+        "title": "Control de tiempo y dinámica",
+        "p1": "El motor recibe exactamente 2 segundos por jugada; este valor no es casual y está reflejado incluso en el nombre del proyecto: **chess960v2**.",
+        "p2": "Dos segundos logran un equilibrio óptimo entre la calidad de juego y la carga de cómputo. Es suficiente para que Stockfish muestre su fuerza y genere partidas ricas y diversas, sin sobrecargar el servidor, lo que permite jugar 24/7 sin pausas ni sobrecalentamiento de recursos. Con este control podemos ejecutar alrededor de tres rondas completas por día y terminar el estudio de las 960 posiciones iniciales en un año.",
+        "p3": "Importante: el proyecto es completamente de código abierto. Cualquiera puede desplegar su propia copia, cambiar el control de tiempo (o cualquier otro parámetro) y realizar sus propios experimentos — ya sea 1 segundo, 5 segundos o incluso un control clásico. Creemos que la apertura genera nuevas ideas y que la comunidad es el mejor coautor."
+      },
+      "server": {
+        "title": "Nuestro servidor: potencia para miles de partidas",
+        "text": "Todas las partidas se juegan en un servidor de alto rendimiento que garantiza estabilidad y velocidad del motor. Esta configuración nos permite ejecutar hasta 12 partidas simultáneas sin pérdida de rendimiento, manteniendo un flujo continuo de juegos."
+      },
       "hardware": {
-        "title": "Hardware",
-        "cpu": "CPU: AMD Ryzen 9 7950X (16 núcleos)",
+        "title": "Nuestro hardware",
+        "cpu": "CPU: AMD Ryzen 9 7950X (16 núcleos, 4.5 GHz)",
         "ram": "RAM: 128 GB DDR5",
-        "ssd": "SSD: 2×1.92 TB U.2 NVMe",
-        "note": "Soporta 16 partidas simultáneas sin pérdida de rendimiento."
+        "ssd": "SSD: 21.92 TB U.2 NVMe",
+        "note": "Hasta 12 partidas simultáneas sin pérdida de rendimiento."
       }
     },
     "tech": {
@@ -83,6 +93,17 @@
     "creator": {
       "title": "Creador",
       "p1": "Nikolai Lavrenov. Proyecto de código abierto construido con la comunidad."
+    },
+    "support": {
+      "title": "Apoyar el proyecto",
+      "text": "Este proyecto es gratuito y de código abierto. Si te resulta útil, puedes apoyarlo con una donación voluntaria:",
+      "btcLabel": "Bitcoin (BTC):",
+      "xmrLabel": "Monero (XMR):"
+    },
+    "openSource": {
+      "title": "Open Source",
+      "text": "Este proyecto es de código abierto. Puedes ver el código o contribuir en GitHub.",
+      "button": "GitHub"
     },
     "links": {
       "title": "Mantente conectado",

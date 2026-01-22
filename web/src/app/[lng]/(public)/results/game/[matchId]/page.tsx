@@ -1,10 +1,11 @@
-import { getServerClient } from "@/lib/supabase/server";
+import { getServiceRoleClient } from "@/lib/supabase/service";
 import { getServerTranslation } from "@/app/i18n";
 import { PgnViewer } from "@/components/pgn/pgn-viewer";
 import { BackButton } from "@/components/ui/back-button";
 import type { AgentRow } from "@/components/agents/agent-utils";
 import { AgentLabel } from "@/components/agents/agent-label";
 import type { Metadata } from "next";
+import { languages } from "@/app/i18n/settings";
 
 // Dynamic route: render on demand so PGN/agents are always fresh.
 export const dynamic = "force-dynamic";
@@ -24,9 +25,9 @@ export default async function GamePage({
     return <div className="text-error">Invalid match id</div>;
   }
 
-  const supabase = await getServerClient();
+  const supabase = getServiceRoleClient();
   const { data, error } = await supabase
-    .from("matches")
+    .from("sf_matches")
     .select("id, pgn, player_white, player_black, result, round")
     .eq("id", id)
     .limit(1)
@@ -40,7 +41,7 @@ export default async function GamePage({
   let aBlack: AgentRow | undefined;
   if (data?.player_white != null && data?.player_black != null) {
     const { data: agents } = await supabase
-      .from("agents")
+      .from("sf_agents")
       .select("id, sp_id, mini_fen, color")
       .in("id", [data.player_white, data.player_black]);
     if (Array.isArray(agents)) {
@@ -123,11 +124,17 @@ export default async function GamePage({
   );
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ lng: string; matchId: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lng: string; matchId: string }>;
+}): Promise<Metadata> {
   const { lng, matchId } = await params;
-  const { t } = await getServerTranslation(lng, "common");
-  const id = Number(matchId);
-  const titleBase = t("results.allTitle");
-  const title = Number.isFinite(id) ? `${titleBase} • Game ${id}` : titleBase;
-  return { title };
+  const currentLng = languages.includes(lng) ? lng : languages[0];
+  const { t } = await getServerTranslation(currentLng, "common");
+  const gameLabel = t("results.headers.game", { defaultValue: "Game" }) as string;
+  return {
+    title: `${gameLabel} ${matchId}`,
+  };
 }
+

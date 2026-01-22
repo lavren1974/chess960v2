@@ -30,7 +30,12 @@ export function LiveStandings({
   total,
   counts,
   view,
+  championships,
   agents,
+  favoriteIds = [],
+  favoritesOnly = false,
+  showFavoritesToggle = false,
+  rankMap,
 }: {
   initial: StandingRow[];
   champId: number | null;
@@ -40,7 +45,12 @@ export function LiveStandings({
   total: number;
   counts: { all: number; white: number; black: number };
   view: View;
+  championships: Array<{ id: number; status?: string | null; start_date?: string | null }>;
   agents: Record<number, AgentRow>;
+  favoriteIds?: number[];
+  favoritesOnly?: boolean;
+  showFavoritesToggle?: boolean;
+  rankMap?: Record<number, number>;
 }) {
   const { client } = useSupabase();
   const mapRef = useRef<Map<number, StandingRow>>(new Map(initial.map((r) => [r.player_id, r])));
@@ -48,10 +58,14 @@ export function LiveStandings({
   const refreshTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [agentMap, setAgentMap] = useState<Record<number, AgentRow>>(agents);
   const agentMapRef = useRef<Record<number, AgentRow>>(agents);
+  const hasAppliedStoredChamp = useRef(false);
 
   useEffect(() => {
     agentMapRef.current = agentMap;
   }, [agentMap]);
+
+  const [roundInput, setRoundInput] = useState<string>("");
+  const [champSelector, setChampSelector] = useState<number | null>(champId);
 
   // Helper: fetch current page slice from Supabase with same ordering/filters
   async function refreshPage() {
@@ -59,13 +73,19 @@ export function LiveStandings({
     const from = (page - 1) * perPage;
     const to = from + perPage - 1;
     let scoped = client
-      .from("standings")
+      .from("sf_standings")
       .select(
         "id, player_id, games_played, wins, draws, losses, points, bergvizer_score, championship_id",
       );
     if (champId) scoped = scoped.eq("championship_id", champId);
-    if (allView === "white") scoped = scoped.gte("player_id", 1000).lte("player_id", 1959);
-    if (allView === "black") scoped = scoped.gte("player_id", 2000).lte("player_id", 2959);
+    if (favoritesOnly && favoriteIds.length === 0) {
+      mapRef.current = new Map();
+      setVersion((v) => v + 1);
+      return;
+    }
+    if (favoritesOnly) scoped = scoped.in("player_id", favoriteIds);
+    if (allView === "white") scoped = scoped.gte("player_id", 1001).lte("player_id", 1960);
+    if (allView === "black") scoped = scoped.gte("player_id", 2001).lte("player_id", 2960);
     scoped = scoped
       .order("points", { ascending: false })
       .order("bergvizer_score", { ascending: false, nullsFirst: false })
@@ -85,7 +105,7 @@ export function LiveStandings({
         for (let i = 0; i < missing.length; i += CHUNK) {
           const slice = missing.slice(i, i + CHUNK);
           const { data: aData } = await client
-            .from("agents")
+            .from("sf_agents")
             .select("id, sp_id, mini_fen, color")
             .in("id", slice);
           if (Array.isArray(aData)) {
@@ -103,7 +123,7 @@ export function LiveStandings({
   useEffect(() => {
     const channel = client
       .channel("realtime-standings")
-      .on("postgres_changes", { event: "*", schema: "public", table: "standings" }, (payload) => {
+      .on("postgres_changes", { event: "*", schema: "public", table: "sf_standings" }, (payload) => {
         const row = (payload.new || payload.old) as StandingRow | undefined;
         if (row && champId && row.championship_id !== champId) return;
         // Debounce refresh to coalesce bursts
@@ -118,7 +138,7 @@ export function LiveStandings({
       if (refreshTimer.current) clearTimeout(refreshTimer.current);
       void client.removeChannel(channel);
     };
-  }, [client, champId, view, page, perPage]);
+  }, [client, champId, view, page, perPage, favoritesOnly, favoriteIds]);
 
   useEffect(() => {
     mapRef.current = new Map(initial.map((r) => [r.player_id, r]));
@@ -128,6 +148,11 @@ export function LiveStandings({
 
   const { t } = useTranslation();
   const allRows = Array.from(mapRef.current.values());
+  const favSet = useMemo(() => new Set<number>(favoriteIds), [favoriteIds]);
+  const favoriteLabel = t("dashboard.favorites", { defaultValue: "Favorites" });
+  const favoritesEmptyLabel = t("dashboard.favoritesEmpty", {
+    defaultValue: "No favorites yet. Browse positions to add some.",
+  });
 
   function cmp(a: StandingRow, b: StandingRow) {
     if (b.points !== a.points) return b.points - a.points;
@@ -140,35 +165,107 @@ export function LiveStandings({
 
   const rows = useMemo(() => allRows.slice().sort(cmp), [allRows]);
 
-  const [roundInput, setRoundInput] = useState<string>("");
-
   const totalPages = Math.max(1, Math.ceil(total / perPage));
   const prevPage = page > 1 ? page - 1 : null;
   const nextPage = page < totalPages ? page + 1 : null;
 
-  function linkFor(nextView?: View, p?: number | null) {
+  function linkFor(nextView?: View, p?: number | null, nextFavoritesOnly?: boolean) {
+    const useFavorites = typeof nextFavoritesOnly === "boolean" ? nextFavoritesOnly : favoritesOnly;
     return {
       pathname: `/${lng}/standings`,
       query: {
         view: String(nextView ?? view),
         page: String(p ?? page),
         perPage: String(perPage),
+        ...(champId ? { champ: String(champId) } : {}),
+        ...(useFavorites ? { favorites: "1" } : {}),
       },
     } as const;
   }
 
+  useEffect(() => {
+    // On first load, honor any stored selection for this browser session (but not beyond reboot)
+    if (hasAppliedStoredChamp.current) return;
+    hasAppliedStoredChamp.current = true;
+    if (!championships.length) return;
+    const stored = sessionStorage.getItem("standingsChampId");
+    const parsed = stored ? parseInt(stored, 10) : NaN;
+    const match = championships.some((c) => c.id === parsed);
+    if (match && parsed !== champId) {
+      const params = new URLSearchParams(window.location.search);
+      params.set("champ", String(parsed));
+      params.set("page", "1");
+      const next = `${window.location.pathname}?${params.toString()}`;
+      window.history.replaceState(null, "", next);
+      // Trigger a hard refresh of data via navigation to keep server data in sync
+      window.location.href = next;
+    }
+  }, [champId, championships]);
+
+  function handleChampChange(value: string) {
+    const nextId = parseInt(value, 10);
+    if (!Number.isFinite(nextId)) return;
+    sessionStorage.setItem("standingsChampId", String(nextId));
+    setChampSelector(nextId);
+    const params = new URLSearchParams(window.location.search);
+    params.set("champ", String(nextId));
+    params.set("page", "1");
+    const next = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState(null, "", next);
+    window.location.href = next;
+  }
+
+  useEffect(() => {
+    setChampSelector(champId);
+  }, [champId]);
+
   return (
     <div className="space-y-4">
-      <div className="tabs tabs-boxed w-fit">
-        <Link className={`tab ${view === "all" ? "tab-active" : ""}`} href={linkFor("all", 1)}>
-          {t("standings.tabs.all")} ({counts.all})
-        </Link>
-        <Link className={`tab ${view === "white" ? "tab-active" : ""}`} href={linkFor("white", 1)}>
-          {t("standings.tabs.white")} ({counts.white})
-        </Link>
-        <Link className={`tab ${view === "black" ? "tab-active" : ""}`} href={linkFor("black", 1)}>
-          {t("standings.tabs.black")} ({counts.black})
-        </Link>
+      <div className="flex flex-wrap items-center gap-3">
+        {showFavoritesToggle ? (
+          <Link
+            className={`btn btn-sm ${favoritesOnly ? "btn-primary" : "btn-outline"}`}
+            href={linkFor(view, 1, !favoritesOnly)}
+          >
+            {favoriteLabel}
+          </Link>
+        ) : null}
+        <div className="tabs tabs-boxed w-fit">
+          <Link className={`tab ${view === "all" ? "tab-active" : ""}`} href={linkFor("all", 1)}>
+            {t("standings.tabs.all")} ({counts.all})
+          </Link>
+          <Link className={`tab ${view === "white" ? "tab-active" : ""}`} href={linkFor("white", 1)}>
+            {t("standings.tabs.white")} ({counts.white})
+          </Link>
+          <Link className={`tab ${view === "black" ? "tab-active" : ""}`} href={linkFor("black", 1)}>
+            {t("standings.tabs.black")} ({counts.black})
+          </Link>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="label-text text-sm opacity-70">
+            {t("standings.championshipLabel", { defaultValue: "Championship" })}:{" "}
+          </span>
+          <select
+            className="select select-bordered select-sm w-16"
+            value={champSelector ?? ""}
+            onChange={(e) => handleChampChange(e.target.value)}
+            disabled={!championships.length}
+          >
+            {!championships.length ? (
+              <option value="">
+                {t("standings.noChampionships", { defaultValue: "No championships available" })}
+              </option>
+            ) : null}
+            {championships.map((c) => {
+              const label = String(c.id);
+              return (
+                <option key={c.id} value={c.id}>
+                  {label}
+                </option>
+              );
+            })}
+          </select>
+        </div>
       </div>
 
       <div className="flex items-center gap-2 text-sm">
@@ -205,42 +302,79 @@ export function LiveStandings({
             </tr>
           </thead>
           <tbody>
+            {rows.length === 0 ? (
+              <tr>
+                <td className="text-center py-6 opacity-70" colSpan={8}>
+                  {favoritesOnly ? favoritesEmptyLabel : t("positions.empty", { defaultValue: "No positions to display" })}
+                </td>
+              </tr>
+            ) : null}
             {rows.map((r, idx) => (
               <tr key={r.player_id}>
-                <td className="text-center">{(page - 1) * perPage + idx + 1}</td>
                 <td className="text-center">
-                  <a className="link link-primary" href={`/${lng}/results/player/${r.player_id}`}>
-                    {agentMap[r.player_id] ? <AgentLabel agent={agentMap[r.player_id]} /> : <span className="font-mono">{r.player_id}</span>}
-                  </a>
+                  {favoritesOnly && rankMap?.[r.player_id]
+                    ? rankMap[r.player_id]
+                    : (page - 1) * perPage + idx + 1}
+                </td>
+                <td className="text-center">
+                  <div className="flex justify-center">
+                    <a className="link link-primary" href={`/${lng}/results/player/${r.player_id}`}>
+                      {agentMap[r.player_id] ? (
+                        <AgentLabel agent={agentMap[r.player_id]} isFavorited={favSet.has(r.player_id)} />
+                      ) : (
+                        <span className="font-mono">{r.player_id}</span>
+                      )}
+                    </a>
+                  </div>
                 </td>
                 <td className="text-center">{r.games_played}</td>
                 <td className="text-center">{r.wins}</td>
                 <td className="text-center">{r.draws}</td>
                 <td className="text-center">{r.losses}</td>
                 <td className="text-center font-semibold">{Number(r.points).toFixed(1)}</td>
-                <td className="text-center">{r.bergvizer_score != null ? Number(r.bergvizer_score).toFixed(3) : "-"}</td>
+                <td className="text-center">
+                  {r.bergvizer_score != null ? Number(r.bergvizer_score).toFixed(2) : "-"}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
 
-      <div className="flex items-center justify-between">
-        <Link
-          className={`btn ${prevPage ? "btn-outline" : "btn-disabled"}`}
-          aria-disabled={!prevPage}
-          href={prevPage ? linkFor(view, prevPage) : { pathname: `/${lng}/standings`, query: { view, page: String(page), perPage: String(perPage) } }}
-        >
-          {t("results.previous")}
-        </Link>
-        <div className="text-sm opacity-70">{t("results.pageStatus", { page, totalPages, total })}</div>
-        <Link
-          className={`btn ${nextPage ? "btn-outline" : "btn-disabled"}`}
-          aria-disabled={!nextPage}
-          href={nextPage ? linkFor(view, nextPage) : { pathname: `/${lng}/standings`, query: { view, page: String(page), perPage: String(perPage) } }}
-        >
-          {t("results.next")}
-        </Link>
+      <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center gap-2 flex-wrap">
+          <Link
+            className={`btn btn-sm ${page === 1 ? "btn-disabled" : "btn-outline"}`}
+            aria-disabled={page === 1}
+            href={page === 1 ? linkFor(view, page) : linkFor(view, 1)}
+          >
+            {t("results.first", { defaultValue: "First" })}
+          </Link>
+          <Link
+            className={`btn btn-sm ${!prevPage ? "btn-disabled" : "btn-outline"}`}
+            aria-disabled={!prevPage}
+            href={!prevPage ? linkFor(view, page) : linkFor(view, prevPage)}
+          >
+            {t("results.previous")}
+          </Link>
+          <span className="px-3 py-1 text-sm rounded-md bg-base-200">
+            {t("results.pageStatus", { page, totalPages, total })}
+          </span>
+          <Link
+            className={`btn btn-sm ${!nextPage ? "btn-disabled" : "btn-outline"}`}
+            aria-disabled={!nextPage}
+            href={!nextPage ? linkFor(view, page) : linkFor(view, nextPage)}
+          >
+            {t("results.next")}
+          </Link>
+          <Link
+            className={`btn btn-sm ${page === totalPages ? "btn-disabled" : "btn-outline"}`}
+            aria-disabled={page === totalPages}
+            href={page === totalPages ? linkFor(view, page) : linkFor(view, totalPages)}
+          >
+            {t("results.last", { defaultValue: "Last" })}
+          </Link>
+        </div>
       </div>
     </div>
   );

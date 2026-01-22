@@ -15,6 +15,7 @@ interface SupabaseContextValue {
   client: SupabaseClient;
   session: Session | null;
   user: User | null;
+  ready: boolean;
 }
 
 const SupabaseContext = createContext<SupabaseContextValue | null>(null);
@@ -48,11 +49,15 @@ export function SupabaseProvider({
 
   const [session, setSession] = useState<Session | null>(initialSession);
   const [user, setUser] = useState<User | null>(initialUser);
+  const [ready, setReady] = useState(Boolean(initialSession || initialUser));
 
   // Keep local state in sync when server-provided values change
   useEffect(() => {
-    setSession(initialSession);
-    setUser(initialUser);
+    if (initialSession || initialUser) {
+      setSession(initialSession);
+      setUser(initialUser);
+      setReady(true);
+    }
   }, [initialSession, initialUser]);
 
   useEffect(() => {
@@ -62,25 +67,59 @@ export function SupabaseProvider({
       return; // client should exist but guard just in case
     }
 
+    let isActive = true;
+
+    const hydrateFromClient = async () => {
+      if (initialUser || initialSession) return;
+      try {
+        const { data: sessionData } = await client.auth.getSession();
+        if (!isActive) return;
+        const session = sessionData.session ?? null;
+        setSession(session);
+        if (session?.user) {
+          setUser(session.user);
+        }
+        const { data: userData, error } = await client.auth.getUser();
+        if (!isActive) return;
+        setUser(error ? session?.user ?? null : userData.user ?? null);
+      } catch {
+        if (!isActive) return;
+      } finally {
+        if (isActive) setReady(true);
+      }
+    };
+
+    hydrateFromClient();
+
     const {
       data: { subscription },
-    } = client.auth.onAuthStateChange((_event, newSession) => {
+    } = client.auth.onAuthStateChange(async (_event, newSession) => {
       setSession(newSession);
-      setUser(newSession?.user ?? null);
+      if (newSession?.user) {
+        setUser(newSession.user);
+      }
+      try {
+        const { data, error } = await client.auth.getUser();
+        setUser(error ? newSession?.user ?? null : data.user ?? null);
+      } finally {
+        setReady(true);
+      }
     });
 
     return () => {
+      isActive = false;
       subscription.unsubscribe();
     };
-  }, []);
+  }, [initialSession, initialUser]);
 
   const value = useMemo(
     () => ({
       client: clientRef.current!,
       session,
       user,
+      ready,
     }),
-    [session, user],
+    [session, user, ready],
   );
 
   return <SupabaseContext.Provider value={value}>{children}</SupabaseContext.Provider>;

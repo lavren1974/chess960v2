@@ -1,8 +1,4 @@
 {
-  "testMode": {
-    "title": "⚠️ Mode test",
-    "message": "Le projet fonctionne en mode test avec 0,5 seconde par coup au lieu des 3 secondes prévues. En cas d'erreurs critiques, un redémarrage est possible."
-  },
   "hero": {
     "badge": "Championnat 960",
     "title": "Bienvenue dans « Championship 960 », la plus grande expérience d’échecs de notre époque !",

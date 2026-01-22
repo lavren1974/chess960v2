@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { getServerClient } from "../supabase/server";
+import { getServiceRoleClient } from "../supabase/service";
 import { isDisplayNameTakenByAnyUser } from "../services/name-availability";
 
 const MIN_NAME_LENGTH = 6;
@@ -128,12 +129,17 @@ export async function register(formData: FormData): Promise<AuthResult> {
 
   if (user) {
     try {
-      await supabase.from("profiles").upsert({
+      const serviceClient = getServiceRoleClient();
+      await serviceClient.from("sf_profiles").upsert({
         id: user.id,
         name,
         language,
       });
     } catch (profileError) {
+      const code = (profileError as any)?.code || (profileError as any)?.details || "";
+      if (String(code).includes("23505")) {
+        return { errors: ["This name is already taken"] };
+      }
       console.warn("Failed to upsert profile record:", profileError);
     }
   }

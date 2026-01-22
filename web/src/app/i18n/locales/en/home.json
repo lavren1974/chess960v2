@@ -1,8 +1,4 @@
 {
-  "testMode": {
-    "title": "⚠️ Test Mode",
-    "message": "The project is running in test mode with 0.5 seconds per move instead of the planned 3 seconds. Critical errors may result in a restart."
-  },
   "hero": {
     "badge": "Championship 960",
     "title": "Welcome to “Championship 960” — the largest chess experiment of our time!",

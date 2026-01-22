@@ -1,8 +1,10 @@
 import { getServerClient } from "@/lib/supabase/server";
+import { getServiceRoleClient } from "@/lib/supabase/service";
 import { DashboardClient } from "./page-client";
-import { Settings } from "lucide-react";
-import { getServerTranslation } from "@/app/i18n";
+import type { AgentRow } from "@/components/agents/agent-utils";
 import type { Metadata } from "next";
+import { getServerTranslation } from "@/app/i18n";
+import { languages } from "@/app/i18n/settings";
 
 export default async function Dashboard({
   params,
@@ -11,6 +13,7 @@ export default async function Dashboard({
 }) {
   const { lng } = await params;
   const supabase = await getServerClient();
+  const service = getServiceRoleClient();
 
   const { data: userData } = await supabase.auth.getUser();
   const user = userData.user;
@@ -35,51 +38,146 @@ export default async function Dashboard({
     );
   }
 
-  const memberSince = user.created_at ? new Date(user.created_at).toLocaleDateString() : null;
-  const emailConfirmed = Boolean(user.email_confirmed_at);
+  // Load user's favorite starting positions, newest first, max 100
+  let favorites: AgentRow[] = [];
+  let favoriteIds: number[] = [];
+  try {
+    const { data: favRows } = await service
+      .from("sf_agent_favorites")
+      .select("agent_id, created_at")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: false })
+      .limit(100);
+
+    const ids = Array.isArray(favRows) ? favRows.map((f) => f.agent_id) : [];
+    favoriteIds = ids as number[];
+    if (ids.length > 0) {
+      const { data: agents } = await service
+        .from("sf_agents")
+        .select("id, sp_id, mini_fen, color")
+        .in("id", ids);
+      const byId = new Map((agents ?? []).map((a: any) => [a.id, a]));
+      favorites = ids
+        .map((id) => byId.get(id))
+        .filter(Boolean) as unknown as AgentRow[];
+    }
+  } catch {
+    // best-effort, ignore errors
+  }
+
+  // Preload first Positions page (White and Black first pages), 60 rows
+  const perPage = 60;
+  const page = 1;
+  const from1 = 0;
+  const to1 = perPage - 1;
+  const from2 = perPage;
+  const to2 = perPage * 2 - 1;
+  let initialPositions: {
+    view: "white" | "black";
+    page: number;
+    perPage: number;
+    rows: AgentRow[];
+    total: number;
+    favoriteIds: number[];
+    counts: { white: number; black: number };
+    initialPages?: Partial<Record<"white" | "black", { page: number; perPage: number; rows: AgentRow[]; total: number }>>;
+    initialExtra?: Array<{ view: "white" | "black"; page: number; perPage: number; rows: AgentRow[]; total: number }>;
+  } = {
+    view: "white",
+    page,
+    perPage,
+    rows: [],
+    total: 0,
+    favoriteIds,
+    counts: { white: 0, black: 0 },
+    initialPages: {},
+    initialExtra: [],
+  };
+  try {
+    // Counts
+    const [cw, cb] = await Promise.all([
+      service.from("sf_agents").select("id", { count: "planned", head: true }).eq("color", "w"),
+      service.from("sf_agents").select("id", { count: "planned", head: true }).eq("color", "b"),
+    ]);
+    initialPositions.counts = {
+      white: typeof cw.count === "number" ? cw.count : 0,
+      black: typeof cb.count === "number" ? cb.count : 0,
+    };
+
+    // First page (white)
+    const { data: dataW } = await service
+      .from("sf_agents")
+      .select("id, sp_id, mini_fen, color")
+      .eq("color", "w")
+      .order("color", { ascending: true })
+      .order("sp_id", { ascending: true })
+      .order("id", { ascending: true })
+      .range(from1, to1);
+    initialPositions.rows = (Array.isArray(dataW) ? (dataW as any) : []) as AgentRow[];
+    initialPositions.total = initialPositions.counts.white;
+    initialPositions.initialPages!.white = {
+      page,
+      perPage,
+      rows: initialPositions.rows,
+      total: initialPositions.total,
+    };
+
+    // First page (black)
+    const { data: dataB } = await service
+      .from("sf_agents")
+      .select("id, sp_id, mini_fen, color")
+      .eq("color", "b")
+      .order("color", { ascending: true })
+      .order("sp_id", { ascending: true })
+      .order("id", { ascending: true })
+      .range(from1, to1);
+    initialPositions.initialPages!.black = {
+      page,
+      perPage,
+      rows: (Array.isArray(dataB) ? (dataB as any) : []) as AgentRow[],
+      total: initialPositions.counts.black,
+    };
+
+    // Second page (white)
+    const { data: dataW2 } = await service
+      .from("sf_agents")
+      .select("id, sp_id, mini_fen, color")
+      .eq("color", "w")
+      .order("color", { ascending: true })
+      .order("sp_id", { ascending: true })
+      .order("id", { ascending: true })
+      .range(from2, to2);
+    initialPositions.initialExtra!.push({ view: "white", page: 2, perPage, rows: (Array.isArray(dataW2) ? (dataW2 as any) : []) as AgentRow[], total: initialPositions.counts.white });
+
+    // Second page (black)
+    const { data: dataB2 } = await service
+      .from("sf_agents")
+      .select("id, sp_id, mini_fen, color")
+      .eq("color", "b")
+      .order("color", { ascending: true })
+      .order("sp_id", { ascending: true })
+      .order("id", { ascending: true })
+      .range(from2, to2);
+    initialPositions.initialExtra!.push({ view: "black", page: 2, perPage, rows: (Array.isArray(dataB2) ? (dataB2 as any) : []) as AgentRow[], total: initialPositions.counts.black });
+  } catch {
+    // ignore errors; client will fetch
+  }
 
   return (
     <div className="space-y-8">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-bold text-base-content">Dashboard</h1>
-          <p className="text-base-content/60">Review your account details and manage your profile settings.</p>
-        </div>
-        <button className="btn btn-primary self-start sm:self-auto" id="settings-button">
-          <Settings className="h-4 w-4 mr-2" />
-          Account Settings
-        </button>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="stat bg-base-100 rounded-lg shadow-md">
-          <div className="stat-title">Email</div>
-          <div className="stat-value text-primary text-xl break-words">{user.email}</div>
-          <div className="stat-desc">Primary contact address</div>
-        </div>
-
-        <div className="stat bg-base-100 rounded-lg shadow-md">
-          <div className="stat-title">Account Status</div>
-          <div className="stat-value text-success text-2xl">{emailConfirmed ? "Verified" : "Pending"}</div>
-          <div className="stat-desc">
-            {emailConfirmed ? "Email confirmed" : "Confirm your email to unlock all features"}
-          </div>
-        </div>
-
-        <div className="stat bg-base-100 rounded-lg shadow-md">
-          <div className="stat-title">Member Since</div>
-          <div className="stat-value text-info text-2xl">{memberSince ?? "Unknown"}</div>
-          <div className="stat-desc">Welcome back!</div>
-        </div>
-      </div>
-
-      <DashboardClient lng={lng} />
+      <DashboardClient
+        lng={lng}
+        favorites={favorites}
+        initialPositions={initialPositions}
+      />
     </div>
   );
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ lng: string }> }): Promise<Metadata> {
   const { lng } = await params;
-  const { t } = await getServerTranslation(lng, "common");
-  return { title: t("dashboard.title") };
+  const currentLng = languages.includes(lng) ? lng : languages[0];
+  const { t } = await getServerTranslation(currentLng, "common");
+  return { title: t("nav.dashboard", { defaultValue: "Dashboard" }) as string };
 }
+

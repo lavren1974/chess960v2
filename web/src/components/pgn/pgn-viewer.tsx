@@ -24,14 +24,171 @@ function extractHeaders(pgn: string): Record<string, string> {
   while ((m = headerRe.exec(pgn))) {
     headers[m[1]] = m[2];
   }
+  // Fallback for tag pairs without brackets (e.g., `FEN "..."` lines)
+  const looseTags = ["Event", "Site", "Date", "Round", "White", "Black", "Result", "FEN", "Variant", "Termination"];
+  for (const tag of looseTags) {
+    if (headers[tag]) continue;
+    const re = new RegExp(`^\\s*${tag}\\s+"([^"]*)"\\s*$`, "m");
+    const match = re.exec(pgn);
+    if (match && match[1] != null) headers[tag] = match[1];
+  }
   return headers;
+}
+
+const files = ["a", "b", "c", "d", "e", "f", "g", "h"];
+const rankFromRow = (row: number) => 8 - row;
+const squareFromIdx = (row: number, col: number) => `${files[col] ?? "a"}${rankFromRow(row)}`;
+
+// chess.js 1.4.0 does not fully support Chess960 castling from arbitrary rook
+// start squares. As a fallback, detect SAN castling tokens, move king+rook to
+// standard destinations (g/f for O-O, c/d for O-O-O), and re-instantiate the
+// engine from the resulting FEN so subsequent moves continue to parse.
+function manualCastle(engine: any, token: string, is960: boolean, EngineCtor: any): { engine: any; move: Move } | null {
+  const preFen = engine.fen();
+  const parts = preFen.split(/\s+/);
+  if (parts.length < 6) return null;
+  type BoardSquare = { type: string; color: "w" | "b" } | null;
+  const board: BoardSquare[][] = engine.board(); // 8x8 array, row 0 = 8th rank
+  const color = parts[1] === "w" ? "w" : "b";
+  const isQueenside = token.startsWith("O-O-O");
+  let kingSq: string | null = null;
+  const rooks: string[] = [];
+  for (let r = 0; r < 8; r++) {
+    for (let c = 0; c < 8; c++) {
+      const piece = board[r]?.[c];
+      if (!piece) continue;
+      if (piece.type === "k" && piece.color === color) kingSq = squareFromIdx(r, c);
+      if (piece.type === "r" && piece.color === color) rooks.push(squareFromIdx(r, c));
+    }
+  }
+  if (!kingSq || rooks.length === 0) return null;
+  const kingFile = kingSq.charCodeAt(0);
+  const rookSq = rooks
+    .map((sq) => ({ sq, file: sq.charCodeAt(0) }))
+    .filter((r) => (isQueenside ? r.file < kingFile : r.file > kingFile))
+    .sort((a, b) => (isQueenside ? b.file - a.file : a.file - b.file))[0]?.sq;
+  if (!rookSq) return null;
+  const rank = color === "w" ? "1" : "8";
+  const kingTo = `${isQueenside ? "c" : "g"}${rank}`;
+  const rookTo = `${isQueenside ? "d" : "f"}${rank}`;
+
+  // Build a new board representation for the post-castle position.
+  const newBoard: BoardSquare[][] = board.map((row) => row.map((sq) => (sq ? { ...sq } : null)));
+  const clearSquare = (sq: string) => {
+    const fileIdx = sq.charCodeAt(0) - "a".charCodeAt(0);
+    const rankIdx = 8 - Number(sq[1]);
+    if (newBoard[rankIdx]) newBoard[rankIdx][fileIdx] = null;
+  };
+  const setSquare = (sq: string, piece: { type: string; color: "w" | "b" }) => {
+    const fileIdx = sq.charCodeAt(0) - "a".charCodeAt(0);
+    const rankIdx = 8 - Number(sq[1]);
+    if (newBoard[rankIdx]) newBoard[rankIdx][fileIdx] = piece;
+  };
+  clearSquare(kingSq);
+  clearSquare(rookSq);
+  setSquare(kingTo, { type: "k", color });
+  setSquare(rookTo, { type: "r", color });
+
+  const boardToPlacement = () => {
+    const rows: string[] = [];
+    for (let r = 0; r < 8; r++) {
+      let rowStr = "";
+      let empties = 0;
+      for (let c = 0; c < 8; c++) {
+        const sq = newBoard[r]?.[c];
+        if (!sq) {
+          empties += 1;
+        } else {
+          if (empties > 0) {
+            rowStr += String(empties);
+            empties = 0;
+          }
+          rowStr += sq.color === "w" ? sq.type.toUpperCase() : sq.type;
+        }
+      }
+      if (empties > 0) rowStr += String(empties);
+      rows.push(rowStr);
+    }
+    return rows.join("/");
+  };
+
+  const placement = boardToPlacement();
+  const newActive = color === "w" ? "b" : "w";
+  const newCastling = (parts[2] || "").replace(color === "w" ? /[KQ]/g : /[kq]/g, "") || "-";
+  const newEp = "-";
+  const newHalf = "0";
+  const newFull = color === "b" ? String(Number(parts[5] || "1") + 1) : parts[5] || "1";
+  const newFen = `${placement} ${newActive} ${newCastling} ${newEp} ${newHalf} ${newFull}`;
+  try {
+    const newEngine = new EngineCtor(newFen, { chess960: is960 });
+    const move: Move = {
+      color: color === "w" ? "w" : "b",
+      from: kingSq,
+      to: kingTo,
+      san: token,
+      flags: isQueenside ? "q" : "k",
+      piece: "k",
+    } as Move;
+    return { engine: newEngine, move };
+  } catch {
+    return null;
+  }
+}
+
+// Some PGNs (especially Chess960 exports) use generic KQkq castling rights even
+// when rooks aren't on a/h. chess.js expects rook-file letters (e.g., CH for
+// rooks on c/h). Normalize those cases so castling remains legal.
+function normalizeChess960Castling(fen: string, is960: boolean): string {
+  const parts = fen.trim().split(/\s+/);
+  if (parts.length < 4) return fen;
+  const [placement, active, castling, ...rest] = parts;
+  const rows = placement.split("/");
+  if (rows.length !== 8) return fen;
+  const expandRow = (row: string) => {
+    let out = "";
+    for (const ch of row) {
+      if (/[1-8]/.test(ch)) out += " ".repeat(Number(ch));
+      else out += ch;
+    }
+    return out;
+  };
+  const whiteRow = expandRow(rows[7] ?? "");
+  const blackRow = expandRow(rows[0] ?? "");
+  const fileFromIdx = (idx: number) => String.fromCharCode("a".charCodeAt(0) + idx);
+  const whiteRooks: string[] = [];
+  const blackRooks: string[] = [];
+  [...whiteRow].forEach((ch, idx) => {
+    if (ch === "R") whiteRooks.push(fileFromIdx(idx));
+  });
+  [...blackRow].forEach((ch, idx) => {
+    if (ch === "r") blackRooks.push(fileFromIdx(idx));
+  });
+  const hasWhite = /[KQ]/.test(castling);
+  const hasBlack = /[kq]/.test(castling);
+  const needs960Conversion = is960 && /^[KQkq]+$/.test(castling);
+  const hasFileNotation = castling && !/^[KQkq-]+$/.test(castling);
+  if (!needs960Conversion && !hasFileNotation) {
+    // Leave standard chess castling untouched when not in 960 mode.
+    return fen;
+  }
+  const normalized = [
+    hasWhite ? whiteRooks.map((f) => f.toUpperCase()).join("") : "",
+    hasBlack ? blackRooks.map((f) => f.toLowerCase()).join("") : "",
+  ].join("");
+  parts[2] = normalized || "-";
+  return [placement, active, parts[2], ...rest].join(" ");
 }
 
 // Removes headers/comments/variations/NAGs and returns a sequence of SAN tokens
 // (or UCI-like tokens if present). Also drops the terminal result token.
 function stripAndTokenizeSAN(pgn: string): string[] {
   // Remove headers
-  const body = pgn.replace(/^\s*\[[^\]]*\]\s*$/gm, "").trim();
+  let body = pgn.replace(/^\s*\[[^\]]*\]\s*$/gm, "").trim();
+  // If headers were provided without brackets, drop everything before the first move number.
+  const firstMoveIdx = body.search(/\b\d+\.(?:\s|\.)/);
+  if (firstMoveIdx > 0) {
+    body = body.slice(firstMoveIdx);
+  }
   // Remove comments {...}
   let text = body.replace(/\{[^}]*\}/g, " ");
   // Remove line comments starting with ;
@@ -56,38 +213,97 @@ function stripAndTokenizeSAN(pgn: string): string[] {
 // the same indexing (0 = initial state; i>0 indicates move i).
 function buildFenTimeline(pgn: string) {
   const headers = extractHeaders(pgn);
-  const initialFen = headers.FEN || undefined;
-  const is960 = (headers.Variant || headers.VARIANT || "").toLowerCase() === "chess960" || Boolean(initialFen);
+  const initialFenRaw = headers.FEN || undefined;
+  const has960Variant = (headers.Variant || headers.VARIANT || "").toLowerCase() === "chess960";
+  const initialFenProvisional = initialFenRaw ? normalizeChess960Castling(initialFenRaw, has960Variant || Boolean(initialFenRaw)) : undefined;
+  const is960 = has960Variant || Boolean(initialFenProvisional);
+  const initialFen = initialFenRaw ? normalizeChess960Castling(initialFenRaw, is960) : undefined;
   // Extract SAN tokens directly from PGN to avoid parser quirks
   const sanMoves = stripAndTokenizeSAN(pgn);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const EngineCtor: any = Chess as unknown as any;
+  const fallbackFen = (fen: string | undefined) => {
+    if (!fen) return undefined;
+    const parts = fen.split(/\s+/);
+    if (parts.length < 4) return fen;
+    parts[2] = "-"; // strip castling rights if they appear invalid
+    return parts.join(" ");
+  };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const engine: any = initialFen ? new EngineCtor(initialFen, { chess960: is960 }) : new EngineCtor(undefined, { chess960: is960 });
+  let engine: any;
+  try {
+    const construct = (fen?: string) => (fen ? new EngineCtor(fen, { chess960: is960 }) : new EngineCtor(undefined, { chess960: is960 }));
+    engine = construct(initialFen) ?? construct(fallbackFen(initialFen)) ?? construct();
+  } catch {
+    const stripped = fallbackFen(initialFen);
+    try {
+      engine = stripped ? new EngineCtor(stripped, { chess960: is960 }) : new EngineCtor(undefined, { chess960: is960 });
+    } catch {
+      engine = new EngineCtor(undefined, { chess960: is960 });
+    }
+  }
   const fens: string[] = [engine.fen()];
   const moves: Array<Move | null> = [null];
   // Supports UCI-like tokens alongside SAN when present in PGN body.
   const uciRe = /^[a-h][1-8][a-h][1-8][qrbnQRBN]?$/;
   for (const tok of sanMoves) {
+    // Normalize castling tokens that may use zeros instead of letter O so chess.js can parse them.
+    const dashNormalized = tok.replace(/[\u2010-\u2015\u2212\uFE58\uFE63\uFF0D]/g, "-"); // normalize various dash characters to hyphen
+    const zeroNormalized = dashNormalized.replace(/０/g, "0"); // normalize full-width zero
+    const normTok = zeroNormalized
+      .replace(/^([0oO])-([0oO])-([0oO])([+#]?)$/i, "O-O-O$4")
+      .replace(/^([0oO])-([0oO])([+#]?)$/i, "O-O$3");
+    const finalTok = normTok.replace(/[!?]+$/, ""); // strip annotations that chess.js can't parse in castling
     try {
       let ok = false;
-      if (uciRe.test(tok)) {
-        const from = tok.slice(0, 2) as string;
-        const to = tok.slice(2, 4) as string;
-        const promo = tok.length === 5 ? tok.slice(4).toLowerCase() as "q" | "r" | "b" | "n" : undefined;
+      let res: Move | null = null;
+      if (uciRe.test(finalTok)) {
+        const from = finalTok.slice(0, 2) as string;
+        const to = finalTok.slice(2, 4) as string;
+        const promo = finalTok.length === 5 ? finalTok.slice(4).toLowerCase() as "q" | "r" | "b" | "n" : undefined;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const res = (engine as any).move({ from, to, promotion: promo });
+        res = (engine as any).move({ from, to, promotion: promo });
         ok = Boolean(res);
-        if (res) moves.push(res as Move);
       } else {
-        const res = (engine as unknown as { move: (san: string, opts?: unknown) => Move | null }).move(tok, { sloppy: true });
+        res = (engine as unknown as { move: (san: string, opts?: unknown) => Move | null }).move(finalTok, { sloppy: true });
         ok = Boolean(res);
-        if (res) moves.push(res);
       }
+      // Fallback: if castling SAN failed, pick the legal castling move directly (helps with exotic notations)
+      if (!ok && /^O-O(-O)?[+#]?$/.test(finalTok)) {
+        const wantsQueenside = finalTok.startsWith("O-O-O");
+        const candidates = (engine.moves({ verbose: true }) as unknown as Array<Move & { flags?: string }>);
+        const cand = candidates.find((m) => typeof m.flags === "string" && m.flags.includes(wantsQueenside ? "q" : "k"));
+        if (cand) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          res = (engine as any).move({ from: (cand as any).from, to: (cand as any).to, promotion: (cand as any).promotion });
+          ok = Boolean(res);
+        }
+        // If chess.js cannot generate a castling move (common with Chess960 FEN), manually relocate king+rook.
+        if (!ok) {
+          const manual = manualCastle(engine, finalTok, is960, EngineCtor);
+          if (manual) {
+            engine = manual.engine;
+            moves.push(manual.move);
+            fens.push(engine.fen());
+            continue;
+          }
+        }
+      }
+      if (ok && res) moves.push(res);
       if (!ok) break;
       fens.push(engine.fen());
     } catch {
+      // Final fallback: handle castling that throws in chess.js by applying manual move.
+      if (/^O-O(-O)?[+#]?$/.test(finalTok)) {
+        const manual = manualCastle(engine, finalTok, is960, EngineCtor);
+        if (manual) {
+          engine = manual.engine;
+          moves.push(manual.move);
+          fens.push(engine.fen());
+          continue;
+        }
+      }
       break;
     }
   }

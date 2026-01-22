@@ -6,11 +6,20 @@
     "register": "Registrieren",
     "logout": "Abmelden",
     "about": "Über",
-    "standings": "Tabelle",
-    "ratings": "Ratings",
-    "results": "Ergebnisse",
-    "latestResults": "Neueste Ergebnisse",
-    "allResults": "Alle Ergebnisse"
+    "play": "Spielen",
+    "challenges": "Herausforderungen",
+      "standings": "Tabelle",
+      "standings960": "Tabelle (960)",
+      "ratings": "Ratings",
+      "results": "Ergebnisse",
+      "latestResults": "Neueste Ergebnisse",
+      "allResults": "Alle Ergebnisse",
+      "news": "News",
+      "stockfish": "Stockfish",
+    "createGame": "Spiel erstellen"
+  },
+  "meta": {
+    "defaultDescription": "Chess960v2 ist ein offenes Engine-Schach-Experiment: tausende Partien aus von Spielern gewählten Chess960-Starts, mit vollständig offenen Daten und Code."
   },
   "auth": {
     "login": "Anmelden",
@@ -39,7 +48,8 @@
       "Passwords do not match": "Passwörter stimmen nicht überein",
       "Password must be at least 8 characters long": "Passwort muss mindestens 8 Zeichen lang sein",
       "Values don't match": "Werte stimmen nicht überein",
-      "email_confirmation_required": "Bitte bestätige deine E-Mail-Adresse, bevor du dich anmeldest."
+      "email_confirmation_required": "Bitte bestätige deine E-Mail-Adresse, bevor du dich anmeldest.",
+      "account_deletion_partial": "Wir haben deine App-Daten entfernt, konnten das Auth-Konto jedoch nicht vollständig löschen. Bitte wende dich an den Support, falls dies weiter auftritt."
     }
   },
   "dashboard": {
@@ -66,8 +76,72 @@
     },
     "errors": {
       "deleteUnexpected": "Ein unerwarteter Fehler ist beim Löschen Ihres Kontos aufgetreten"
+    },
+    "games": {
+      "title": "Letzte Partien",
+      "headers": {
+        "date": "Datum",
+        "white": "Weiß",
+        "black": "Schwarz",
+        "result": "Ergebnis",
+        "time": "Bedenkzeit",
+        "pgn": "PGN"
+      },
+      "status": {
+        "inProgress": "Läuft",
+        "finished": "Beendet",
+        "aborted": "Abgebrochen"
+      },
+      "method": {
+        "checkmate": "Schachmatt",
+        "resignation": "Aufgabe",
+        "stalemate": "Patt",
+        "timeout": "Zeitüberschreitung"
+      },
+      "side": {
+        "white": "Weiß",
+        "black": "Schwarz"
+      },
+      "empty": "Noch keine Partien.",
+      "loadMore": "Mehr laden",
+      "view": "Ansehen",
+      "notAvailable": "Noch nicht verfügbar",
+      "unknown": "Unbekannt"
+    },
+    "favorites": "Favoriten",
+    "favoritesEmpty": "Noch keine Favoriten. Sieh dir die Positionen an, um welche hinzuzufügen.",
+    "favoritesSideEmpty": "Keine Favoriten für diese Seite.",
+    "profileTab": {
+      "emailLabel": "E-Mail",
+      "emailDesc": "Primäre Kontaktadresse",
+      "memberSince": "Mitglied seit",
+      "memberSinceDesc": "Willkommen zurück!",
+      "memberSinceUnknown": "Unbekannt",
+      "manageIntro": "Verwalte deine persönlichen Informationen und Einstellungen.",
+      "name": "Name",
+      "userId": "Benutzer-ID",
+      "dangerTitle": "Gefahrenzone",
+      "dangerDesc": "Lösche dein Konto und alle zugehörigen Daten.",
+      "delete": "Konto löschen",
+      "deleteConfirmTitle": "Kontolöschung bestätigen",
+      "deleteConfirmBody": "Diese Aktion entfernt dein Konto und deine Daten dauerhaft. Dies kann nicht rückgängig gemacht werden.",
+      "cancel": "Abbrechen",
+      "accountSettings": "Kontoeinstellungen",
+      "unexpectedError": "Es ist ein unerwarteter Fehler aufgetreten",
+      "profileUpdated": "Profil aktualisiert.",
+      "changePassword": "Passwort ändern (optional)",
+      "currentPassword": "Aktuelles Passwort",
+      "currentPasswordPlaceholder": "Aktuelles Passwort eingeben",
+      "newPassword": "Neues Passwort",
+      "newPasswordPlaceholder": "Neues Passwort eingeben",
+      "confirmNewPassword": "Neues Passwort bestätigen",
+      "confirmNewPasswordPlaceholder": "Neues Passwort bestätigen",
+      "submit": "Profil aktualisieren",
+      "submitting": "Aktualisiere..."
     }
   },
+  "play": "Spielen",
+  "add": "Hinzufügen",
   "footer": {
     "about": "Über uns",
     "description": "Chess960v2 ist ein innovativer Ansatz für Fischer-Random-Schach mit doppelter Randomisierung der Startpositionen. Wir führen Turniere zwischen Schach-Engines durch und erforschen neue Strategien und Taktiken unter Bedingungen völliger Eröffnungsunvorhersehbarkeit.",
@@ -106,6 +180,8 @@
     "currentElo": "Aktuelle ELO",
     "countShown": "{{count}} angezeigt",
     "perPage": "Pro Seite:",
+    "first": "Erste",
+    "last": "Letzte",
     "previous": "Zurück",
     "next": "Weiter",
     "pageStatus": "Seite {{page}} / {{totalPages}} • insgesamt {{total}}",
@@ -120,10 +196,12 @@
       "result": "Ergebnis",
       "pgn": "PGN",
       "game": "Partie"
-    }
+    },
+    "retry": "Wiederholen"
   },
   "standings": {
     "title": "Turniertabelle",
+    "championshipLabel": "Meisterschaft",
     "tabs": {
       "all": "Alle",
       "white": "Weiß",
@@ -131,6 +209,13 @@
     },
     "viewRound": "Runde ansehen:",
     "open": "Öffnen",
+    "championshipStatus": {
+      "active": "aktiv",
+      "completed": "abgeschlossen",
+      "finished": "abgeschlossen",
+      "archived": "archiviert",
+      "upcoming": "bevorstehend"
+    },
     "headers": {
       "rank": "#",
       "agentId": "Agent-ID",
@@ -140,9 +225,9 @@
       "losses": "N",
       "points": "Punkte",
       "bergvizer": "Bergvizer"
-    }
-  }
-  ,
+    },
+    "favoritesLoginPrompt": "Melde dich an, um deine Lieblingspositionen freizuschalten."
+  },
   "ratings": {
     "title": "Ratings",
     "tabs": {
@@ -156,5 +241,103 @@
       "elo": "ELO",
       "delta": "Δ"
     }
+  },
+  "playPage": {
+    "title": "Spielen",
+    "favorites": "Favoriten",
+    "joinTitle": "Per Link beitreten",
+    "linkPlaceholder": "Spiel-Link einfügen…",
+    "goButton": "Los",
+    "createTitle": "Partie erstellen",
+    "color": "Farbe",
+    "white": "Weiß",
+    "black": "Schwarz",
+    "timeControl": "Bedenkzeit (inaktiv)",
+    "hiddenMode": "Modus: versteckte Figuren",
+    "fen": "Initiale FEN",
+    "preview": "Vorschau",
+    "createButton": "Erstellen",
+    "cancel": "Abbrechen",
+    "loginPrompt": "Zum Spielen bitte anmelden.",
+    "toLogin": "Zum Login",
+    "invalidLink": "Ungültiger Spiel-Link",
+    "previewHint": "Klicke auf den Farbauswahl-Knopf und wähle eine Startposition aus deinen Favoriten",
+    "attention": "Achtung",
+    "favoritesRequirement": "Zum Mitspielen benötigst du mindestens eine Favoritenposition für Weiß und eine für Schwarz.",
+    "selectPositionRequired": "Bitte wähle eine Position aus deinen Favoriten, bevor du eine Partie erstellst.",
+    "joinSelectTitle": "Wähle deine Startposition zum Beitreten",
+    "joinPreview": "Vorschau",
+    "joinButton": "Partie beitreten",
+    "waitingForConnection": "Warte auf Verbindung…",
+    "gameserver": "Spielserver",
+    "ws": {
+      "connected": "Verbunden",
+      "connecting": "Verbindung wird hergestellt",
+      "disconnected": "Getrennt",
+      "error": "Verbindungsfehler"
+    },
+    "yourTurn": "Du bist am Zug",
+    "waitTurn": "Warte auf den Gegner",
+    "gameOver": "Partie beendet",
+    "outcome": "Ergebnis",
+    "by": "durch",
+    "offerDraw": "Remis anbieten",
+    "acceptDraw": "Remis annehmen",
+    "drawOffered": "Der Gegner bietet Remis an.",
+    "drawOfferedByYou": "Du hast Remis angeboten.",
+    "resign": "Aufgeben",
+    "confirmResign": "Aufgeben und die Partie verlieren?",
+    "confirmAcceptDraw": "Remis annehmen und die Partie beenden?",
+    "drawRejected": "Remis abgelehnt.",
+    "cancelDraw": "Abbrechen",
+    "resignTitle": "Aufgabe bestätigen",
+    "acceptDrawTitle": "Remis bestätigen",
+    "errors": {
+      "illegalMove": "Ungültiger Zug",
+      "notYourTurn": "Du bist nicht am Zug",
+      "gameNotStarted": "Partie hat noch nicht begonnen"
+    },
+    "openPlay": "Spielen",
+    "joinSideRequirement": "Zum Beitreten füge zuerst mindestens eine Favoritenposition für {{side}} hinzu und öffne den Link erneut.",
+    "selectionRequired": "Auswahl erforderlich"
+  },
+  "challengesPage": {
+    "title": "Herausforderungen",
+    "subtitle": "Offene Partien warten auf einen Gegner",
+    "empty": "Keine offenen Herausforderungen.",
+    "authRequired": "Anmeldung erforderlich",
+    "loginPrompt": "Bitte melde dich an, um Herausforderungen zu sehen.",
+    "goToLogin": "Zum Login",
+    "loadFailed": "Herausforderungen konnten nicht geladen werden: {{message}}",
+    "favoritesRequirement": "Um eine Herausforderung anzunehmen, füge mindestens eine Lieblingsposition für Weiß und eine für Schwarz hinzu.",
+    "none": "keine",
+    "white": "Weiß",
+    "black": "Schwarz",
+    "open": "frei",
+    "taken": "belegt",
+    "acceptAs": "Annehmen als {{side}}",
+    "completeFavorites": "Favoriten vervollständigen, um anzunehmen",
+    "headers": {
+      "id": "ID",
+      "created": "Erstellt",
+      "creator": "Ersteller",
+      "prefers": "Bevorzugt",
+      "vacant": "Frei",
+      "time": "Zeit",
+      "action": "Aktion"
+    }
+  },
+  "positions": {
+    "empty": "Keine Positionen zum Anzeigen",
+    "title": "Positionen",
+    "guidance": {
+      "bishops": "Die Läufer müssen auf Feldern unterschiedlicher Farbe stehen (einer hell, einer dunkel).",
+      "kingRooks": "Der König muss zwischen zwei Türmen stehen, damit Rochaden auf beiden Seiten möglich sind."
+    },
+    "hint": "Wähle eine Figur und klicke auf ein Feld, um sie zu setzen oder zu entfernen. Mit Löschen zurücksetzen."
+  },
+  "common": {
+    "clear": "Löschen",
+    "cancel": "Auswahl aufheben"
   }
 }

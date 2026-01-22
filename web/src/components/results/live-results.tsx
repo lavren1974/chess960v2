@@ -37,7 +37,7 @@ export function LiveResults({ initial, lng, agents }: { initial: MatchRow[]; lng
       .channel("realtime-matches")
       .on(
         "postgres_changes",
-        { event: "INSERT", schema: "public", table: "matches" },
+        { event: "INSERT", schema: "public", table: "sf_matches" },
         (payload: RealtimePostgresInsertPayload<MatchRow>) => {
           const row = payload.new as unknown as MatchRow;
           if (!row || !row.id || !isFinished(row)) return;
@@ -48,7 +48,7 @@ export function LiveResults({ initial, lng, agents }: { initial: MatchRow[]; lng
       )
       .on(
         "postgres_changes",
-        { event: "UPDATE", schema: "public", table: "matches" },
+        { event: "UPDATE", schema: "public", table: "sf_matches" },
         (payload: RealtimePostgresUpdatePayload<MatchRow>) => {
           const row = payload.new as unknown as MatchRow;
           if (!row || !row.id || !isFinished(row)) return;
@@ -139,3 +139,4 @@ export function LiveResults({ initial, lng, agents }: { initial: MatchRow[]; lng
     </div>
   );
 }
+

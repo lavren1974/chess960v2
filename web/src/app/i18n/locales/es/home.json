@@ -1,8 +1,4 @@
 {
-  "testMode": {
-    "title": "⚠️ Modo de prueba",
-    "message": "El proyecto se ejecuta en modo de prueba con 0,5 segundos por jugada en lugar de los 3 segundos planificados. En caso de errores críticos, es posible un reinicio."
-  },
   "hero": {
     "badge": "Campeonato 960",
     "title": "¡Bienvenido a “Championship 960”, el mayor experimento de ajedrez de nuestro tiempo!",

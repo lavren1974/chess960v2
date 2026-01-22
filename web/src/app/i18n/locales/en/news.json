@@ -1,0 +1,12 @@
+{
+  "badge": "News",
+  "empty": "No news published yet.",
+  "fallback": "Shown in English",
+  "back": "Back to news",
+  "draft": "Draft",
+  "pageStatus": "Page {{page}} of {{total}}",
+  "previous": "Previous",
+  "next": "Next",
+  "first": "First",
+  "last": "Last"
+}

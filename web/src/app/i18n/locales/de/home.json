@@ -1,8 +1,4 @@
 {
-  "testMode": {
-    "title": "⚠️ Testmodus",
-    "message": "Das Projekt läuft im Testmodus mit 0,5 Sekunden pro Zug statt der geplanten 3 Sekunden. Bei kritischen Fehlern ist ein Neustart möglich."
-  },
   "hero": {
     "badge": "Championship 960",
     "title": "Willkommen bei „Championship 960“ – dem größten Schachexperiment unserer Zeit!",

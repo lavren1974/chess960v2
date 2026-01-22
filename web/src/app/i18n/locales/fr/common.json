@@ -6,11 +6,20 @@
     "register": "S'inscrire",
     "logout": "Déconnexion",
     "about": "À propos",
-    "standings": "Classement",
-    "ratings": "Classement ELO",
-    "results": "Résultats",
-    "latestResults": "Derniers résultats",
-    "allResults": "Tous les résultats"
+    "play": "Jouer",
+    "challenges": "Défis",
+      "standings": "Classement",
+      "standings960": "Classement (960)",
+      "ratings": "Classement ELO",
+      "results": "Résultats",
+      "latestResults": "Derniers résultats",
+      "allResults": "Tous les résultats",
+      "news": "Actualités",
+      "stockfish": "Stockfish",
+    "createGame": "Créer une partie"
+  },
+  "meta": {
+    "defaultDescription": "Chess960v2 est une expérience ouverte d’échecs par moteurs : des milliers de parties depuis des départs Chess960 choisis par les joueurs, avec données et code entièrement ouverts."
   },
   "auth": {
     "login": "Connexion",
@@ -39,7 +48,8 @@
       "Passwords do not match": "Les mots de passe ne correspondent pas",
       "Password must be at least 8 characters long": "Le mot de passe doit contenir au moins 8 caractères",
       "Values don't match": "Les valeurs ne correspondent pas",
-      "email_confirmation_required": "Veuillez confirmer votre adresse e-mail avant de vous connecter."
+      "email_confirmation_required": "Veuillez confirmer votre adresse e-mail avant de vous connecter.",
+      "account_deletion_partial": "Nous avons supprimé vos données dans l'application, mais n'avons pas pu supprimer complètement le compte d'authentification. Veuillez contacter le support si cela persiste."
     }
   },
   "dashboard": {
@@ -66,8 +76,72 @@
     },
     "errors": {
       "deleteUnexpected": "Une erreur inattendue s'est produite lors de la suppression de votre compte"
+    },
+    "games": {
+      "title": "Parties récentes",
+      "headers": {
+        "date": "Date",
+        "white": "Blancs",
+        "black": "Noirs",
+        "result": "Résultat",
+        "time": "Contrôle du temps",
+        "pgn": "PGN"
+      },
+      "status": {
+        "inProgress": "En cours",
+        "finished": "Terminée",
+        "aborted": "Annulée"
+      },
+      "method": {
+        "checkmate": "Échec et mat",
+        "resignation": "Abandon",
+        "stalemate": "Pat",
+        "timeout": "Temps écoulé"
+      },
+      "side": {
+        "white": "Blancs",
+        "black": "Noirs"
+      },
+      "empty": "Pas encore de parties.",
+      "loadMore": "Charger plus",
+      "view": "Voir",
+      "notAvailable": "Pas encore disponible",
+      "unknown": "Inconnu"
+    },
+    "favorites": "Favoris",
+    "favoritesEmpty": "Aucun favori pour le moment. Parcourez les positions pour en ajouter.",
+    "favoritesSideEmpty": "Aucun favori pour ce camp pour l’instant.",
+    "profileTab": {
+      "emailLabel": "E-mail",
+      "emailDesc": "Adresse de contact principale",
+      "memberSince": "Membre depuis",
+      "memberSinceDesc": "Ravi de vous revoir !",
+      "memberSinceUnknown": "Inconnu",
+      "manageIntro": "Gérez vos informations personnelles et préférences.",
+      "name": "Nom",
+      "userId": "ID utilisateur",
+      "dangerTitle": "Zone dangereuse",
+      "dangerDesc": "Supprimez votre compte et toutes les données associées.",
+      "delete": "Supprimer le compte",
+      "deleteConfirmTitle": "Confirmer la suppression du compte",
+      "deleteConfirmBody": "Cette action supprimera définitivement votre compte et vos données. Cela ne peut pas être annulé.",
+      "cancel": "Annuler",
+      "accountSettings": "Paramètres du compte",
+      "unexpectedError": "Une erreur inattendue s'est produite",
+      "profileUpdated": "Profil mis à jour.",
+      "changePassword": "Modifier le mot de passe (optionnel)",
+      "currentPassword": "Mot de passe actuel",
+      "currentPasswordPlaceholder": "Entrez le mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "newPasswordPlaceholder": "Entrez un nouveau mot de passe",
+      "confirmNewPassword": "Confirmer le nouveau mot de passe",
+      "confirmNewPasswordPlaceholder": "Confirmez le nouveau mot de passe",
+      "submit": "Mettre à jour le profil",
+      "submitting": "Mise à jour..."
     }
   },
+  "play": "Jouer",
+  "add": "Ajouter",
   "footer": {
     "about": "À propos",
     "description": "Chess960v2 est une approche innovante des échecs Fischer Random avec double randomisation des positions de départ. Nous organisons des tournois entre moteurs d'échecs, explorant de nouvelles stratégies et tactiques dans des conditions d'imprévisibilité totale de l'ouverture.",
@@ -106,6 +180,8 @@
     "currentElo": "ELO actuel",
     "countShown": "{{count}} affichés",
     "perPage": "Par page :",
+    "first": "Première",
+    "last": "Dernière",
     "previous": "Précédent",
     "next": "Suivant",
     "pageStatus": "Page {{page}} / {{totalPages}} • {{total}} au total",
@@ -120,10 +196,12 @@
       "result": "Résultat",
       "pgn": "PGN",
       "game": "Partie"
-    }
+    },
+    "retry": "Réessayer"
   },
   "standings": {
     "title": "Tableau du tournoi",
+    "championshipLabel": "Championnat",
     "tabs": {
       "all": "Tous",
       "white": "Blancs",
@@ -131,6 +209,13 @@
     },
     "viewRound": "Voir le round :",
     "open": "Ouvrir",
+    "championshipStatus": {
+      "active": "actif",
+      "completed": "termine",
+      "finished": "termine",
+      "archived": "archive",
+      "upcoming": "a venir"
+    },
     "headers": {
       "rank": "#",
       "agentId": "ID de l'agent",
@@ -140,9 +225,9 @@
       "losses": "D",
       "points": "Points",
       "bergvizer": "Bergvizer"
-    }
-  }
-  ,
+    },
+    "favoritesLoginPrompt": "Connectez-vous pour débloquer vos positions favorites."
+  },
   "ratings": {
     "title": "Classement ELO",
     "tabs": {
@@ -156,5 +241,103 @@
       "elo": "ELO",
       "delta": "Δ"
     }
+  },
+  "playPage": {
+    "title": "Jouer",
+    "favorites": "Favoris",
+    "joinTitle": "Rejoindre via un lien",
+    "linkPlaceholder": "Collez le lien de la partie…",
+    "goButton": "Aller",
+    "createTitle": "Créer une partie",
+    "color": "Couleur",
+    "white": "Blancs",
+    "black": "Noirs",
+    "timeControl": "Contrôle du temps (inactif)",
+    "hiddenMode": "Mode pièces cachées",
+    "fen": "FEN initiale",
+    "preview": "Aperçu",
+    "createButton": "Créer",
+    "cancel": "Annuler",
+    "loginPrompt": "Connectez‑vous pour jouer.",
+    "toLogin": "Aller à la connexion",
+    "invalidLink": "Lien de partie invalide",
+    "previewHint": "Cliquez sur le bouton de sélection de couleur et choisissez une position de départ parmi vos favoris",
+    "attention": "Attention",
+    "favoritesRequirement": "Pour participer, ajoutez au moins une position favorite pour les Blancs et au moins une pour les Noirs.",
+    "selectPositionRequired": "Veuillez sélectionner une position parmi vos favoris avant de créer une partie.",
+    "joinSelectTitle": "Choisissez votre position de départ pour rejoindre",
+    "joinPreview": "Aperçu",
+    "joinButton": "Rejoindre la partie",
+    "waitingForConnection": "En attente de connexion…",
+    "gameserver": "Serveur de jeu",
+    "ws": {
+      "connected": "Connecté",
+      "connecting": "Connexion",
+      "disconnected": "Déconnecté",
+      "error": "Erreur de connexion"
+    },
+    "yourTurn": "À vous de jouer",
+    "waitTurn": "En attente de l’adversaire",
+    "gameOver": "Partie terminée",
+    "outcome": "Résultat",
+    "by": "par",
+    "offerDraw": "Proposer la nulle",
+    "acceptDraw": "Accepter la nulle",
+    "drawOffered": "L’adversaire propose la nulle.",
+    "drawOfferedByYou": "Vous avez proposé la nulle.",
+    "resign": "Abandon",
+    "confirmResign": "Abandonner et perdre la partie ?",
+    "confirmAcceptDraw": "Accepter la nulle et terminer la partie ?",
+    "drawRejected": "Nulle refusée.",
+    "cancelDraw": "Annuler",
+    "resignTitle": "Confirmer l’abandon",
+    "acceptDrawTitle": "Confirmer la nulle",
+    "errors": {
+      "illegalMove": "Coup illégal",
+      "notYourTurn": "Ce n’est pas votre tour",
+      "gameNotStarted": "La partie n’a pas encore commencé"
+    },
+    "openPlay": "Jouer",
+    "joinSideRequirement": "Pour rejoindre, ajoutez au moins une position favorite pour les {{side}}, puis rouvrez le lien.",
+    "selectionRequired": "Sélection requise"
+  },
+  "challengesPage": {
+    "title": "Défis",
+    "subtitle": "Parties ouvertes en attente d’un adversaire",
+    "empty": "Aucun défi ouvert.",
+    "authRequired": "Authentification requise",
+    "loginPrompt": "Veuillez vous connecter pour voir les défis.",
+    "goToLogin": "Aller à la connexion",
+    "loadFailed": "Échec du chargement des défis : {{message}}",
+    "favoritesRequirement": "Pour accepter un défi, ajoutez au moins une position favorite pour les blancs et une pour les noirs.",
+    "none": "aucun",
+    "white": "Blanc",
+    "black": "Noir",
+    "open": "libre",
+    "taken": "pris",
+    "acceptAs": "Accepter en tant que {{side}}",
+    "completeFavorites": "Complétez vos favoris pour accepter",
+    "headers": {
+      "id": "ID",
+      "created": "Créé",
+      "creator": "Créateur",
+      "prefers": "Préfère",
+      "vacant": "Disponible",
+      "time": "Temps",
+      "action": "Action"
+    }
+  },
+  "positions": {
+    "empty": "Aucune position à afficher",
+    "title": "Positions",
+    "guidance": {
+      "bishops": "Les fous doivent être placés sur des cases de couleurs différentes (l’un sur claire, l’autre sur sombre).",
+      "kingRooks": "Le roi doit être placé entre deux tours afin de permettre le roque des deux côtés."
+    },
+    "hint": "Sélectionnez une pièce puis cliquez sur une case pour la placer ou l’enlever. Utilisez Effacer pour réinitialiser."
+  },
+  "common": {
+    "clear": "Effacer",
+    "cancel": "Annuler la sélection"
   }
 }

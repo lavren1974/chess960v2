@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useTranslation } from "@/app/i18n/client";
-import { Brain, Crown, Cpu, HardDrive, MemoryStick, Swords, Infinity as InfinityIcon } from "lucide-react";
+import { Brain, Crown, Cpu, HardDrive, MemoryStick, Swords, Infinity as InfinityIcon, Github } from "lucide-react";
 
 export function AboutClient({ lng }: { lng: string }) {
   const { t } = useTranslation(lng, 'about');
@@ -12,6 +12,7 @@ export function AboutClient({ lng }: { lng: string }) {
   const timeTitle = t('about.tournament.time.title', { defaultValue: '' }) as string;
   const timeP1 = t('about.tournament.time.p1', { defaultValue: '' }) as string;
   const timeP2 = t('about.tournament.time.p2', { defaultValue: '' }) as string;
+  const timeP3 = t('about.tournament.time.p3', { defaultValue: '' }) as string;
   const serverTitle = t('about.tournament.server.title', { defaultValue: '' }) as string;
   const serverText = t('about.tournament.server.text', { defaultValue: '' }) as string;
 
@@ -94,6 +95,7 @@ export function AboutClient({ lng }: { lng: string }) {
                   <h3 className="text-xl font-semibold pt-2">{timeTitle}</h3>
                   <p>{timeP1}</p>
                   <p>{timeP2}</p>
+                  {timeP3 && <p>{timeP3}</p>}
                 </>
               )}
             </div>
@@ -188,6 +190,40 @@ export function AboutClient({ lng }: { lng: string }) {
           <p className="text-base-content/80">{t('about.creator.p1')}</p>
         </section>
 
+        {/* Support */}
+        <section className="bg-base-100 rounded-lg shadow-md p-8 space-y-3">
+          <h2 className="text-2xl font-semibold">{t('about.support.title')}</h2>
+          <p className="text-base-content/80">{t('about.support.text')}</p>
+          <div className="space-y-2 text-base-content/80">
+            <div className="flex flex-wrap gap-2">
+              <span className="font-medium">{t('about.support.btcLabel')}</span>
+              <span className="font-mono break-all">
+                bc1q4ye0nvx4z4gpr5lv7dut3hyu96m6dcvcpqqnj7
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <span className="font-medium">{t('about.support.xmrLabel')}</span>
+              <span className="font-mono break-all">
+                48aN8ABaA5fXdniA5gbRbeQYGg2mLaXUVVT8bZoS19uVbd6oC8GxRS83RzRkGwUuyTJu6Sb8gazLGBzgTJrwVuHcJFAv81e
+              </span>
+            </div>
+          </div>
+        </section>
+
+        {/* Open Source */}
+        <section className="bg-base-100 rounded-lg shadow-md p-8 space-y-3">
+          <h2 className="text-2xl font-semibold">{t('about.openSource.title')}</h2>
+          <p className="text-base-content/80">{t('about.openSource.text')}</p>
+          <a
+            className="btn btn-outline"
+            href="https://github.com/lavren1974/Chess960v2"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t('about.openSource.button')} <Github className="size-4" />
+          </a>
+        </section>
+
         {/* Links + CTA */}
         <section className="rounded-2xl border border-primary/20 bg-gradient-to-b from-base-100 to-base-200 p-6 md:p-10 text-center">
           <div className="max-w-3xl mx-auto space-y-5">
@@ -203,7 +239,7 @@ export function AboutClient({ lng }: { lng: string }) {
             <div className="text-sm text-base-content/70">
               <p>{t('about.links.title')}</p>
               <div className="flex flex-wrap gap-3 justify-center pt-2">
-                <a className="link" href="#">{t('about.links.github')}</a>
+                <a className="link" href="https://github.com/lavren1974/Chess960v2">{t('about.links.github')}</a>
                 <a className="link" href="#">{t('about.links.youtube')}</a>
                 <a className="link" href="#">{t('about.links.telegram')}</a>
                 <a className="link" href="#">{t('about.links.discord')}</a>

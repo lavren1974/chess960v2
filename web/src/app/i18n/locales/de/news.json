@@ -1,0 +1,12 @@
+{
+  "badge": "News",
+  "empty": "Es wurden noch keine News veröffentlicht.",
+  "fallback": "Auf Englisch angezeigt",
+  "back": "Zurück zu den News",
+  "draft": "Entwurf",
+  "pageStatus": "Seite {{page}} von {{total}}",
+  "previous": "Zurück",
+  "next": "Weiter",
+  "first": "Erste",
+  "last": "Letzte"
+}

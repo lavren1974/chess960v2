@@ -55,8 +55,8 @@ function hasMatchingUserByName(users: User[], normalizedName: string): boolean {
 async function lookupNameInProfiles(client: SupabaseClient, name: string) {
   // Prefer the canonical column from the new schema first
   const candidates = [
-    "display_name",
     "name",
+    "display_name",
     "displayName",
     "username",
     "full_name",
@@ -66,7 +66,7 @@ async function lookupNameInProfiles(client: SupabaseClient, name: string) {
   // Try multiple likely columns; tolerate missing columns gracefully.
   for (const column of candidates) {
     const { data, error } = await client
-      .from("profiles")
+      .from("sf_profiles")
       .select("id")
       .ilike(column, name)
       .limit(1);
@@ -89,7 +89,7 @@ async function lookupNameInProfiles(client: SupabaseClient, name: string) {
       continue;
     }
 
-    console.warn(`Display name lookup failed against profiles.${column}:`, error);
+    console.warn(`Display name lookup failed against sf_profiles.${column}:`, error);
     return { status: "error" as const, reason: "query_failed" as const };
   }
 

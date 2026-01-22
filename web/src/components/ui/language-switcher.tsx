@@ -1,8 +1,8 @@
 // components/language-switcher.tsx
 'use client'
 
-import { useRouter } from 'next/navigation'
-import { useTranslation } from 'react-i18next'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { languages } from '@/app/i18n/settings'
 
 interface LanguageSwitcherProps {
@@ -10,28 +10,13 @@ interface LanguageSwitcherProps {
 }
 
 export function LanguageSwitcher({ lng }: LanguageSwitcherProps) {
-  const { i18n } = useTranslation()
-  const router = useRouter()
+  const pathname = usePathname()
 
-  const handleLanguageChange = (newLng: string) => {
-    const currentPath = window.location.pathname
-    let newPath: string
-
-    // Handle root path specially
-    if (currentPath === '/' || currentPath === `/${lng}` || currentPath === `/${lng}/`) {
-      newPath = `/${newLng}`
-    } else {
-      newPath = currentPath.replace(`/${lng}/`, `/${newLng}/`)
+  const makePath = (newLng: string) => {
+    if (!pathname || pathname === '/' || pathname === `/${lng}` || pathname === `/${lng}/`) {
+      return `/${newLng}`
     }
-
-    // Persist selection for future visits
-    try {
-      const secure = window.location.protocol === 'https:' ? '; secure' : ''
-      document.cookie = `lng=${newLng}; path=/; max-age=31536000; samesite=lax${secure}`
-    } catch {}
-
-    router.push(newPath)
-    i18n.changeLanguage(newLng)
+    return pathname.replace(`/${lng}/`, `/${newLng}/`)
   }
 
   return (
@@ -40,16 +25,28 @@ export function LanguageSwitcher({ lng }: LanguageSwitcherProps) {
         <span className="text-xl">{lng.toUpperCase()}</span>
       </div>
       <ul tabIndex={0} className="dropdown-content z-1 menu p-2 shadow-sm bg-base-100 rounded-box w-52">
-        {languages.map((language) => (
-          <li key={language}>
-            <button
-              className={`${lng === language ? 'active' : ''}`}
-              onClick={() => handleLanguageChange(language)}
-            >
-              {language.toUpperCase()}
-            </button>
-          </li>
-        ))}
+        {languages.map((language) => {
+          const href = makePath(language)
+          return (
+            <li key={language}>
+              <Link
+                href={href}
+                className={`${lng === language ? 'active' : ''}`}
+                onClick={(event) => {
+                  if (language === lng) {
+                    event.preventDefault()
+                    return
+                  }
+                  const active = document.activeElement
+                  if (active instanceof HTMLElement) active.blur()
+                  document.cookie = `NEXT_LOCALE=${language}; Path=/; Max-Age=${60 * 60 * 24 * 365}`
+                }}
+              >
+                {language.toUpperCase()}
+              </Link>
+            </li>
+          )
+        })}
       </ul>
     </div>
   )

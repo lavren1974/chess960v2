@@ -1,17 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
 
-export function RoundJump({ lng, scope }: { lng: string; scope: "latest" | "all" }) {
+export function RoundJump({
+  lng,
+  scope,
+  champId,
+  favoritesOnly = false,
+  initialRound,
+}: {
+  lng: string;
+  scope: "latest" | "all";
+  champId: number | null;
+  favoritesOnly?: boolean;
+  initialRound?: number;
+}) {
   const { t } = useTranslation();
-  const [roundInput, setRoundInput] = useState<string>("");
+  const [roundInput, setRoundInput] = useState<string>(initialRound ? String(initialRound) : "");
+
+  useEffect(() => {
+    if (typeof initialRound === "number" && Number.isFinite(initialRound)) {
+      setRoundInput(String(initialRound));
+    }
+  }, [initialRound]);
 
   const href = roundInput
     ? {
         pathname: `/${lng}/results/round/${roundInput}`,
-        query: scope === "all" ? { scope: "all" } : {},
+        query: {
+          ...(scope === "all" ? { scope: "all" } : {}),
+          ...(champId ? { champ: String(champId) } : {}),
+          ...(favoritesOnly ? { favorites: "1" } : {}),
+        },
       }
     : undefined;
 
@@ -38,4 +60,3 @@ export function RoundJump({ lng, scope }: { lng: string; scope: "latest" | "all"
     </div>
   );
 }
-

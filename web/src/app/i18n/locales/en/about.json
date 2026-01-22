@@ -32,13 +32,23 @@
       "badge": "Tournament",
       "title": "Year‑long Stockfish 15.1 tournament",
       "p1": "We run a long tournament: Stockfish 15.1 plays itself from many starts — NNUE off by default to emphasize strategy.",
-      "p2": "Time control: 3 seconds per move. Roughly three rounds per day; finish within a year.",
+      "p2": "This will create a dataset to analyze the strongest opening ideas and strategies in the new format.",
+      "time": {
+        "title": "Time control and dynamics",
+        "p1": "The engine gets exactly 2 seconds per move — this choice is deliberate and even reflected in the project name: **chess960v2**.",
+        "p2": "Two seconds provide an optimal balance between play quality and computational load. It is enough for Stockfish to show its strength and generate rich, diverse games, while not overloading the server, allowing stable 24/7 play without downtime or overheating. With this control we can run about three full rounds per day and complete the study of all 960 starting positions within one year.",
+        "p3": "Important: the project is fully open source. Anyone can deploy their own copy, change the time control (or any other parameters), and run their own experiments — whether 1 second, 5 seconds, or even classical time. We believe openness sparks new ideas, and the community is the best co‑author."
+      },
+      "server": {
+        "title": "Our server: power for thousands of games",
+        "text": "All games are played on a high-performance server, which ensures stable and fast engine operation. This setup lets us run up to 12 simultaneous matches without performance loss, keeping the stream of games continuous."
+      },
       "hardware": {
-        "title": "Hardware",
-        "cpu": "CPU: AMD Ryzen 9 7950X (16 cores)",
+        "title": "Our hardware",
+        "cpu": "CPU: AMD Ryzen 9 7950X (16 cores, 4.5 GHz)",
         "ram": "RAM: 128 GB DDR5",
-        "ssd": "SSD: 2×1.92 TB U.2 NVMe",
-        "note": "Handles 16 concurrent matches without performance loss."
+        "ssd": "SSD: 21.92 TB U.2 NVMe",
+        "note": "Up to 12 simultaneous matches with zero performance loss."
       }
     },
     "tech": {
@@ -83,6 +93,17 @@
     "creator": {
       "title": "Creator",
       "p1": "Nikolai Lavrenov. Open source project built with the community."
+    },
+    "support": {
+      "title": "Support the project",
+      "text": "This project is free and open-source. If you find it useful, you can support it with a voluntary donation:",
+      "btcLabel": "Bitcoin (BTC):",
+      "xmrLabel": "Monero (XMR):"
+    },
+    "openSource": {
+      "title": "Open Source",
+      "text": "This project is open-source. You can view the code or contribute on GitHub.",
+      "button": "GitHub"
     },
     "links": {
       "title": "Stay connected",

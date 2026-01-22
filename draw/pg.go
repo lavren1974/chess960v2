@@ -115,7 +115,7 @@ func runWithPostgres(dsn string, n int, championshipID int64) error {
 }
 
 func fetchAgentsByColorDB(ctx context.Context, pool *pgxpool.Pool, color string, limit int) ([]Agent, error) {
-    baseSQL := `SELECT id, sp_id, mini_fen, color FROM public.agents WHERE color = $1 ORDER BY id ASC`
+    baseSQL := `SELECT id, sp_id, mini_fen, color FROM public.sf_agents WHERE color = $1 ORDER BY id ASC`
     var rows pgx.Rows
     var err error
     if limit > 0 {
@@ -142,7 +142,7 @@ func fetchExistingTriplesDB(ctx context.Context, pool *pgxpool.Pool, whiteIDs, b
     if len(whiteIDs) == 0 || len(blackIDs) == 0 || len(rounds) == 0 {
         return map[[3]int64]struct{}{}, nil
     }
-    sql := `SELECT player_white, player_black, round FROM public.matches WHERE player_white = ANY($1::bigint[]) AND player_black = ANY($2::bigint[]) AND round = ANY($3::bigint[]) AND championship_id = $4`
+    sql := `SELECT player_white, player_black, round FROM public.sf_matches WHERE player_white = ANY($1::bigint[]) AND player_black = ANY($2::bigint[]) AND round = ANY($3::bigint[]) AND championship_id = $4`
     rows, err := pool.Query(ctx, sql, whiteIDs, blackIDs, rounds, championshipID)
     if err != nil {
         return nil, err
@@ -163,10 +163,10 @@ func insertMatchesDB(ctx context.Context, pool *pgxpool.Pool, whites, blacks, ro
     if len(whites) == 0 {
         return nil
     }
-    sql := `INSERT INTO public.matches (player_white, player_black, round, championship_id)
+    sql := `INSERT INTO public.sf_matches (player_white, player_black, round, championship_id)
             SELECT w, b, r, $4
             FROM UNNEST($1::bigint[], $2::bigint[], $3::bigint[]) AS t(w, b, r)
-            LEFT JOIN public.matches m ON (m.player_white = w AND m.player_black = b AND m.round = r AND m.championship_id = $4)
+            LEFT JOIN public.sf_matches m ON (m.player_white = w AND m.player_black = b AND m.round = r AND m.championship_id = $4)
             WHERE m.id IS NULL`
     const chunk = 20000
     for i := 0; i < len(whites); i += chunk {

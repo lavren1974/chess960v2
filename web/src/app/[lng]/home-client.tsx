@@ -2,17 +2,7 @@
 
 import { useTranslation } from "@/app/i18n/client";
 import Link from "next/link";
-import {
-  ArrowRight,
-  Swords,
-  Shuffle,
-  Brain,
-  Trophy,
-  BookOpen,
-  Gem,
-  Crown,
-  AlertTriangle,
-} from "lucide-react";
+import { ArrowRight, Swords, Shuffle, Brain, Trophy, BookOpen, Gem, Crown } from "lucide-react";
 
 export function HomeClient({ lng }: { lng: string }) {
   const { t } = useTranslation(lng, "home");
@@ -40,15 +30,6 @@ export function HomeClient({ lng }: { lng: string }) {
 
   return (
     <div className="space-y-20">
-      {/* Test Mode Alert */}
-      <div className="alert alert-success shadow-lg">
-        <AlertTriangle className="size-5" />
-        <div>
-          <h3 className="font-bold">{t("testMode.title")}</h3>
-          <div className="text-sm">{t("testMode.message")}</div>
-        </div>
-      </div>
-
       {/* Hero Section */}
       <section className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-base-200 to-base-100">
         <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(60%_60%_at_50%_20%,#000_40%,transparent_80%)]">

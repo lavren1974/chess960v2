@@ -1,0 +1,12 @@
+{
+  "badge": "Actualités",
+  "empty": "Aucune actualité publiée pour le moment.",
+  "fallback": "Affiché en anglais",
+  "back": "Retour aux actualités",
+  "draft": "Brouillon",
+  "pageStatus": "Page {{page}} sur {{total}}",
+  "previous": "Précédent",
+  "next": "Suivant",
+  "first": "Première",
+  "last": "Dernière"
+}

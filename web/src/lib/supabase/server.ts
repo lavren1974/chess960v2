@@ -15,28 +15,23 @@ export async function getServerClient(): Promise<SupabaseClient> {
 
   return createServerClient(url, anonKey, {
     cookies: {
-      get(name) {
-        return cookieStore.get(name)?.value;
+      getAll() {
+        return cookieStore.getAll().map((cookie) => ({
+          name: cookie.name,
+          value: cookie.value,
+        }));
       },
-      set(name, value, options) {
+      setAll(cookies) {
         try {
-          (cookieStore as unknown as { set?: (opts: { name: string; value: string } & Record<string, unknown>) => void }).set?.({
-            name,
-            value,
-            ...options,
+          cookies.forEach(({ name, value, options }) => {
+            (cookieStore as unknown as { set?: (opts: { name: string; value: string } & Record<string, unknown>) => void }).set?.({
+              name,
+              value,
+              ...options,
+            });
           });
         } catch {
           // ignore cookie set attempts during server component render
-        }
-      },
-      remove(name, options) {
-        try {
-          (cookieStore as unknown as { delete?: (opts: { name: string } & Record<string, unknown>) => void }).delete?.({
-            name,
-            ...options,
-          });
-        } catch {
-          // ignore cookie delete attempts during server component render
         }
       },
     },

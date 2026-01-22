@@ -6,11 +6,20 @@
     "register": "Register",
     "logout": "Log out",
     "about": "About",
+    "play": "Play",
+    "challenges": "Challenges",
     "standings": "Standings",
+    "standings960": "Standings (960)",
     "ratings": "Ratings",
     "results": "Results",
     "latestResults": "Latest Results",
-    "allResults": "All Results"
+    "allResults": "All Results",
+    "news": "News",
+    "stockfish": "Stockfish",
+    "createGame": "Create a Game"
+  },
+  "meta": {
+    "defaultDescription": "Chess960v2 is an open experiment in engine chess: thousands of games from player‑chosen Chess960 starts, with full open data and code."
   },
   "auth": {
     "register": "Register",
@@ -39,7 +48,8 @@
       "Passwords do not match": "Passwords do not match",
       "Password must be at least 8 characters long": "Password must be at least 8 characters long",
       "Values don't match": "Values don't match",
-      "email_confirmation_required": "Please confirm your email before logging in."
+      "email_confirmation_required": "Please confirm your email before logging in.",
+      "account_deletion_partial": "We removed your data in the app, but couldn't fully delete the auth account. Please contact support if this persists."
     }
   },
   "dashboard": {
@@ -66,8 +76,72 @@
     },
     "errors": {
       "deleteUnexpected": "An unexpected error occurred while deleting your account"
+    },
+    "games": {
+      "title": "Recent Games",
+      "headers": {
+        "date": "Date",
+        "white": "White",
+        "black": "Black",
+        "result": "Result",
+        "time": "Time Control",
+        "pgn": "PGN"
+      },
+      "status": {
+        "inProgress": "In progress",
+        "finished": "Finished",
+        "aborted": "Aborted"
+      },
+      "method": {
+        "checkmate": "Checkmate",
+        "resignation": "Resignation",
+        "stalemate": "Stalemate",
+        "timeout": "Timeout"
+      },
+      "side": {
+        "white": "White",
+        "black": "Black"
+      },
+      "empty": "No games yet.",
+      "loadMore": "Load more",
+      "view": "View",
+      "notAvailable": "Not yet available",
+      "unknown": "Unknown"
+    },
+    "favorites": "Favorites",
+    "favoritesEmpty": "No favorites yet. Browse positions to add some.",
+    "favoritesSideEmpty": "No favorites for this side yet.",
+    "profileTab": {
+      "emailLabel": "Email",
+      "emailDesc": "Primary contact address",
+      "memberSince": "Member Since",
+      "memberSinceDesc": "Welcome back!",
+      "memberSinceUnknown": "Unknown",
+      "manageIntro": "Manage your personal information and preferences.",
+      "name": "Name",
+      "userId": "User ID",
+      "dangerTitle": "Danger Zone",
+      "dangerDesc": "Delete your account and all associated data.",
+      "delete": "Delete Account",
+      "deleteConfirmTitle": "Confirm Account Deletion",
+      "deleteConfirmBody": "This action will permanently remove your account and data. This cannot be undone.",
+      "cancel": "Cancel",
+      "accountSettings": "Account Settings",
+      "unexpectedError": "An unexpected error occurred",
+      "profileUpdated": "Profile updated.",
+      "changePassword": "Change Password (Optional)",
+      "currentPassword": "Current Password",
+      "currentPasswordPlaceholder": "Enter current password",
+      "newPassword": "New Password",
+      "newPasswordPlaceholder": "Enter new password",
+      "confirmNewPassword": "Confirm New Password",
+      "confirmNewPasswordPlaceholder": "Confirm new password",
+      "submit": "Update Profile",
+      "submitting": "Updating..."
     }
   },
+  "play": "Play",
+  "add": "Add",
   "footer": {
     "about": "About Us",
     "description": "Chess960v2 is an innovative approach to Fischer Random Chess with double randomization of starting positions. We conduct tournaments among chess engines, exploring new strategies and tactics in conditions of complete opening unpredictability.",
@@ -96,6 +170,8 @@
     "currentElo": "Current ELO",
     "countShown": "{{count}} shown",
     "perPage": "Per page:",
+    "first": "First",
+    "last": "Last",
     "previous": "Previous",
     "next": "Next",
     "pageStatus": "Page {{page}} / {{totalPages}} • {{total}} total",
@@ -110,7 +186,8 @@
       "result": "Result",
       "pgn": "PGN",
       "game": "Game"
-    }
+    },
+    "retry": "Retry"
   },
   "viewer": {
     "play": "Play",
@@ -124,6 +201,7 @@
   },
   "standings": {
     "title": "Tournament Table",
+    "championshipLabel": "Championship",
     "tabs": {
       "all": "All",
       "white": "White",
@@ -131,6 +209,13 @@
     },
     "viewRound": "View Round:",
     "open": "Open",
+    "championshipStatus": {
+      "active": "active",
+      "completed": "completed",
+      "finished": "finished",
+      "archived": "archived",
+      "upcoming": "upcoming"
+    },
     "headers": {
       "rank": "#",
       "agentId": "Agent ID",
@@ -140,9 +225,9 @@
       "losses": "L",
       "points": "Points",
       "bergvizer": "Bergvizer"
-    }
-  }
-  ,
+    },
+    "favoritesLoginPrompt": "Sign in to unlock your favorite positions."
+  },
   "ratings": {
     "title": "Ratings",
     "tabs": {
@@ -156,5 +241,106 @@
       "elo": "ELO",
       "delta": "Δ"
     }
+  },
+  "playPage": {
+    "title": "Play",
+    "favorites": "Favorites",
+    "joinTitle": "Join by link",
+    "linkPlaceholder": "Paste game link…",
+    "goButton": "Go",
+    "createTitle": "Create Game",
+    "color": "Color",
+    "white": "White",
+    "black": "Black",
+    "timeControl": "Time control",
+    "hiddenMode": "Hidden pieces mode",
+    "fen": "Initial FEN",
+    "preview": "Preview",
+    "createButton": "Create Game",
+    "cancel": "Cancel",
+    "loginPrompt": "Please log in to play.",
+    "toLogin": "Go to login",
+    "invalidLink": "Invalid game link",
+    "previewHint": "Click the color selection button and select a starting position from your favorites",
+    "attention": "Attention",
+    "favoritesRequirement": "To participate, add at least one favorite position for White and one for Black.",
+    "selectPositionRequired": "Please select a position from your favorites before creating a game.",
+    "joinSelectTitle": "Select your starting position to join",
+    "joinPreview": "Preview",
+    "joinButton": "Join Game",
+    "waitingForConnection": "Waiting for connection…",
+    "gameserver": "Gameserver",
+    "ws": {
+      "connected": "Connected",
+      "connecting": "Connecting",
+      "disconnected": "Disconnected",
+      "error": "Connection Error"
+    },
+    "yourTurn": "Your turn",
+    "waitTurn": "Waiting for opponent",
+    "gameOver": "Game over",
+    "outcome": "Outcome",
+    "by": "by",
+    "startCountdown": "The game will start in {{seconds}} seconds.",
+    "disconnectWarning": "You have left the game. If you do not return to the game, you will be considered defeated.",
+    "returnToGame": "Return to game",
+    "offerDraw": "Offer draw",
+    "acceptDraw": "Accept draw",
+    "drawOffered": "Opponent offers a draw.",
+    "drawOfferedByYou": "You offered a draw.",
+    "resign": "Resign",
+    "confirmResign": "Resign and lose the game?",
+    "confirmAcceptDraw": "Accept a draw and end the game?",
+    "drawRejected": "Draw rejected",
+    "cancelDraw": "Cancel",
+    "resignTitle": "Confirm Resignation",
+    "acceptDrawTitle": "Confirm Draw",
+    "errors": {
+      "illegalMove": "Illegal move",
+      "notYourTurn": "Not your turn",
+      "gameNotStarted": "Game not started yet"
+    },
+    "openPlay": "Play",
+    "joinSideRequirement": "To join this game, add at least one favorite position for {{side}} first, then reopen the link.",
+    "selectionRequired": "Selection Required"
+  },
+  "challengesPage": {
+    "title": "Challenges",
+    "subtitle": "Open games waiting for an opponent",
+    "empty": "No open challenges.",
+    "authRequired": "Authentication Required",
+    "loginPrompt": "Please log in to view challenges.",
+    "goToLogin": "Go to login",
+    "loadFailed": "Failed to load challenges: {{message}}",
+    "favoritesRequirement": "To accept a challenge, add at least one favorite position for White and one for Black.",
+    "none": "none",
+    "white": "White",
+    "black": "Black",
+    "open": "open",
+    "taken": "taken",
+    "acceptAs": "Accept as {{side}}",
+    "completeFavorites": "Complete favorites to accept",
+    "headers": {
+      "id": "ID",
+      "created": "Created",
+      "creator": "Creator",
+      "prefers": "Prefers",
+      "vacant": "Vacant",
+      "time": "Time",
+      "action": "Action"
+    }
+  },
+  "positions": {
+    "empty": "No positions to display",
+    "title": "Positions",
+    "guidance": {
+      "bishops": "Bishops must be placed on squares of different colors (one on white, one on black).",
+      "kingRooks": "The king must be placed between two rooks. This allows castling both sides."
+    },
+    "hint": "Select a piece, then click a square to place or remove it. Use Clear to reset."
+  },
+  "common": {
+    "clear": "Clear",
+    "cancel": "Cancel selection"
   }
 }

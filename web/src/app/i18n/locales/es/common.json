@@ -6,11 +6,20 @@
     "register": "Registrarse",
     "logout": "Cerrar sesión",
     "about": "Acerca de",
-    "standings": "Clasificación",
-    "ratings": "Ratings",
-    "results": "Resultados",
-    "latestResults": "Resultados recientes",
-    "allResults": "Todos los resultados"
+    "play": "Jugar",
+    "challenges": "Desafíos",
+      "standings": "Clasificación",
+      "standings960": "Clasificación (960)",
+      "ratings": "Ratings",
+      "results": "Resultados",
+      "latestResults": "Resultados recientes",
+      "allResults": "Todos los resultados",
+      "news": "Noticias",
+      "stockfish": "Stockfish",
+    "createGame": "Crear partida"
+    },
+  "meta": {
+    "defaultDescription": "Chess960v2 es un experimento abierto de ajedrez con motores: miles de partidas desde inicios Chess960 elegidos por los jugadores, con datos y código totalmente abiertos."
   },
   "auth": {
     "register": "Registrarse",
@@ -38,7 +47,8 @@
       "Passwords do not match": "Las contraseñas no coinciden",
       "Password must be at least 8 characters long": "La contraseña debe tener al menos 8 caracteres",
       "Values don't match": "Los valores no coinciden",
-      "email_confirmation_required": "Confirma tu correo electrónico antes de iniciar sesión."
+      "email_confirmation_required": "Confirma tu correo electrónico antes de iniciar sesión.",
+      "account_deletion_partial": "Eliminamos tus datos en la aplicación, pero no pudimos borrar completamente la cuenta de autenticación. Contacta soporte si persiste."
     }
   },
   "dashboard": {
@@ -65,8 +75,72 @@
     },
     "errors": {
       "deleteUnexpected": "Ocurrió un error inesperado al eliminar su cuenta"
+    },
+    "games": {
+      "title": "Partidas recientes",
+      "headers": {
+        "date": "Fecha",
+        "white": "Blancas",
+        "black": "Negras",
+        "result": "Resultado",
+        "time": "Control de tiempo",
+        "pgn": "PGN"
+      },
+      "status": {
+        "inProgress": "En curso",
+        "finished": "Finalizada",
+        "aborted": "Anulada"
+      },
+      "method": {
+        "checkmate": "Jaque mate",
+        "resignation": "Rendición",
+        "stalemate": "Tablas por ahogado",
+        "timeout": "Tiempo agotado"
+      },
+      "side": {
+        "white": "Blancas",
+        "black": "Negras"
+      },
+      "empty": "Aún no hay partidas.",
+      "loadMore": "Cargar más",
+      "view": "Ver",
+      "notAvailable": "Aún no disponible",
+      "unknown": "Desconocido"
+    },
+    "favorites": "Favoritos",
+    "favoritesEmpty": "Aún no hay favoritos. Revisa las posiciones para añadir algunos.",
+    "favoritesSideEmpty": "Sin favoritos para este bando todavía.",
+    "profileTab": {
+      "emailLabel": "Correo electrónico",
+      "emailDesc": "Dirección de contacto principal",
+      "memberSince": "Miembro desde",
+      "memberSinceDesc": "¡Bienvenido de nuevo!",
+      "memberSinceUnknown": "Desconocido",
+      "manageIntro": "Administra tu información personal y preferencias.",
+      "name": "Nombre",
+      "userId": "ID de usuario",
+      "dangerTitle": "Zona de peligro",
+      "dangerDesc": "Elimina tu cuenta y todos los datos asociados.",
+      "delete": "Eliminar cuenta",
+      "deleteConfirmTitle": "Confirmar eliminación de cuenta",
+      "deleteConfirmBody": "Esta acción eliminará permanentemente tu cuenta y datos. No se puede deshacer.",
+      "cancel": "Cancelar",
+      "accountSettings": "Configuración de la cuenta",
+      "unexpectedError": "Ocurrió un error inesperado",
+      "profileUpdated": "Perfil actualizado.",
+      "changePassword": "Cambiar contraseña (opcional)",
+      "currentPassword": "Contraseña actual",
+      "currentPasswordPlaceholder": "Ingresa la contraseña actual",
+      "newPassword": "Nueva contraseña",
+      "newPasswordPlaceholder": "Ingresa la nueva contraseña",
+      "confirmNewPassword": "Confirmar nueva contraseña",
+      "confirmNewPasswordPlaceholder": "Confirma la nueva contraseña",
+      "submit": "Actualizar perfil",
+      "submitting": "Actualizando..."
     }
   },
+  "play": "Jugar",
+  "add": "Añadir",
   "footer": {
     "about": "Sobre Nosotros",
     "description": "Chess960v2 es un enfoque innovador del ajedrez Fischer Random con doble aleatorización de las posiciones iniciales. Realizamos torneos entre motores de ajedrez, explorando nuevas estrategias y tácticas en condiciones de total imprevisibilidad de la apertura.",
@@ -95,6 +169,8 @@
     "currentElo": "ELO actual",
     "countShown": "{{count}} mostrados",
     "perPage": "Por página:",
+    "first": "Primera",
+    "last": "Última",
     "previous": "Anterior",
     "next": "Siguiente",
     "pageStatus": "Página {{page}} / {{totalPages}} • {{total}} en total",
@@ -109,10 +185,12 @@
       "result": "Resultado",
       "pgn": "PGN",
       "game": "Partida"
-    }
+    },
+    "retry": "Reintentar"
   },
   "standings": {
     "title": "Tabla del torneo",
+    "championshipLabel": "Campeonato",
     "tabs": {
       "all": "Todos",
       "white": "Blancas",
@@ -120,6 +198,13 @@
     },
     "viewRound": "Ver ronda:",
     "open": "Abrir",
+    "championshipStatus": {
+      "active": "activo",
+      "completed": "completado",
+      "finished": "terminado",
+      "archived": "archivado",
+      "upcoming": "proximo"
+    },
     "headers": {
       "rank": "#",
       "agentId": "ID del agente",
@@ -129,7 +214,8 @@
       "losses": "P",
       "points": "Puntos",
       "bergvizer": "Bergvizer"
-    }
+    },
+    "favoritesLoginPrompt": "Inicia sesión para desbloquear tus posiciones favoritas."
   },
   "ratings": {
     "title": "Ratings",
@@ -154,5 +240,103 @@
     "flip": "Invertir",
     "showPGN": "Mostrar PGN",
     "hidePGN": "Ocultar PGN"
+  },
+  "playPage": {
+    "title": "Jugar",
+    "favorites": "Favoritos",
+    "joinTitle": "Unirse por enlace",
+    "linkPlaceholder": "Pega el enlace del juego…",
+    "goButton": "Ir",
+    "createTitle": "Crear partida",
+    "color": "Color",
+    "white": "Blancas",
+    "black": "Negras",
+    "timeControl": "Control de tiempo (inactivo)",
+    "hiddenMode": "Modo de piezas ocultas",
+    "fen": "FEN inicial",
+    "preview": "Previsualización",
+    "createButton": "Crear partida",
+    "cancel": "Cancelar",
+    "loginPrompt": "Inicia sesión para jugar.",
+    "toLogin": "Ir a iniciar sesión",
+    "invalidLink": "Enlace de juego no válido",
+    "previewHint": "Haz clic en el botón de selección de color y elige una posición inicial de tus favoritos",
+    "attention": "Atención",
+    "favoritesRequirement": "Para participar, añade al menos una posición favorita para Blancas y otra para Negras.",
+    "selectPositionRequired": "Selecciona una posición de tus favoritos antes de crear una partida.",
+    "joinSelectTitle": "Selecciona tu posición inicial para unirte",
+    "joinPreview": "Vista previa",
+    "joinButton": "Unirse a la partida",
+    "waitingForConnection": "Esperando conexión…",
+    "gameserver": "Servidor de juego",
+    "ws": {
+      "connected": "Conectado",
+      "connecting": "Conectando",
+      "disconnected": "Desconectado",
+      "error": "Error de conexión"
+    },
+    "yourTurn": "Tu turno",
+    "waitTurn": "Esperando al oponente",
+    "gameOver": "Partida terminada",
+    "outcome": "Resultado",
+    "by": "por",
+    "offerDraw": "Ofrecer tablas",
+    "acceptDraw": "Aceptar tablas",
+    "drawOffered": "El oponente ofrece tablas.",
+    "drawOfferedByYou": "Has ofrecido tablas.",
+    "resign": "Abandonar",
+    "confirmResign": "¿Abandonar y perder la partida?",
+    "confirmAcceptDraw": "¿Aceptar tablas y terminar la partida?",
+    "drawRejected": "Tablas rechazadas.",
+    "cancelDraw": "Cancelar",
+    "resignTitle": "Confirmar abandono",
+    "acceptDrawTitle": "Confirmar tablas",
+    "errors": {
+      "illegalMove": "Movimiento ilegal",
+      "notYourTurn": "No es tu turno",
+      "gameNotStarted": "La partida aún no ha comenzado"
+    },
+    "openPlay": "Jugar",
+    "joinSideRequirement": "Para unirte, añade al menos una posición favorita para {{side}} y vuelve a abrir el enlace.",
+    "selectionRequired": "Selección requerida"
+  },
+  "challengesPage": {
+    "title": "Desafíos",
+    "subtitle": "Partidas abiertas esperando a un oponente",
+    "empty": "No hay desafíos abiertos.",
+    "authRequired": "Autenticación requerida",
+    "loginPrompt": "Inicia sesión para ver los desafíos.",
+    "goToLogin": "Ir a iniciar sesión",
+    "loadFailed": "Error al cargar los desafíos: {{message}}",
+    "favoritesRequirement": "Para aceptar un desafío, añade al menos una posición favorita para blancas y otra para negras.",
+    "none": "ninguno",
+    "white": "Blancas",
+    "black": "Negras",
+    "open": "libre",
+    "taken": "ocupado",
+    "acceptAs": "Aceptar como {{side}}",
+    "completeFavorites": "Completa tus favoritos para aceptar",
+    "headers": {
+      "id": "ID",
+      "created": "Creado",
+      "creator": "Creador",
+      "prefers": "Prefiere",
+      "vacant": "Vacante",
+      "time": "Tiempo",
+      "action": "Acción"
+    }
+  },
+  "positions": {
+    "empty": "No hay posiciones para mostrar",
+    "title": "Posiciones",
+    "guidance": {
+      "bishops": "Los alfiles deben colocarse en casillas de distinto color (uno en blanca y otro en negra).",
+      "kingRooks": "El rey debe estar entre dos torres para permitir el enroque en ambos lados."
+    },
+    "hint": "Selecciona una pieza y haz clic en una casilla para colocarla o quitarla. Usa Borrar para reiniciar."
+  },
+  "common": {
+    "clear": "Borrar",
+    "cancel": "Cancelar selección"
   }
 }
